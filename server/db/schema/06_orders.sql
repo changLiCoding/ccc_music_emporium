@@ -9,5 +9,4 @@ CREATE TABLE orders (
   rent_start DATE,
   rent_end DATE,
   created_at DATE NOT NULL DEFAULT now()
-
 );
