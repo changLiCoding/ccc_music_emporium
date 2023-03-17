@@ -1,0 +1,18 @@
+{
+	"name": "kickassproject",
+	"version": "1.0.0",
+	"description": "musical instrument",
+	"main": "server.js",
+	"scripts": {
+		"db:reset": "cd server && npm run db:reset",
+		"server": "cd server && nodemon server",
+		"client": "cd client && npm start",
+		"dev": "concurrently \"npm run client\" \"npm run server\"",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Can, Cody, Chang",
+	"license": "ISC",
+	"dependencies": {
+		"concurrently": "^7.6.0"
+	}
+}
