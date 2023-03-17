@@ -8,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 8081;
 
 // Middleware configuration
+// Enable CORS for all origins
 app.use(cors());
 app.use(express.json({ limit: "10kb" }));
 app.use(morgan("dev"));

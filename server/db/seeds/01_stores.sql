@@ -1,3 +1,3 @@
 
 INSERT INTO stores (name, location)
-VALUES ('North York Store', 'Yonge Street');
+VALUES ('North York Store', '2456 Yonge Street');
