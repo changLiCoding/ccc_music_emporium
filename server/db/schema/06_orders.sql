@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS orders CASCADE;
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  store_id INTEGER NOT NULL REFERENCES stores(id) ON DELETE CASCADE,
+  name VARCHAR(255) NOT NULL UNIQUE,
+  total_in_cents INTEGER NOT NULL,
+  description TEXT NOT NULL,
+  rent_start DATE,
+  rent_end DATE,
+  created_at DATE NOT NULL DEFAULT now()
+
+);
