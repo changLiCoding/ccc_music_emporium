@@ -1,7 +1,11 @@
 import "./App.css";
 
+import useHomeDataFetch from "./hooks/useHomeDataFetch";
+
 function App() {
-	return <div></div>;
+	const { data } = useHomeDataFetch();
+	console.log(data);
+	return <div>{data.msg}</div>;
 }
 
 export default App;
