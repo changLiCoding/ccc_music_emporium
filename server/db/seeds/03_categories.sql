@@ -1,5 +1,2 @@
-INSERT INTO categories (name) VALUES
-("guitars"),
-("keyboards"),
-("drums"),
-("pro audio & recording");
+
+INSERT INTO categories (name) VALUES ('Guitars'), ('Keyboards'), ('Drums'), ('Pro Audio & Recording');
