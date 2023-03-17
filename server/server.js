@@ -2,11 +2,13 @@ require("dotenv").config();
 
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 8081;
 
 // Middleware configuration
+app.use(cors());
 app.use(express.json({ limit: "10kb" }));
 app.use(morgan("dev"));
 console.log(process.env.PORT);
