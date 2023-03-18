@@ -1,15 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useCategoryProducts from "../hooks/useCategoryProducts";
+import useSubCategoryProducts from "../hooks/useSubCategoryProducts";
 
-export default function Category() {
-	const { name } = useParams();
-	const { products } = useCategoryProducts(name);
-	console.log(`Rendering ${name} category`);
+export default function SubCategory() {
+	const { sub_categories_name } = useParams();
+	console.log(sub_categories_name);
+	const { products } = useSubCategoryProducts(sub_categories_name);
+	console.log(products, sub_categories_name);
 	return (
 		<div>
-			CATEGORY PAGE
-			<div>This the the page for {name.toUpperCase()} products</div>
+			SUB CATEGORY PAGE
+			<div>
+				This the the page for {sub_categories_name.toUpperCase()} products
+			</div>
 			{products.products &&
 				products.products.map((product) => {
 					return (

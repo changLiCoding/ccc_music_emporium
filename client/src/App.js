@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Categories from "./components/Categories";
 import Category from "./components/Category";
 import NotFound from "./components/NotFound";
+import SubCategory from "./components/SubCategory";
 import { Fragment } from "react";
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
 				<Route
 					path='/'
 					element={<Home />}
+				/>
+				<Route
+					path='/categories/:name/sub_categories/:sub_categories_name'
+					element={<SubCategory />}
 				/>
 				<Route path='/categories'>
 					<Route
