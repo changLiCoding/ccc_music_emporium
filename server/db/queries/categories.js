@@ -1,6 +1,19 @@
 const db = require("../connection");
 
 // GET ALL PRODUCTS FROM CATEGORIES NAME
+
+const getAllCategories = () => {
+	const queryTemplate = `
+    SELECT name
+    FROM categories
+  `;
+
+	return db
+		.query(queryTemplate, [])
+		.then((results) => results.rows)
+		.catch((err) => console.error(err));
+};
+
 const getProductsByCategoryName = (categoryName) => {
 	const queryTemplate = `
     SELECT make, model, image_url, description, price_in_cents
@@ -20,5 +33,6 @@ const getProductsByCategoryName = (categoryName) => {
 };
 
 module.exports = {
+	getAllCategories,
 	getProductsByCategoryName,
 };
