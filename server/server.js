@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 8081;
+const { getAllCategories } = require("./db/queries/categories");
 
 // Middleware configuration
 // Enable CORS for all origins
@@ -34,7 +35,11 @@ const apiCategoriesRoutes = require("./routes/apiCategoriesRoutes");
 app.use("/api/categories", apiCategoriesRoutes);
 
 app.get("/api", (req, res) => {
-	res.status(200).json({ msg: "Hello World From Server!" });
+	getAllCategories()
+		.then((categories) => res.status(200).json({ categories }))
+		.catch((err) => {
+			res.status(500).json({ error: err.message });
+		});
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //               ERROR HANDLER
