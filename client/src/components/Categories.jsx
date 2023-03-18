@@ -1,26 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import useHomeCategories from "../hooks/useHomeCategories";
+
 export default function Categories() {
+	const { categories } = useHomeCategories();
 	return (
 		<div>
 			CATEGORIES PAGE
 			<div>
 				<ul>
-					<li>
-						<Link to='/categories/guitars'>Guitars</Link>
-					</li>
-					<li>
-						<Link to='/categories/keyboards'>Keyboard</Link>
-					</li>
-					<li>
-						<Link to='/categories/drums'>Drums</Link>
-					</li>
-					<li>
-						<Link to='/categories/pro%20audio%20%26%20recording'>
-							Pro Audio & Recording
-						</Link>
-					</li>
+					{categories.categories &&
+						categories.categories.map((category) => {
+							const linkUrl = `/categories/${category.name}`;
+							return (
+								<li key={category.id}>
+									<Link to={linkUrl}>{category.name.toUpperCase()}</Link>
+								</li>
+							);
+						})}
 				</ul>
 			</div>
 		</div>
