@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./components/Home";
 import Categories from "./components/Categories";
 import Category from "./components/Category";
+import NotFound from "./components/NotFound";
 import { Fragment } from "react";
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
 				<Route
 					path='/categories/:name'
 					element={<Category />}
+				/>
+				<Route
+					path='*'
+					element={<NotFound />}
 				/>
 			</Routes>
 		</Fragment>
