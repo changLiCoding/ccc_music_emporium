@@ -31,7 +31,6 @@ const apiCategoriesRoutes = require("./routes/apiCategoriesRoutes");
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
-// app.use("/api/categories/sub_categories", apiCategoriesSubcategoriesRoutes);
 app.use("/api/categories", apiCategoriesRoutes);
 
 app.get("/api", (req, res) => {
