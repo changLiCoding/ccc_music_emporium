@@ -7,10 +7,15 @@ import Category from "./components/Category";
 import NotFound from "./components/NotFound";
 import SubCategory from "./components/SubCategory";
 import { Fragment } from "react";
+import NavBar from "./components/NavBar";
+
+import useHomeCategories from "./hooks/useHomeCategories";
 
 function App() {
+	const { categories } = useHomeCategories();
 	return (
 		<Fragment>
+			<NavBar categories={categories.categories} />
 			<nav>
 				<ul>
 					<li>
@@ -24,7 +29,7 @@ function App() {
 			<Routes>
 				<Route
 					path='/'
-					element={<Home />}
+					element={<Home categories={categories.categories} />}
 				/>
 				<Route
 					path='/categories/:name/sub_categories/:sub_categories_name'
