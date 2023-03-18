@@ -25,14 +25,16 @@ function App() {
 					path='/'
 					element={<Home />}
 				/>
-				<Route
-					path='/categories'
-					element={<Categories />}
-				/>
-				<Route
-					path='/categories/:name'
-					element={<Category />}
-				/>
+				<Route path='/categories'>
+					<Route
+						index
+						element={<Categories />}
+					/>
+					<Route
+						path=':name'
+						element={<Category />}
+					/>
+				</Route>
 				<Route
 					path='*'
 					element={<NotFound />}
