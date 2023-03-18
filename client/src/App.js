@@ -1,19 +1,39 @@
+import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import useCategories from "./hooks/useCategories";
+import Home from "./components/Home";
+import Categories from "./components/Categories";
+import Category from "./components/Category";
+import { Fragment } from "react";
 
 function App() {
-	let { categories } = useCategories();
-	console.log(categories);
-	console.log(categories.categories);
-	categories = categories.categories;
 	return (
-		<div>
-			{categories &&
-				categories.map((category) => (
-					<article key={category.id}> {category.name} </article>
-				))}
-		</div>
+		<Fragment>
+			<nav>
+				<ul>
+					<li>
+						<Link to='/'>Home</Link>
+					</li>
+					<li>
+						<Link to='/categories'>Categories</Link>
+					</li>
+				</ul>
+			</nav>
+			<Routes>
+				<Route
+					path='/'
+					element={<Home />}
+				/>
+				<Route
+					path='/categories'
+					element={<Categories />}
+				/>
+				<Route
+					path='/categories/:name'
+					element={<Category />}
+				/>
+			</Routes>
+		</Fragment>
 	);
 }
 

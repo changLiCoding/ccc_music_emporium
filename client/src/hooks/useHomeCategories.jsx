@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function useCategories() {
+export default function useHomeCategories() {
 	const [categories, setCategories] = useState({});
 
 	useEffect(() => {
-		console.log("Customized Hook Worked!");
 		axios
 			.get("http://localhost:8080/api")
 			.then((response) => {
-				console.log(response.data);
 				setCategories((prevCategories) => {
 					return { ...prevCategories, ...response.data };
 				});
