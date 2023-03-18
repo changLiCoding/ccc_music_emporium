@@ -4,7 +4,7 @@ const db = require("../connection");
 
 const getAllCategories = () => {
 	const queryTemplate = `
-    SELECT name
+    SELECT *
     FROM categories
   `;
 

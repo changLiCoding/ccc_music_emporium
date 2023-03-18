@@ -1,10 +1,20 @@
 import "./App.css";
 
-import useHomeDataFetch from "./hooks/useHomeDataFetch";
+import useCategories from "./hooks/useCategories";
 
 function App() {
-	const { data } = useHomeDataFetch();
-	return <div>{data.msg}</div>;
+	let { categories } = useCategories();
+	console.log(categories);
+	console.log(categories.categories);
+	categories = categories.categories;
+	return (
+		<div>
+			{categories &&
+				categories.map((category) => (
+					<article key={category.id}> {category.name} </article>
+				))}
+		</div>
+	);
 }
 
 export default App;
