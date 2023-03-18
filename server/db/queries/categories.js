@@ -16,7 +16,7 @@ const getAllCategories = () => {
 
 const getProductsByCategoryName = (categoryName) => {
 	const queryTemplate = `
-    SELECT make, model, image_url, description, price_in_cents
+    SELECT make, model, image_url, description, price_in_cents, products.id as id
     FROM categories
     JOIN sub_categories ON sub_categories.category_id = categories.id
     JOIN products ON products.sub_category_id = sub_categories.id
