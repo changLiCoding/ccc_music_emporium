@@ -8,6 +8,7 @@ export default function Categories() {
 	return (
 		<div>
 			CATEGORIES PAGE
+			
 			<div>
 				<ul>
 					{categories.categories &&

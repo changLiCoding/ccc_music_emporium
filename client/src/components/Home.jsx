@@ -9,7 +9,7 @@ export default function Home() {
 	return (
 		<div>
 			HOME PAGE
-			<div className>
+			<div>
 				<ul>
 					{categories.categories &&
 						categories.categories.map((category) => {
