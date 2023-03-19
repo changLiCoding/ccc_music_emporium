@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const cookieSession = require("cookie-session");
 
 const app = express();
 const PORT = process.env.PORT || 8081;
@@ -15,14 +16,19 @@ app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 app.use(morgan("dev"));
-const cookieSession = require("cookie-session");
-
+app.use(
+	cookieSession({
+		name: "session",
+		keys: [process.env.COOKIE_SESSION_SECRET],
+	})
+);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //               ROUTER MOUNTING
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+const apiUsersRoutes = require("./routes/apiUsersRoutes");
 const apiCategoriesRoutes = require("./routes/apiCategoriesRoutes");
-// const apiCategoriesSubcategoriesRoutes = require("./routes/apiCategoriesSubcategoriesRoutes");
+const apiCheckoutRoutes = require("./routes/apiCheckoutRoutes");
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //               HOME PAGE ROUTING
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +38,10 @@ const apiCategoriesRoutes = require("./routes/apiCategoriesRoutes");
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 app.use("/api/categories", apiCategoriesRoutes);
+app.use("/api/checkout", apiCheckoutRoutes);
+app.use("/api/users", apiUsersRoutes);
 
+// HOME API ROUTE FOR RETURN ALL CATEGORIES NAMES
 app.get("/api", (req, res) => {
 	getAllCategories()
 		.then((categories) => res.status(200).json({ categories }))
