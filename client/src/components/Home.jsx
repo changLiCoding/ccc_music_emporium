@@ -1,30 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import useHomeCategories from "../hooks/useHomeCategories";
-
-export default function Home() {
-	let { categories } = useHomeCategories();
+export default function Home(props) {
+	const { categories } = props;
 
 	return (
 		<div>
 			HOME PAGE
 			<div>
 				<ul>
-					{categories.categories &&
-						categories.categories.map((category) => {
+					{categories &&
+						categories.map((category) => {
 							const linkUrl = `/categories/${category.name}`;
 							return (
 								<li key={category.id}>
-									<Link to={linkUrl}>
-										{category.name.toUpperCase()}
-										<ul>
-											<li>sub_categories</li>
-											<li>sub_categories</li>
-											<li>sub_categories</li>
-											<li>sub_categories</li>
-										</ul>
-									</Link>
+									<Link to={linkUrl}>{category.name.toUpperCase()}</Link>
 								</li>
 							);
 						})}
