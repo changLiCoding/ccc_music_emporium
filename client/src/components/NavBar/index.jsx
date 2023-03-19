@@ -8,11 +8,13 @@ export default function NavBar(props) {
 	const { categories } = props;
 
 	return (
-		<nav>
-			<Logo />
-			<NavLinks categories={categories} />
+		<nav className='bg-coffee-dark py-4'>
+			<div className='max-w-7xl mx-auto px-4'>
+				<Logo />
+				<NavLinks categories={categories} />
 
-			<Dropdown />
+				<Dropdown />
+			</div>
 		</nav>
 	);
 }

@@ -1,8 +1,7 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import Home from "./components/Home";
-import Categories from "./components/Categories";
 import Category from "./components/Category";
 import NotFound from "./components/NotFound";
 import SubCategory from "./components/SubCategory";
@@ -16,16 +15,7 @@ function App() {
 	return (
 		<Fragment>
 			<NavBar categories={categories.categories} />
-			<nav>
-				<ul>
-					<li>
-						<Link to='/'>Home</Link>
-					</li>
-					<li>
-						<Link to='/categories'>Categories</Link>
-					</li>
-				</ul>
-			</nav>
+
 			<Routes>
 				<Route
 					path='/'
@@ -38,7 +28,7 @@ function App() {
 				<Route path='/categories'>
 					<Route
 						index
-						element={<Categories />}
+						element={<Home categories={categories.categories} />}
 					/>
 					<Route
 						path=':name'
