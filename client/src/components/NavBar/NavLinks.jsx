@@ -13,7 +13,11 @@ export default function NavLinks(props) {
 
 						return (
 							<li key={category.id}>
-								<Link to={linkUrl}>{category.name.toUpperCase()}</Link>
+								<Link
+									className='btn btn-active btn-primary'
+									to={linkUrl}>
+									{category.name.toUpperCase()}
+								</Link>
 							</li>
 						);
 					})}
