@@ -14,14 +14,14 @@
 		"ecmaVersion": 2018
 	},
 	"rules": {
-		// "indent": ["ignore", 2],
+		// "indent": ["error", 2],
 		"linebreak-style": ["error", "unix"],
 		"semi": ["error", "always"],
 		"no-var": "error",
 		"no-console": "off",
 		"no-unused-vars": "warn",
 		"func-call-spacing": ["error", "never"],
-		"space-before-blocks": "error",
+		"space-before-blocks": "off",
 		"keyword-spacing": "error",
 		"no-trailing-spaces": ["error", { "skipBlankLines": true }],
 		"semi-spacing": "error",
@@ -32,7 +32,7 @@
 		"eqeqeq": "error",
 		"brace-style": "error",
 		"space-before-function-paren": [
-			"warn",
+			"off",
 			{ "anonymous": "never", "named": "never", "asyncArrow": "never" }
 		],
 		"func-names": ["error", "never"],

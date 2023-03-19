@@ -1,38 +1,40 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import Home from "./components/Home";
-import Categories from "./components/Categories";
 import Category from "./components/Category";
 import NotFound from "./components/NotFound";
+import SubCategory from "./components/SubCategory";
 import { Fragment } from "react";
+import NavBar from "./components/NavBar";
+
+import useHomeCategories from "./hooks/useHomeCategories";
 
 function App() {
+	const { categories } = useHomeCategories();
 	return (
 		<Fragment>
-			<nav>
-				<ul>
-					<li>
-						<Link to='/'>Home</Link>
-					</li>
-					<li>
-						<Link to='/categories'>Categories</Link>
-					</li>
-				</ul>
-			</nav>
+			<NavBar categories={categories.categories} />
+
 			<Routes>
 				<Route
 					path='/'
-					element={<Home />}
+					element={<Home categories={categories.categories} />}
 				/>
 				<Route
-					path='/categories'
-					element={<Categories />}
+					path='/categories/:name/sub_categories/:sub_categories_name'
+					element={<SubCategory />}
 				/>
-				<Route
-					path='/categories/:name'
-					element={<Category />}
-				/>
+				<Route path='/categories'>
+					<Route
+						index
+						element={<Home categories={categories.categories} />}
+					/>
+					<Route
+						path=':name'
+						element={<Category />}
+					/>
+				</Route>
 				<Route
 					path='*'
 					element={<NotFound />}
