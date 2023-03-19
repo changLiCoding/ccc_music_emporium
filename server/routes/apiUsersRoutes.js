@@ -9,19 +9,55 @@ const {
 
 const router = express.Router();
 
-// Validation middleware for user sign up
-const validateSignUp = [
-	body("email").isEmail().withMessage("Invalid email"),
-	body("password")
-		.isLength({ min: 6 })
-		.withMessage("Password must be at least 6 characters"),
-	body("firstName")
-		.isLength({ min: 2 })
-		.withMessage("First name must be at least 2 characters"),
-	body("lastName")
-		.isLength({ min: 2 })
-		.withMessage("Last name must be at least 2 characters"),
-];
+// Sign up route
+router.post(
+	"/sign_up",
+	[
+		// Validate request body using express-validator
+		body("email").isEmail().withMessage("Invalid email address"),
+		body("firstName").not().isEmpty().withMessage("First name is required"),
+		body("lastName").not().isEmpty().withMessage("Last name is required"),
+		body("password")
+			.isLength({ min: 6 })
+			.withMessage("Password must be at least 6 characters long"),
+		body("passwordConfirm").custom((value, { req }) => {
+			if (value !== req.body.password) {
+				throw new Error("Password confirmation does not match password");
+			}
+			return true;
+		}),
+	],
+	async (req, res) => {
+		// Check for validation errors and return error response if found
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+
+		const { email, firstName, lastName, password } = req.body;
+
+		try {
+			// Check if user already exists
+			const existingUser = await getUserByEmail(email);
+			if (existingUser) {
+				return res.status(409).json({ message: "User already exists" });
+			}
+
+			// Hash password and create new user
+			const hashedPassword = await bcrypt.hash(password, 10);
+			const newUser = await createNewUser({
+				email,
+				firstName,
+				lastName,
+				password: hashedPassword,
+			});
+			return res.status(201).json({ user: newUser });
+		} catch (err) {
+			console.error(err);
+			return res.status(500).json({ message: "Server error" });
+		}
+	}
+);
 
 // Validation middleware for user sign in
 const validateSignIn = [
@@ -30,40 +66,6 @@ const validateSignIn = [
 		.isLength({ min: 6 })
 		.withMessage("Password must be at least 6 characters"),
 ];
-
-// Sign up route
-router.post("/sign_up", validateSignUp, async (req, res) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(422).json({ errors: errors.array() });
-	}
-
-	const { email, firstName, lastName, password } = req.body;
-
-	try {
-		const userExists = await getUserByEmail(email);
-		if (userExists) {
-			return res
-				.status(409)
-				.json({ message: "User with this email already exists" });
-		}
-
-		const salt = await bcrypt.genSalt();
-		const hashedPassword = await bcrypt.hash(password, salt);
-
-		const newUser = await createNewUser({
-			email,
-			firstName,
-			lastName,
-			password: hashedPassword,
-		});
-
-		return res.status(201).json({ message: "User created", user: newUser });
-	} catch (error) {
-		console.error(error);
-		return res.status(500).json({ message: "Internal server error" });
-	}
-});
 
 // Sign in route
 router.post("/sign_in", validateSignIn, async (req, res) => {

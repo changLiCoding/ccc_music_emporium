@@ -37,16 +37,16 @@ const getUserByID = (id) => {
 // CREATE NEW USER BY REGISTER
 const createNewUser = (user) => {
 	const queryTemplate = `
-    INSERT INTO users (name, email, password, first_name, last_name)
+    INSERT INTO users ( email, password, first_name, last_name)
     VALUES
-    ($1, $2, $3, $4, $5)
+    ($1, $2, $3, $4)
     RETURNING *
   ;
   `;
 
-	const { name, email, password, firstName, lastName } = user;
+	const { email, password, firstName, lastName } = user;
 
-	const sqlParams = [name, email, password, firstName, lastName];
+	const sqlParams = [email, password, firstName, lastName];
 
 	return db
 		.query(queryTemplate, sqlParams)
