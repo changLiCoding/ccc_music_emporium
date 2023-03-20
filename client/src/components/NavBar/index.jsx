@@ -7,7 +7,7 @@ import { faDrum } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
-	const { categories } = props;
+	// const { categories } = props;
 
 	return (
 		<div className="navbar h-24 bg-primary border-solid border-2 border-black">
