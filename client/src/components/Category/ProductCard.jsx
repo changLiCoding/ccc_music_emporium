@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default function Card(props) {
-	const { product } = props;
+	const { product, category } = props;
 	return (
 		<div className='card w-96 bg-base-100 shadow-xl'>
 			<figure>
@@ -18,8 +17,13 @@ export default function Card(props) {
 				</h2>
 				<p>{product.make}</p>
 				<div className='card-actions justify-end'>
-					<div className='badge badge-outline'>Fashion</div>
-					<div className='badge badge-outline'>Products</div>
+					<div className='badge badge-outline'>
+						{category.charAt(0).toUpperCase() + category.slice(1)}
+					</div>
+					<div className='badge badge-outline'>
+						{product.sub_category_name.charAt(0).toUpperCase() +
+							product.sub_category_name.slice(1)}
+					</div>
 				</div>
 			</div>
 		</div>
