@@ -3,7 +3,8 @@ import React from "react";
 export default function Card(props) {
 	const { product, category } = props;
 	return (	
-		<div className='card card-side w-96 bg-white shadow hover:shadow-3xl transition-all justify-self-center border 1px flex items-stretch'>
+
+		category === 'guitars' && <div className='card card-side w-96 bg-white shadow hover:shadow-3xl transition-all justify-self-center border 1px flex items-stretch'>
 			<figure>
 				<img
 					className='-rotate-90'
@@ -29,5 +30,6 @@ export default function Card(props) {
 				</div>
 			</div>
 		</div>
+
 	);
 }
