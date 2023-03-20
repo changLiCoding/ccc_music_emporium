@@ -6,15 +6,15 @@ import InfoBar from "./InfoBar";
 import SideBars from "./SideBars";
 import CategoryCards from "./CategoryCards";
 
-export default function Category() {
+export default function Category(props) {
+	const { subCategories } = props;
 	const { name } = useParams();
 	const { products } = useCategoryProducts(name);
-	console.log(`Rendering ${name} category`);
 	return (
 		<main className='flex flex-col container mx-auto'>
 			<InfoBar category={name}></InfoBar>
 			<div className='flex'>
-				<SideBars></SideBars>
+				<SideBars subCategories={subCategories}></SideBars>
 				<CategoryCards products={products.products} />
 			</div>
 		</main>
