@@ -7,10 +7,10 @@ export default function Home(props) {
 
   return (
     <div>
-      <div class="card w-96 bg-base-100 shadow-xl">
+      <div class="card w-96 bg-base-100 shadow-xl"><Link to={`/categories/keyboards`}>
         <div class="card-body">
           <h2 class="card-title">I am keyboard</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p>All the key needs we have the right boards</p>
         </div>
         <figure>
           <img
@@ -18,11 +18,12 @@ export default function Home(props) {
 						alt="Keyboard"
           />
         </figure>
+					</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow-xl">
+			<div class="card w-96 bg-base-100 shadow-xl"><Link to={`/categories/guitars`}>
         <div class="card-body">
           <h2 class="card-title">I am guitar</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p>Don't get strung on else's get your strings here</p>
         </div>
         <figure>
           <img
@@ -30,11 +31,12 @@ export default function Home(props) {
             alt="Guitar"
           />
         </figure>
+				</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow-xl">
+			<div class="card w-96 bg-base-100 shadow-xl"><Link to={`/categories/drums`}>
         <div class="card-body">
           <h2 class="card-title">I am drums</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p>"What's more fun than hitting stuff" - Flea</p>
         </div>
         <figure>
           <img
@@ -42,11 +44,12 @@ export default function Home(props) {
             alt="Drums"
           />
         </figure>
+				</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow-xl">
+			<div class="card w-96 bg-base-100 shadow-xl"><Link to={`/categories/amps & pedals`}>
         <div class="card-body">
           <h2 class="card-title">I am things</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p>Not satisfied with the natural, get on your game guttural</p>
         </div>
         <figure>
           <img
@@ -54,22 +57,7 @@ export default function Home(props) {
             alt="Things"
           />
         </figure>
-      </div>
-    <div>
-        HOME PAGE
-        <div>
-          <ul>
-            {categories &&
-              categories.map((category) => {
-                const linkUrl = `/categories/${category.name}`;
-                return (
-                  <li key={category.id}>
-                    <Link to={`/categories/${category.name}`}>{category.name.toUpperCase()}</Link>
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
+				</Link>
       </div>
     </div>
   );
