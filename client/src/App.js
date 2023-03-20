@@ -23,7 +23,6 @@ function App() {
 			<NavBar categories={categoryNames} />
 
 			<Routes>
-				<Route path="/" element={<Home categories={categories.categories} />} />
 				<Route
 					path='/'
 					element={<Home categories={categoryNames} />}
