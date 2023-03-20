@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useCookies } from "react-cookie";
+
 
 import axios from "axios";
 
 export default function SignIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -14,7 +17,9 @@ export default function SignIn() {
 				password,
 			});
 			console.log("Login successful");
-			console.log(res.data);
+      console.log(res.data);
+      setCookie("user_id", res.data.user.id);
+      setCookie("user_name", res.data.user.first_name);
 		} catch (error) {
 			console.error(error);
 		}
