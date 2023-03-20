@@ -2,7 +2,9 @@
 module.exports = {
 	content: ["./src/**/*.{js,jsx,ts,tsx}"],
 	theme: {
-		extend: {},
+		extend: { boxShadow: {
+			'3xl': '0 35px 60px -5px rgba(30, 51, 51, 100)'
+		}},
 	},
 	plugins: [require("daisyui")],
 	daisyui: {
