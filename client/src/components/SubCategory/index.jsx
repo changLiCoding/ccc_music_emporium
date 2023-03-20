@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useSubCategoryProducts from "../hooks/useSubCategoryProducts";
+import useSubCategoryProducts from "../../hooks/useSubCategoryProducts";
 
 export default function SubCategory() {
 	const { sub_categories_name } = useParams();
@@ -21,6 +21,10 @@ export default function SubCategory() {
 								<li> {product.make}</li>
 								<li>{product.model}</li>
 								<li>{product.description}</li>
+								<img
+									src={product.image_url}
+									alt={product.make}
+								/>
 								<li>{product.price_in_cents} Cents</li>
 							</ul>
 						</div>
