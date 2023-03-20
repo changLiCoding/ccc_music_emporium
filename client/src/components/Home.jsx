@@ -6,11 +6,11 @@ export default function Home(props) {
   const { categories } = props;
 
   return (
-    <div class="flex flex-nowrap">
-      <div class="card w-96 bg-base-100 shadow-xl hover:bg-sky-700"><Link to={`/categories/keyboards`}>
+    <div class="flex flex-nowrap justify-center space-x-10">
+      <div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all" m-10000px><Link to={`/categories/keyboards`}>
         <div class="card-body">
           <h2 class="card-title">I am keyboard</h2>
-          <p>All the key needs we have the right boards</p>
+          <p>For all your key needs, we have the boards</p>
         </div>
         <figure>
           <img
@@ -20,10 +20,10 @@ export default function Home(props) {
         </figure>
 					</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow-xl"><Link to={`/categories/guitars`}>
+			<div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/guitars`}>
         <div class="card-body">
           <h2 class="card-title">I am guitar</h2>
-          <p>Don't get strung on else's get your strings here</p>
+          <p>Don't get strung on else's, get your own strings</p>
         </div>
         <figure>
           <img
@@ -33,7 +33,7 @@ export default function Home(props) {
         </figure>
 				</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow-xl"><Link to={`/categories/drums`}>
+			<div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/drums`}>
         <div class="card-body">
           <h2 class="card-title">I am drums</h2>
           <p>"What's more fun than hitting stuff" - Flea</p>
@@ -46,7 +46,7 @@ export default function Home(props) {
         </figure>
 				</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow-xl"><Link to={`/categories/amps & pedals`}>
+			<div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/amps & pedals`}>
         <div class="card-body">
           <h2 class="card-title">I am things</h2>
           <p>Not satisfied with the natural, get on your game guttural</p>
