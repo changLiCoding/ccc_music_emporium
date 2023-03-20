@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import useHomeCategories from "../hooks/useHomeCategories";
-import Card from "./Cards";
 
 export default function Categories() {
 	const { categories } = useHomeCategories();

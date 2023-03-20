@@ -7,6 +7,8 @@ export default function SubCategory() {
 	console.log(sub_categories_name);
 	const { products } = useSubCategoryProducts(sub_categories_name);
 	console.log(products, sub_categories_name);
+
+	
 	return (
 		<div>
 			SUB CATEGORY PAGE
