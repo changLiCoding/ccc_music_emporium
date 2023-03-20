@@ -1,8 +1,5 @@
 import React from "react";
 
-// import Logo from "./Logo";
-// import NavLinks from "./NavLinks";
-// import Dropdown from "./Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import { faGuitar } from "@fortawesome/free-solid-svg-icons";
@@ -13,29 +10,18 @@ export default function NavBar(props) {
 	const { categories } = props;
 
 	return (
-		// <nav className="bg-coffee-dark py-4">
-		// 	<div className="max-w-7xl mx-auto px-4">
-		// 		<Logo />
-		// 		<NavLinks categories={categories} />
-
-		// 		<Dropdown />
-		// 	</div>
-		// </nav>
-
 		<div className="navbar h-24 bg-primary border-solid border-2 border-black">
 			<div className="flex-1 navbar-start">
 				<FontAwesomeIcon icon={faGuitar} size="2x" />
 				<Link to="/" className="btn btn-ghost normal-case text-2xl">
 					CCC MUSIC EMPORIUM
 				</Link>
-				<FontAwesomeIcon icon={faDrum} size={"2x"} />
+				<FontAwesomeIcon icon={faDrum} size="2x" />
 			</div>
 			<div className="navbar-center">
 				<ul className="menu menu-horizontal px-5 ml-20 text-xl">
 					<li>
-          <Link to="/">
-					Shop
-				</Link>
+						<Link to="/">Shop</Link>
 					</li>
 					<li>
 						<a>About Us</a>
