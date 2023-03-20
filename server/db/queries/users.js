@@ -51,7 +51,6 @@ const createNewUser = (user) => {
 	return db
 		.query(queryTemplate, sqlParams)
 		.then((res) => {
-			console.log(res.rows[0]);
 			return res.rows[0];
 		})
 		.catch((err) => console.error(err.message));
