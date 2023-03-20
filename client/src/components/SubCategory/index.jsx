@@ -22,6 +22,7 @@ export default function SubCategory() {
 								<li>{product.model}</li>
 								<li>{product.description}</li>
 								<img
+									className='transform rotate-90'
 									src={product.image_url}
 									alt={product.make}
 								/>
