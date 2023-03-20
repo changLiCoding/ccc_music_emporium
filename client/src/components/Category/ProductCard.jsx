@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Card(props) {
 	const { product, category } = props;
-	return (
-		<div className='card card-side w-96 bg-white shadow-3xl'>
+	return (	
+		<div className='card card-side w-96 bg-white shadow hover:shadow-3xl transition-all justify-self-center border 1px flex items-stretch'>
 			<figure>
 				<img
 					className='-rotate-90'
@@ -11,6 +11,7 @@ export default function Card(props) {
 					alt={product.model}
 				/>
 			</figure>
+			
 			<div className='card-body'>
 				<h2 className='card-title'>
 					{product.model}
