@@ -29,6 +29,7 @@ app.use(
 const apiUsersRoutes = require("./routes/apiUsersRoutes");
 const apiCategoriesRoutes = require("./routes/apiCategoriesRoutes");
 const apiCheckoutRoutes = require("./routes/apiCheckoutRoutes");
+const apiHomeRoutes = require("./routes/apiHomeRoutes");
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //               HOME PAGE ROUTING
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,15 +41,8 @@ const apiCheckoutRoutes = require("./routes/apiCheckoutRoutes");
 app.use("/api/categories", apiCategoriesRoutes);
 app.use("/api/checkout", apiCheckoutRoutes);
 app.use("/api/users", apiUsersRoutes);
+app.use("/api", apiHomeRoutes);
 
-// HOME API ROUTE FOR RETURN ALL CATEGORIES NAMES
-app.get("/api", (req, res) => {
-	getAllCategories()
-		.then((categories) => res.status(200).json({ categories }))
-		.catch((err) => {
-			res.status(500).json({ error: err.message });
-		});
-});
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //               ERROR HANDLER
 ///////////////////////////////////////////////////////////////////////////////////////////////////
