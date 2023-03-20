@@ -9,6 +9,7 @@ import { Fragment } from "react";
 import NavBar from "./components/NavBar";
 
 import useHomeCategories from "./hooks/useHomeCategories";
+import Footer from "./components/Footer";
 
 function App() {
 	const { categories } = useHomeCategories();
@@ -17,29 +18,19 @@ function App() {
 			<NavBar categories={categories.categories} />
 
 			<Routes>
+				<Route path="/" element={<Home categories={categories.categories} />} />
 				<Route
-					path='/'
-					element={<Home categories={categories.categories} />}
-				/>
-				<Route
-					path='/categories/:name/sub_categories/:sub_categories_name'
+					path="/categories/:name/sub_categories/:sub_categories_name"
 					element={<SubCategory />}
 				/>
-				<Route path='/categories'>
-					<Route
-						index
-						element={<Home categories={categories.categories} />}
-					/>
-					<Route
-						path=':name'
-						element={<Category />}
-					/>
+				<Route path="/categories">
+					<Route index element={<Home categories={categories.categories} />} />
+					<Route path=":name" element={<Category />} />
 				</Route>
-				<Route
-					path='*'
-					element={<NotFound />}
-				/>
+				<Route path="*" element={<NotFound />} />
 			</Routes>
+      
+			<Footer />
 		</Fragment>
 	);
 }
