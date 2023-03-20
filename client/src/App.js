@@ -24,27 +24,18 @@ function App() {
 
 			<Routes>
 				<Route path="/" element={<Home categories={categories.categories} />} />
+				<Route path="/" element={<Home categories={categoryNames} />} />
 				<Route
-					path='/'
-					element={<Home categories={categoryNames} />}
-				/>
-				<Route
-					path='/categories/:name/sub_categories/:sub_categories_name'
+					path="/categories/:name/sub_categories/:sub_categories_name"
 					element={<SubCategory />}
 				/>
-				<Route path='/categories'>
-					<Route
-						index
-						element={<Home categories={categoryNames} />}
-					/>
-					<Route
-						path=':name'
-						element={<Category />}
-					/>
+				<Route path="/categories">
+					<Route index element={<Home categories={categoryNames} />} />
+					<Route path=":name" element={<Category />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
-      
+
 			<Footer />
 		</Fragment>
 	);
