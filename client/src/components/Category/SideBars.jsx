@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import SubCategoryLinks from "./SubCategoryLinks";
+
 export default function SideBars(props) {
 	const { subCategories } = props;
 	console.log(subCategories);
@@ -29,13 +31,19 @@ export default function SideBars(props) {
 				<ul className='menu p-4 w-80 bg-base-100 text-base-content'>
 					{/* <!-- Sidebar content here --> */}
 					{categoryNames.map((category, index) => {
+						console.log(subCategoryNames[index]);
 						const linkUrl = `/categories/${category}`;
-
-						return (
-							<li>
-								<Link to={linkUrl}>{category}</Link>
-							</li>
-						);
+						if (subCategoryNames[index]) {
+							return (
+								<li>
+									<Link to={linkUrl}>{category}</Link>
+									<SubCategoryLinks
+										subCategoryNames={subCategoryNames[index]}
+									/>
+								</li>
+							);
+						}
+						return null;
 					})}
 				</ul>
 			</div>
