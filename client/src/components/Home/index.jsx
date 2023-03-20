@@ -6,7 +6,7 @@ export default function Home(props) {
   const { categories } = props;
 
   return (
-    <div class="flex flex-nowrap justify-center space-x-10">
+    <div class="flex flex-nowrap justify-center space-x-10 mt-20 mx-10">
       <div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all" m-10000px><Link to={`/categories/keyboards`}>
         <div class="card-body">
           <h2 class="card-title">I am keyboard</h2>
