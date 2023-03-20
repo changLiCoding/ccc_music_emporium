@@ -6,8 +6,8 @@ export default function Home(props) {
   const { categories } = props;
 
   return (
-    <div>
-      <div class="card w-96 bg-base-100 shadow-xl"><Link to={`/categories/keyboards`}>
+    <div class="flex flex-nowrap">
+      <div class="card w-96 bg-base-100 shadow-xl hover:bg-sky-700"><Link to={`/categories/keyboards`}>
         <div class="card-body">
           <h2 class="card-title">I am keyboard</h2>
           <p>All the key needs we have the right boards</p>
