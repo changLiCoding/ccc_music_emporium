@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import categoryNamesGenerator from "../../helpers/categoryNamesGenerator";
 import Card from "./Card";
 
 export default function Home(props) {
