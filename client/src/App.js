@@ -10,16 +10,21 @@ import NavBar from "./components/NavBar";
 
 import useHomeCategories from "./hooks/useHomeCategories";
 
+import categoryNamesGenerator from "./helpers/categoryNamesGenerator";
+import subCategoryNamesGenerator from "./helpers/subCategoryNamesGenerator";
+
 function App() {
 	const { categories } = useHomeCategories();
+
+	const categoryNames = categoryNamesGenerator(categories.categories);
 	return (
 		<Fragment>
-			<NavBar categories={categories.categories} />
+			<NavBar categories={categoryNames} />
 
 			<Routes>
 				<Route
 					path='/'
-					element={<Home categories={categories.categories} />}
+					element={<Home categories={categoryNames} />}
 				/>
 				<Route
 					path='/categories/:name/sub_categories/:sub_categories_name'
@@ -28,7 +33,7 @@ function App() {
 				<Route path='/categories'>
 					<Route
 						index
-						element={<Home categories={categories.categories} />}
+						element={<Home categories={categoryNames} />}
 					/>
 					<Route
 						path=':name'
