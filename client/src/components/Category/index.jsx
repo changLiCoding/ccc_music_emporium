@@ -13,8 +13,6 @@ export default function Category() {
 		<div className='flex flex-col container mx-auto'>
 			<InfoBar categoryName={name}></InfoBar>
 
-			<div></div>
-			<div>This the the page for {name.toUpperCase()} products</div>
 			{products.products &&
 				products.products.map((product) => {
 					return (
