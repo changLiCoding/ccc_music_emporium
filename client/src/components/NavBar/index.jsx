@@ -3,7 +3,6 @@ import React from "react";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import Dropdown from "./Dropdown";
-import Card from "../Cards";
 
 export default function NavBar(props) {
 	const { categories } = props;
