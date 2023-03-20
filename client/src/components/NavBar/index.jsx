@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
 	return (
-		<div className="navbar sticky top-0 h-24 bg-primary border-solid border-2 border-black">
+		<div className="navbar h-24 bg-primary border-solid border-2 border-black">
 			<div className="flex-1 navbar-start">
 				<FontAwesomeIcon icon={faGuitar} size="2x" />
 				<Link to="/" className="btn btn-ghost normal-case text-2xl">
