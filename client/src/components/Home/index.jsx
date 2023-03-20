@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 export default function Home(props) {
   const { categories } = props;
-
+  
+// use index to grab url from an array
   return (
-    <div class="flex flex-nowrap justify-center space-x-10 mt-20 mx-10">
-      <div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all" m-10000px><Link to={`/categories/keyboards`}>
-        <div class="card-body">
-          <h2 class="card-title">I am keyboard</h2>
+    <div className="flex flex-nowrap justify-center space-x-10 mt-20 mx-10">
+      <div className="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all" ><Link to={`/categories/keyboards`}>
+        <div className="card-body">
+          <h2 className="card-title">I am keyboard</h2>
           <p>For all your key needs, we have the boards</p>
         </div>
         <figure>
@@ -20,9 +20,9 @@ export default function Home(props) {
         </figure>
 					</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/guitars`}>
-        <div class="card-body">
-          <h2 class="card-title">I am guitar</h2>
+			<div className="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/guitars`}>
+        <div className="card-body">
+          <h2 className="card-title">I am guitar</h2>
           <p>Don't get strung on else's, get your own strings</p>
         </div>
         <figure>
@@ -33,9 +33,9 @@ export default function Home(props) {
         </figure>
 				</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/drums`}>
-        <div class="card-body">
-          <h2 class="card-title">I am drums</h2>
+			<div className="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/drums`}>
+        <div className="card-body">
+          <h2 className="card-title">I am drums</h2>
           <p>"What's more fun than hitting stuff" - Flea</p>
         </div>
         <figure>
@@ -46,9 +46,9 @@ export default function Home(props) {
         </figure>
 				</Link>
       </div>
-			<div class="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/amps & pedals`}>
-        <div class="card-body">
-          <h2 class="card-title">I am things</h2>
+			<div className="card w-96 bg-base-100 shadow hover:shadow-3xl transition-all"><Link to={`/categories/amps & pedals`}>
+        <div className="card-body">
+          <h2 className="card-title">I am things</h2>
           <p>Not satisfied with the natural, get on your game guttural</p>
         </div>
         <figure>
@@ -58,7 +58,7 @@ export default function Home(props) {
           />
         </figure>
 				</Link>
-      </div>
-    </div>
-  );
+			</div>
+		</div>
+	);
 }

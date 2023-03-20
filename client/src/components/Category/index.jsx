@@ -2,26 +2,21 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useCategoryProducts from "../../hooks/useCategoryProducts";
 
-import Card from "./Card";
 import InfoBar from "./InfoBar";
+import SideBars from "./SideBars";
+import CategoryCards from "./CategoryCards";
 
 export default function Category() {
 	const { name } = useParams();
 	const { products } = useCategoryProducts(name);
 	console.log(`Rendering ${name} category`);
 	return (
-		<div className='flex flex-col'>
-			<InfoBar categoryName={name}></InfoBar>
-			CATEGORY PAGE
-			<div>This the the page for {name.toUpperCase()} products</div>
-			{products.products &&
-				products.products.map((product) => {
-					return (
-						<div key={product.id}>
-							<Card product={product} />
-						</div>
-					);
-				})}
-		</div>
+		<main className='flex flex-col container mx-auto'>
+			<InfoBar category={name}></InfoBar>
+			<div className='flex'>
+				<SideBars></SideBars>
+				<CategoryCards products={products.products} />
+			</div>
+		</main>
 	);
 }
