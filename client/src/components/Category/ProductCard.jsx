@@ -3,9 +3,10 @@ import React from "react";
 export default function Card(props) {
 	const { product, category } = props;
 	return (
-		<div className='card w-96 bg-base-100 shadow-xl'>
+		<div className='card card-side w-96 bg-white shadow-3xl'>
 			<figure>
 				<img
+					className='-rotate-90'
 					src={product.image_url}
 					alt={product.model}
 				/>

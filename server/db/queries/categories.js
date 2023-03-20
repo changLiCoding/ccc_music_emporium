@@ -4,8 +4,7 @@ const db = require("../connection");
 
 const getAllCategories = () => {
 	const queryTemplate = `
-    SELECT *
-    FROM categories
+		SELECT categories.id as category_id, sub_categories.id as sub_category_id, categories.name as category_name, sub_categories.name as sub_category_name from categories JOIN sub_categories ON sub_categories.category_id = categories.id
   `;
 
 	return db
