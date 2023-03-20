@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 export default function CategoryCards(props) {
 	const { products } = props;
 	return (
-		<article className=''>
+		<article className='container'>
 			{products &&
 				products.map((product) => {
 					return (
