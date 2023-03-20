@@ -13,7 +13,7 @@ export default function Home(props) {
   console.log("categories are:", categories)
 
  const mappedCategories = categories.map((category, index)=> {
-  return <Card category={category} paragraph={paragraphsArray[index]} image={photoLinkArray[index]}/>
+  return <Card key={index} category={category} paragraph={paragraphsArray[index]} image={photoLinkArray[index]}/>
  })
 
 	return (
