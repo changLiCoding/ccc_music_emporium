@@ -7,6 +7,7 @@ import { faDrum } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
+	const loggedIn = false;
 	return (
 		<div className="navbar h-24 bg-primary border-solid border-2 border-black">
 			<div className="flex-1 navbar-start">
@@ -47,7 +48,7 @@ export default function NavBar(props) {
 									d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
 								/>
 							</svg>
-							<span className="badge badge-sm indicator-item">8</span>
+							<span className="badge badge-sm indicator-item">0</span>
 						</div>
 					</label>
 					<div
@@ -55,38 +56,57 @@ export default function NavBar(props) {
 						className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
 					>
 						<div className="card-body">
-							<span className="font-bold text-lg">8 Items</span>
-							<span className="text-info">Subtotal: $999</span>
+							<span className="font-bold text-lg">0 Items</span>
+							<span className="text-info">Subtotal: $0</span>
 							<div className="card-actions">
 								<button className="btn btn-primary btn-block">View cart</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div className="dropdown dropdown-end mr-3">
-					<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-						<div className="w-10 rounded-full">
-							<FontAwesomeIcon icon={faUserAstronaut} size="3x" />
-						</div>
-					</label>
-					<ul
-						tabIndex={0}
-						className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-					>
-						<li>
-							<a className="justify-between">
-								Profile
-								<span className="badge">New</span>
-							</a>
-						</li>
-						<li>
-							<a>Settings</a>
-						</li>
-						<li>
-							<a>Logout</a>
-						</li>
-					</ul>
-				</div>
+				{loggedIn && (
+					<div className="dropdown dropdown-end mr-3">
+						<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+							<div className="w-10 rounded-full">
+								<FontAwesomeIcon icon={faUserAstronaut} size="3x" />
+							</div>
+						</label>
+						<ul
+							tabIndex={0}
+							className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+						>
+							<li>
+								<a className="justify-between">
+									Profile
+									<span className="badge">New</span>
+								</a>
+							</li>
+							<li>
+								<a>Logout</a>
+							</li>
+						</ul>
+					</div>
+				)}
+				{!loggedIn && (
+					<div className="dropdown dropdown-end mr-3">
+						<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+							<div className="w-10 rounded-full">
+								<FontAwesomeIcon icon={faUserAstronaut} size="3x" />
+							</div>
+						</label>
+						<ul
+							tabIndex={0}
+							className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+						>
+							<li>
+								<a>Login</a>
+							</li>
+							<li>
+								<a>Register</a>
+							</li>
+						</ul>
+					</div>
+				)}
 			</div>
 		</div>
 	);
