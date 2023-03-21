@@ -5,9 +5,17 @@ import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import { faGuitar } from "@fortawesome/free-solid-svg-icons";
 import { faDrum } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { Cookies, useCookies } from "react-cookie";
 
 export default function NavBar(props) {
-	const loggedIn = false;
+	const [cookies, removeCookie] = useCookies(["user_id", "user_name"]);
+
+	const handleLogout = (e) => {
+		e.preventDefault();
+		removeCookie("user_name");
+		removeCookie("user_id");
+	};
+
 	return (
 		<div className="navbar h-24 bg-primary border-solid border-2 border-black">
 			<div className="flex-1 navbar-start">
@@ -64,7 +72,7 @@ export default function NavBar(props) {
 						</div>
 					</div>
 				</div>
-				{loggedIn && (
+				{!cookies.user_name && (
 					<div className="dropdown dropdown-end mr-3">
 						<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 							<div className="w-10 rounded-full">
@@ -76,18 +84,15 @@ export default function NavBar(props) {
 							className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 						>
 							<li>
-								<a className="justify-between">
-									Profile
-									<span className="badge">New</span>
-								</a>
+								<a>Register</a>
 							</li>
 							<li>
-								<a>Logout</a>
+								<Link to="/sign_in">Login</Link>
 							</li>
 						</ul>
 					</div>
 				)}
-				{!loggedIn && (
+				{cookies.user_name && (
 					<div className="dropdown dropdown-end mr-3">
 						<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 							<div className="w-10 rounded-full">
@@ -99,10 +104,10 @@ export default function NavBar(props) {
 							className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 						>
 							<li>
-								<a>Login</a>
+								<p>Logged in as: {cookies.user_name}</p>
 							</li>
 							<li>
-								<a>Register</a>
+								<a onClick={handleLogout}>Logout</a>
 							</li>
 						</ul>
 					</div>
