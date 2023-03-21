@@ -9,10 +9,7 @@ export default function CategoryCards(props) {
 				products.map((product) => {
 					return (
 						<div key={product.id}>
-							<ProductCard
-								product={product}
-								category={product.category_name}
-							/>
+							<ProductCard product={product} />
 						</div>
 					);
 				})}

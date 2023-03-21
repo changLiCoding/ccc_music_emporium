@@ -8,7 +8,7 @@ import PageLinks from "./PageLinks";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 
-export default function NavBar(props) {
+export default function NavBar() {
 	const [cookies, setCookie, removeCookie] = useCookies([
 		"user_id",
 		"user_name",
