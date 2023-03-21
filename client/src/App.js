@@ -14,6 +14,7 @@ import useHomeCategories from "./hooks/useHomeCategories";
 import categoryNamesGenerator from "./helpers/categoryNamesGenerator";
 import subCategoryNamesGenerator from "./helpers/subCategoryNamesGenerator";
 import Footer from "./components/Footer";
+import Register from "./components/Register";
 
 function App() {
 	const { categories } = useHomeCategories();
@@ -25,6 +26,7 @@ function App() {
 			<NavBar categories={categoryNames} />
 			<Routes>
 				<Route path="/sign_in" element={<SignIn />} />
+				<Route path="/sign_up" element={<Register />} />
 				<Route path="/" element={<Home categories={categoryNames} />} />
 				<Route
 					path="/categories/:name/sub_categories/:sub_categories_name"
