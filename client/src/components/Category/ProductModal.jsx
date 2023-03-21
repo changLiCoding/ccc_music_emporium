@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+
 
 export default function ProductModal(props) {
-  const { product, isModalOpen, closeModal } = props;
+  const ref = useRef(null) 
+  const cardContainer = useRef(null)
+  const { product, isModalOpen, closeModal, addToCart } = props;
 
-  const handleClick = () => {
 
-  }
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          closeModal();
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  
 
   return (
-    <div className="custom-modal" onClick={closeModal}>
+    <div id="modal-container" className="custom-modal" >
       
-    <div className="card card-compact w-full bg-base-100 shadow-xl" onClick={(e)=> e.stopPropagation()}>
+    <div className="card card-compact w-96 bg-base-100 shadow-xl" ref={ref} >
       <figure>
         <img
           src={product.image_url}
@@ -21,7 +39,7 @@ export default function ProductModal(props) {
         <h2 className="card-title">Shoes!</h2>
         <p>{product.description}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+          <button onClick={() => addToCart(product)} className="btn btn-primary">Buy Now</button>
         </div>
         <div className="card-actions justify-start">
           <button onClick={closeModal} className="btn btn-primary">X</button>

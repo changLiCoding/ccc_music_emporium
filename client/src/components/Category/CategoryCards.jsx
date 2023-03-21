@@ -6,6 +6,12 @@ export default function CategoryCards(props) {
 	const { products } = props;
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [currentProductModal, setCurrentProductModal] = useState(null)
+	//call CartContext
+	const [cart, setCart] = useState([])
+	console.log("cart has:",cart)
+	const addToCart = (product) => {
+		setCart(prevcart => [...prevcart, product])
+	}
 
 	const openModal = () => {
 		setIsModalOpen(true)
@@ -29,7 +35,7 @@ export default function CategoryCards(props) {
 					);
 				})}
 				{products && isModalOpen && <ProductModal isModalOpen={isModalOpen} closeModal={closeModal} 
-			product={currentProductModal}/>}
+			product={currentProductModal} addToCart={addToCart}/>}
 		</article>
 	);
 }
