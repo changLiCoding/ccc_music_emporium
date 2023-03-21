@@ -16,10 +16,8 @@ export default function SideBars(props) {
 					console.log(subCategoryNames[index]);
 					const linkUrl = `/categories/${category}`;
 					return (
-						<Fragment>
-							<li
-								className='menu-title text-'
-								key={category}>
+						<Fragment key={category}>
+							<li className='menu-title text-'>
 								<Link to={linkUrl}>{stringCapitalGenerator(category)}</Link>{" "}
 							</li>
 							{subCategoryNames[index] && (
