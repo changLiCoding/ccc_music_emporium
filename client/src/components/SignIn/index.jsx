@@ -17,8 +17,6 @@ export default function SignIn() {
 				email,
 				password,
 			});
-			console.log("Login successful");
-			console.log(res.data);
 			setCookie("user_id", res.data.user.id);
 			setCookie("user_name", res.data.user.first_name, { path: "/" });
 			navigate("/");
@@ -35,14 +33,14 @@ export default function SignIn() {
 				</h1>
 			</header>
 			<div className="flex justify-center items-center">
-				<div className="card lg:card-side bg-primary shadow-xl border-solid border-2 border-black">
+				<div className="card lg:card-side bg-primary shadow-xl p-10 border-solid border-2 border-black">
 					<figure>
 						<img
 							src="https://media.istockphoto.com/id/465404148/photo/guitar-shop-blurred-background.jpg?s=612x612&w=0&k=20&c=zTrU8_zle1450E0qWY1BbkhNSHX2cMc787q2ufDZldg="
 							alt="Store"
 						/>
 					</figure>
-					<div className="card-body border-l-2 border-black">
+					<div className="card-body">
 						<h1 className="text-2xl text-center mb-5">Sign In Here!</h1>
 						<form
 							className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
