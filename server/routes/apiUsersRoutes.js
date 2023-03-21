@@ -75,7 +75,7 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 	}
 
 	const { email, password } = req.body;
-
+	console.log(email, password);
 	try {
 		const user = await getUserByEmail(email);
 		if (!user) {
@@ -90,7 +90,7 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 		return res.status(200).json({ message: "User authenticated", user });
 	} catch (error) {
 		console.error(error);
-		return res.status(500).json({ message: "Internal server error" });
+		return res.status(500).json({ message: "Internal server error from server !!!!!!!!!" });
 	}
 });
 
