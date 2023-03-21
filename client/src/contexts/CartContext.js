@@ -18,8 +18,14 @@ export function CartProvider(props) {
 		}
 	}
 
+	function emptyCart() {
+		setCart((prevCart) => {
+			return {};
+		});
+	}
+
 	return (
-		<CartContext.Provider value={{ cart, addCart }}>
+		<CartContext.Provider value={{ cart, addCart, emptyCart }}>
 			{props.children}
 		</CartContext.Provider>
 	);
