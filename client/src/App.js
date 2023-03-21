@@ -18,6 +18,7 @@ function App() {
 	const { categories } = useHomeCategories();
 
 	const categoryNames = categoryNamesGenerator(categories.categories);
+	const subCategoryNames = subCategoryNamesGenerator(categories.categories);
 	return (
 		<Fragment>
 			<NavBar categories={categoryNames} />
@@ -29,7 +30,7 @@ function App() {
 				/>
 				<Route
 					path='/categories/:name/sub_categories/:sub_categories_name'
-					element={<SubCategory />}
+					element={<SubCategory subCategories={subCategoryNames} />}
 				/>
 				<Route path='/categories'>
 					<Route
@@ -38,12 +39,15 @@ function App() {
 					/>
 					<Route
 						path=':name'
-						element={<Category />}
+						element={<Category subCategories={subCategoryNames} />}
 					/>
 				</Route>
-				<Route path="*" element={<NotFound />} />
+				<Route
+					path='*'
+					element={<NotFound />}
+				/>
 			</Routes>
-      
+
 			<Footer />
 		</Fragment>
 	);

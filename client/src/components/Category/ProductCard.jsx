@@ -1,4 +1,5 @@
 import React from "react";
+import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 
 export default function Card(props) {
 	const { product, category } = props;
@@ -20,11 +21,10 @@ export default function Card(props) {
 				<p>{product.make}</p>
 				<div className='card-actions justify-end'>
 					<div className='badge badge-outline'>
-						{category.charAt(0).toUpperCase() + category.slice(1)}
+						{stringCapitalGenerator(category)}
 					</div>
 					<div className='badge badge-outline'>
-						{product.sub_category_name.charAt(0).toUpperCase() +
-							product.sub_category_name.slice(1)}
+						{stringCapitalGenerator(product.sub_category_name)}
 					</div>
 				</div>
 			</div>
