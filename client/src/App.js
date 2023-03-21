@@ -9,17 +9,12 @@ import SubCategory from "./components/SubCategory";
 import SignIn from "./components/SignIn";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import Register from "./components/Register";
 
-import useHomeCategories from "./hooks/useHomeCategories";
-
-import subCategoryNamesGenerator from "./helpers/subCategoryNamesGenerator";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { CategoryNamesProvider } from "./contexts/CategoryNameContext";
 
 function App() {
-	const { categories } = useHomeCategories();
-
-	const subCategoryNames = subCategoryNamesGenerator(categories.categories);
 	return (
 		<Fragment>
 			<ThemeProvider>
@@ -29,6 +24,10 @@ function App() {
 						<Route
 							path='/sign_in'
 							element={<SignIn />}
+						/>
+						<Route
+							path='/sign_up'
+							element={<Register />}
 						/>
 						<Route
 							path='/'
