@@ -14,8 +14,8 @@ export function CategoryNamesProvider(props) {
 	const subCategoryNames = subCategoryNamesGenerator(categories.categories);
 
 	return (
-		<CategoryNameContext.Provider value={categoryNames}>
-			<SubCategoryNameContext.Provider value={subCategoryNames}>
+		<CategoryNameContext.Provider value={{ categoryNames }}>
+			<SubCategoryNameContext.Provider value={{ subCategoryNames }}>
 				{props.children}
 			</SubCategoryNameContext.Provider>
 		</CategoryNameContext.Provider>
