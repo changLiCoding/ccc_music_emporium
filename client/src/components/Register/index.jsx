@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 export default function Register() {
+	const navigate = useNavigate();
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [passwordConfirm, setPasswordConfirm] = useState("");
+	const [cookies, setCookie, removeCookie] = useCookies([]);
+
+	const submitHandler = async (e) => {
+		e.preventDefault();
+		try {
+			const res = await axios.post("http://localhost:8080/api/users/sign_up", {
+				email,
+				firstName,
+				lastName,
+				password,
+				passwordConfirm,
+			});
+			setCookie("user_id", res.data.user.id);
+			setCookie("user_name", res.data.user.first_name, { path: "/" });
+			navigate("/");
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<div className="h-screen">
 			<header>
@@ -20,7 +49,7 @@ export default function Register() {
 						<h1 className="text-2xl text-center mb-5">Register Here!</h1>
 						<form
 							className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-							// onSubmit={(e) => submitHandler(e)}
+							onSubmit={(e) => submitHandler(e)}
 						>
 							<div className="mb-4">
 								<label
@@ -35,8 +64,8 @@ export default function Register() {
 									name="firstName"
 									type="text"
 									placeholder="First Name"
-									// value={firstName}
-									// onChange={(e) => setEmail(e.target.value)}
+									value={firstName}
+									onChange={(e) => setFirstName(e.target.value)}
 								/>
 							</div>
 							<div className="mb-4">
@@ -52,8 +81,8 @@ export default function Register() {
 									name="lastName"
 									type="text"
 									placeholder="Last Name"
-									// value={lastName}
-									// onChange={(e) => setEmail(e.target.value)}
+									value={lastName}
+									onChange={(e) => setLastName(e.target.value)}
 								/>
 							</div>
 							<div className="mb-4">
@@ -69,8 +98,8 @@ export default function Register() {
 									name="email"
 									type="text"
 									placeholder="Email"
-									// value={email}
-									// onChange={(e) => setEmail(e.target.value)}
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
 								/>
 							</div>
 							<div className="mb-6">
@@ -86,7 +115,7 @@ export default function Register() {
 									type="password"
 									placeholder="******************"
 									name="password"
-									// onChange={(e) => setPassword(e.target.value)}
+									onChange={(e) => setPassword(e.target.value)}
 								/>
 							</div>
 							<div className="mb-6">
@@ -102,7 +131,7 @@ export default function Register() {
 									type="password"
 									placeholder="******************"
 									name="passwordConfirm"
-									// onChange={(e) => setPassword(e.target.value)}
+									onChange={(e) => setPasswordConfirm(e.target.value)}
 								/>
 							</div>
 							<div className="flex items-center justify-between">
