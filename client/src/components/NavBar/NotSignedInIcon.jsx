@@ -16,7 +16,7 @@ function NotSignedInIcon() {
 				className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 			>
 				<li>
-					<a>Register</a>
+					<Link to="/sign_up">Login</Link>
 				</li>
 				<li>
 					<Link to="/sign_in">Login</Link>
