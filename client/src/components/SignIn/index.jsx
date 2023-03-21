@@ -17,8 +17,6 @@ export default function SignIn() {
 				email,
 				password,
 			});
-			console.log("Login successful");
-			console.log(res.data);
 			setCookie("user_id", res.data.user.id);
 			setCookie("user_name", res.data.user.first_name, { path: "/" });
 			navigate("/");
