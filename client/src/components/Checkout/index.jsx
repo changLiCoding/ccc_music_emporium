@@ -16,7 +16,7 @@ export default function Checkout() {
 	));
 
 	return (
-		<div className="overflow-x-auto w-full h-screen">
+		<div className="w-full h-screen">
 			<table className="table w-full">
 				{/* head */}
 				<thead>
@@ -37,7 +37,7 @@ export default function Checkout() {
 						<th></th>
 						<th>Subtotal:</th>
 						<th>
-							<p className="text-xl">{priceConverter(totalCartPrice())}</p>
+							<p className="text-xl">{totalCartPrice()}</p>
 						</th>
 					</tr>
 				</tfoot>

@@ -3,7 +3,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { Link } from "react-router-dom";
 
 function CartIcon() {
-	const { cart } = useContext(CartContext);
+	const { cart, totalCartPrice } = useContext(CartContext);
 	return (
 		<div className="dropdown dropdown-end mr-5">
 			<label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -30,8 +30,8 @@ function CartIcon() {
 				className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
 			>
 				<div className="card-body">
-					<span className="font-bold text-lg">0 Items</span>
-					<span className="text-info">Subtotal: $0</span>
+					<span className="font-bold text-lg">Items In Cart: {cart.length}</span>
+					<span className="text-info">Subtotal: {totalCartPrice()}</span>
 					<Link to="/checkout">
 						<div className="card-actions">
 							<button className="btn btn-primary btn-block">View cart</button>

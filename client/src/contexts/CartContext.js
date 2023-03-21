@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import priceConverter from "../helpers/priceConverter";
 
 export const CartContext = createContext();
 
@@ -31,7 +32,7 @@ export function CartProvider(props) {
 		cart.forEach((item) => {
 			total += item.price_in_cents;
 		});
-		return total;
+		return priceConverter(total);
 	}
 
 	return (
