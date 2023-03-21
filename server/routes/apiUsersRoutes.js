@@ -75,20 +75,21 @@ const validateSignIn = [
 // Sign in route
 router.post("/sign_in", validateSignIn, async (req, res) => {
 	const errors = validationResult(req);
+	// Check validation errors
 	if (!errors.isEmpty()) {
 		return res.status(422).json({ errors: errors.array() });
 	}
 
 	const { email, password } = req.body;
-	console.log(email, password);
 	try {
 		const user = await getUserByEmail(email);
+		// Check if the user exists
 		if (!user) {
 			return res
 				.status(401)
 				.json({ message: "Invalid email or password! Please try again." });
 		}
-
+		// Check if user password is correct
 		const passwordMatch = await bcrypt.compare(password, user.password);
 		if (!passwordMatch) {
 			return res
