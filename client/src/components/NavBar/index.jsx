@@ -6,7 +6,6 @@ import SignedInIcon from "./SignedInIcon";
 import CartIcon from "./CartIcon";
 import PageLinks from "./PageLinks";
 import Logo from "./Logo";
-import ThemeToggle from "./ThemeToggle";
 
 export default function NavBar() {
 	const [cookies, setCookie, removeCookie] = useCookies([
@@ -37,7 +36,6 @@ export default function NavBar() {
 						handleLogout={handleLogout}
 					/>
 				)}
-				<ThemeToggle />
 			</div>
 		</div>
 	);
