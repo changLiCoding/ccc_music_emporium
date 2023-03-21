@@ -5,9 +5,8 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 
 export default function Card(props) {
-	const { cart, addCart } = useContext(CartContext);
+	const { addCart } = useContext(CartContext);
 	const { product } = props;
-	console.log(cart);
 	const category = product.category_name;
 	return category === "guitars" ? (
 		<div className='card card-side w-96 bg-white shadow hover:shadow-3xl 	transition-all'>
