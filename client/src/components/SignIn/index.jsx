@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import axios from "axios";
 
 export default function SignIn() {
-	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [cookies, setCookie, removeCookie] = useCookies([]);
+
+	const notify = (errorMsg) =>
+		toast.error(`${errorMsg}. Please try again!`, {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "light",
+		});
+
+	const navigate = useNavigate();
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -22,6 +36,7 @@ export default function SignIn() {
 			navigate("/");
 		} catch (error) {
 			console.error(error);
+			notify(error.response.data.message);
 		}
 	};
 
@@ -57,7 +72,8 @@ export default function SignIn() {
 									className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 									id="email"
 									name="email"
-									type="text"
+									type="email"
+									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 									placeholder="Email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
@@ -75,6 +91,8 @@ export default function SignIn() {
 									id="password"
 									type="password"
 									placeholder="******************"
+									minLength={6}
+									required
 									name="password"
 									onChange={(e) => setPassword(e.target.value)}
 								/>

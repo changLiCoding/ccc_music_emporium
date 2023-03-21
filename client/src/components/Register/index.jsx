@@ -96,7 +96,8 @@ export default function Register() {
 									className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 									id="email"
 									name="email"
-									type="text"
+									type="email"
+									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 									placeholder="Email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
@@ -114,6 +115,8 @@ export default function Register() {
 									id="password"
 									type="password"
 									placeholder="******************"
+									minLength={6}
+									required
 									name="password"
 									onChange={(e) => setPassword(e.target.value)}
 								/>
@@ -130,6 +133,8 @@ export default function Register() {
 									id="passwordConfirm"
 									type="password"
 									placeholder="******************"
+									minLength={6}
+									required
 									name="passwordConfirm"
 									onChange={(e) => setPasswordConfirm(e.target.value)}
 								/>
