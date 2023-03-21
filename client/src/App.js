@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { createContext, Fragment } from "react";
+import { Fragment } from "react";
 
 import "./App.css";
 import Home from "./components/Home";
@@ -14,6 +14,7 @@ import useHomeCategories from "./hooks/useHomeCategories";
 
 import categoryNamesGenerator from "./helpers/categoryNamesGenerator";
 import subCategoryNamesGenerator from "./helpers/subCategoryNamesGenerator";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
 	const { categories } = useHomeCategories();
@@ -22,37 +23,39 @@ function App() {
 	const subCategoryNames = subCategoryNamesGenerator(categories.categories);
 	return (
 		<Fragment>
-			<NavBar categories={categoryNames} />
-			<Routes>
-				<Route
-					path='/sign_in'
-					element={<SignIn />}
-				/>
-				<Route
-					path='/'
-					element={<Home categories={categoryNames} />}
-				/>
-				<Route
-					path='/categories/:name/sub_categories/:sub_categories_name'
-					element={<SubCategory subCategories={subCategoryNames} />}
-				/>
-				<Route path='/categories'>
+			<ThemeProvider>
+				<NavBar categories={categoryNames} />
+				<Routes>
 					<Route
-						index
+						path='/sign_in'
+						element={<SignIn />}
+					/>
+					<Route
+						path='/'
 						element={<Home categories={categoryNames} />}
 					/>
 					<Route
-						path=':name'
-						element={<Category subCategories={subCategoryNames} />}
+						path='/categories/:name/sub_categories/:sub_categories_name'
+						element={<SubCategory subCategories={subCategoryNames} />}
 					/>
-				</Route>
-				<Route
-					path='*'
-					element={<NotFound />}
-				/>
-			</Routes>
+					<Route path='/categories'>
+						<Route
+							index
+							element={<Home categories={categoryNames} />}
+						/>
+						<Route
+							path=':name'
+							element={<Category subCategories={subCategoryNames} />}
+						/>
+					</Route>
+					<Route
+						path='*'
+						element={<NotFound />}
+					/>
+				</Routes>
 
-			<Footer />
+				<Footer />
+			</ThemeProvider>
 		</Fragment>
 	);
 }

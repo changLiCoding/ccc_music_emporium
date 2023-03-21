@@ -6,6 +6,7 @@ import SignedInIcon from "./SignedInIcon";
 import CartIcon from "./CartIcon";
 import PageLinks from "./PageLinks";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 export default function NavBar(props) {
 	const [cookies, setCookie, removeCookie] = useCookies([
@@ -24,10 +25,10 @@ export default function NavBar(props) {
 	};
 
 	return (
-		<div className="navbar h-24 bg-primary border-solid border-2 border-black">
+		<div className='navbar h-24 bg-primary border-solid border-2 border-black'>
 			<Logo />
 			<PageLinks />
-			<div className="flex-none">
+			<div className='flex-none'>
 				<CartIcon />
 				{!cookies.user_name && <NotSignedInIcon />}
 				{cookies.user_name && (
@@ -36,6 +37,7 @@ export default function NavBar(props) {
 						handleLogout={handleLogout}
 					/>
 				)}
+				<ThemeToggle />
 			</div>
 		</div>
 	);
