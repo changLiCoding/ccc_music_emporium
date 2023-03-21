@@ -4,7 +4,16 @@ import { CartContext } from "../../contexts/CartContext";
 import priceConverter from "../../helpers/priceConverter";
 
 export default function Checkout() {
-	const { cart } = useContext(CartContext);
+	const { cart, totalCartPrice } = useContext(CartContext);
+
+	const cartItemArray = cart.map((item) => (
+		<CartItems
+			imageUrl={item.image_url}
+			make={item.make}
+			model={item.model}
+			price={priceConverter(item.price_in_cents)}
+		/>
+	));
 
 	return (
 		<div className="overflow-x-auto w-full h-screen">
@@ -19,22 +28,17 @@ export default function Checkout() {
 					</tr>
 				</thead>
 				{/* table rows */}
-				{cart.length !== 0 && (
-					<CartItems
-						imageUrl={cart[0].image_url}
-						make={cart[0].make}
-						model={cart[0].model}
-						price={priceConverter(cart[0].price_in_cents)}
-					/>
-				)}
+				{cart.length !== 0 && cartItemArray}
 
 				{/* foot */}
 				<tfoot>
 					<tr>
 						<th></th>
-						<th>Product</th>
-						<th>Quantity</th>
-						<th>Total Price</th>
+						<th></th>
+						<th>Subtotal:</th>
+						<th>
+							<p className="text-xl">{priceConverter(totalCartPrice())}</p>
+						</th>
 					</tr>
 				</tfoot>
 			</table>
