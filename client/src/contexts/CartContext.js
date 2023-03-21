@@ -3,29 +3,32 @@ import { createContext, useState } from "react";
 export const CartContext = createContext();
 
 export function CartProvider(props) {
-	const [cart, setCart] = useState({});
+	const [cart, setCart] = useState([]);
 
-	function addCart(productModel) {
-		const key = productModel;
-		if (cart[productModel]) {
-			setCart((prevCart) => {
-				return { ...prevCart, [key]: prevCart[productModel] + 1 };
-			});
-		} else {
-			setCart((prevCart) => {
-				return { ...prevCart, [key]: 1 };
-			});
-		}
+	function addCart(product) {
+		// [ product, product , product ].map((product, i))
+
+		setCart((prevCart) => {
+			return [ ...prevCart, product];
+		})
+		
 	}
+
+	function removeFromCart(i) {
+		const newCartArr = cart.filter((product, index) => {
+			return index !== i;
+		})
+		setCart(newCartArr);
+	 }
 
 	function emptyCart() {
 		setCart((prevCart) => {
-			return {};
+			return [];
 		});
 	}
 
 	return (
-		<CartContext.Provider value={{ cart, addCart, emptyCart }}>
+		<CartContext.Provider value={{ cart, addCart, emptyCart, removeFromCart }}>
 			{props.children}
 		</CartContext.Provider>
 	);

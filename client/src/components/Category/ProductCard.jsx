@@ -33,7 +33,7 @@ export default function Card(props) {
 					<button
 						type='button'
 						className='btn btn-primary'
-						onClick={() => addCart(product.model)}>
+						onClick={() => addCart(product)}>
 						addCart!!!!!
 					</button>
 				</div>
