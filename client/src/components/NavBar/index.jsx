@@ -5,15 +5,23 @@ import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import { faGuitar } from "@fortawesome/free-solid-svg-icons";
 import { faDrum } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { Cookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar(props) {
-	const [cookies, removeCookie] = useCookies(["user_id", "user_name"]);
+	const [cookies, setCookie, removeCookie] = useCookies([
+		"user_id",
+		"user_name",
+	]);
+
+	const navigate = useNavigate();
 
 	const handleLogout = (e) => {
 		e.preventDefault();
+
 		removeCookie("user_name");
 		removeCookie("user_id");
+		navigate("/");
 	};
 
 	return (
