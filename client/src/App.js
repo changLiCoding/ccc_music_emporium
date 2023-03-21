@@ -36,7 +36,7 @@ function App() {
 						/>
 						<Route
 							path='/categories/:name/sub_categories/:sub_categories_name'
-							element={<SubCategory subCategories={subCategoryNames} />}
+							element={<SubCategory />}
 						/>
 						<Route path='/categories'>
 							<Route
