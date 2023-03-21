@@ -8,6 +8,7 @@ import CategoryCards from "./CategoryCards";
 
 export default function Category(props) {
 	const { subCategories } = props;
+	console.log(subCategories);
 	const { name } = useParams();
 	const { products } = useCategoryProducts(name);
 	return (

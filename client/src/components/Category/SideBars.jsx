@@ -20,7 +20,10 @@ export default function SideBars(props) {
 								<Link to={linkUrl}>{stringCapitalGenerator(category)}</Link>{" "}
 							</li>
 							{subCategoryNames[index] && (
-								<SubCategoryLinks subCategoryNames={subCategoryNames[index]} />
+								<SubCategoryLinks
+									category={category}
+									subCategoryNames={subCategoryNames[index]}
+								/>
 							)}
 						</Fragment>
 					);
