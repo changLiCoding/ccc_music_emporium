@@ -13,49 +13,52 @@ import Register from "./components/Register";
 
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { CategoryNamesProvider } from "./contexts/CategoryNameContext";
+import { CartProvider } from "./contexts/CartContext";
 
 function App() {
 	return (
 		<Fragment>
-			<ThemeProvider>
-				<CategoryNamesProvider>
-					<NavBar />
-					<Routes>
-						<Route
-							path='/sign_in'
-							element={<SignIn />}
-						/>
-						<Route
-							path='/sign_up'
-							element={<Register />}
-						/>
-						<Route
-							path='/'
-							element={<Home />}
-						/>
-						<Route
-							path='/categories/:name/sub_categories/:sub_categories_name'
-							element={<SubCategory />}
-						/>
-						<Route path='/categories'>
+			<CartProvider>
+				<ThemeProvider>
+					<CategoryNamesProvider>
+						<NavBar />
+						<Routes>
 							<Route
-								index
+								path='/sign_in'
+								element={<SignIn />}
+							/>
+							<Route
+								path='/sign_up'
+								element={<Register />}
+							/>
+							<Route
+								path='/'
 								element={<Home />}
 							/>
 							<Route
-								path=':name'
-								element={<Category />}
+								path='/categories/:name/sub_categories/:sub_categories_name'
+								element={<SubCategory />}
 							/>
-						</Route>
-						<Route
-							path='*'
-							element={<NotFound />}
-						/>
-					</Routes>
+							<Route path='/categories'>
+								<Route
+									index
+									element={<Home />}
+								/>
+								<Route
+									path=':name'
+									element={<Category />}
+								/>
+							</Route>
+							<Route
+								path='*'
+								element={<NotFound />}
+							/>
+						</Routes>
 
-					<Footer />
-				</CategoryNamesProvider>
-			</ThemeProvider>
+						<Footer />
+					</CategoryNamesProvider>
+				</ThemeProvider>
+			</CartProvider>
 		</Fragment>
 	);
 }

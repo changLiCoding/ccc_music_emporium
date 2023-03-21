@@ -1,8 +1,14 @@
 import React from "react";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
+
 export default function Card(props) {
-	const { product, category } = props;
+	const { cart, addCart } = useContext(CartContext);
+	const { product } = props;
+	console.log(cart);
+	const category = product.category_name;
 	return category === "guitars" ? (
 		<div className='card card-side w-96 bg-white shadow hover:shadow-3xl 	transition-all'>
 			<figure>
@@ -25,6 +31,12 @@ export default function Card(props) {
 					<div className='badge badge-outline'>
 						{stringCapitalGenerator(product.sub_category_name)}
 					</div>
+					<button
+						type='button'
+						className='btn btn-primary'
+						onClick={() => addCart(product.model)}>
+						addCart!!!!!
+					</button>
 				</div>
 			</div>
 		</div>
@@ -51,6 +63,12 @@ export default function Card(props) {
 						{product.sub_category_name.charAt(0).toUpperCase() +
 							product.sub_category_name.slice(1)}
 					</div>
+					<button
+						type='button'
+						className='btn btn-primary'
+						onClick={() => addCart(product.model)}>
+						addCart!!!!!
+					</button>
 				</div>
 			</div>
 		</div>
