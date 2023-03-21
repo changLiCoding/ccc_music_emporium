@@ -1,5 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+
+import InfoBar from "../Category/InfoBar";
+import SideBars from "../Category/SideBars";
+import CategoryCards from "../Category/CategoryCards";
+
 import useSubCategoryProducts from "../../hooks/useSubCategoryProducts";
 
 export default function SubCategory() {
@@ -8,7 +13,6 @@ export default function SubCategory() {
 	const { products } = useSubCategoryProducts(sub_categories_name);
 	console.log(products, sub_categories_name);
 
-	
 	return (
 		<div>
 			SUB CATEGORY PAGE
@@ -36,3 +40,22 @@ export default function SubCategory() {
 		</div>
 	);
 }
+
+// import InfoBar from "./InfoBar";
+// import SideBars from "./SideBars";
+// import CategoryCards from "./CategoryCards";
+
+// export default function Category(props) {
+// 	const { subCategories } = props;
+// 	const { name } = useParams();
+// 	const { products } = useCategoryProducts(name);
+// 	return (
+// 		<main className='flex flex-col container mx-auto'>
+// 			<InfoBar category={name}></InfoBar>
+// 			<div className='flex'>
+// 				<SideBars subCategories={subCategories}></SideBars>
+// 				<CategoryCards products={products.products} />
+// 			</div>
+// 		</main>
+// 	);
+// }

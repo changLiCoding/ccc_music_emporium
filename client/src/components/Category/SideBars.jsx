@@ -13,7 +13,6 @@ export default function SideBars(props) {
 			<ul className='menu bg-base-100 w-56 p-2 rounded-box'>
 				{/* <!-- Sidebar content here --> */}
 				{categoryNames.map((category, index) => {
-					console.log(subCategoryNames[index]);
 					const linkUrl = `/categories/${category}`;
 					return (
 						<Fragment key={category}>
