@@ -8,9 +8,7 @@ export default function ProductModal(props) {
 
 
     useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
+
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           closeModal();
