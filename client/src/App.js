@@ -15,6 +15,9 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { CategoryNamesProvider } from "./contexts/CategoryNameContext";
 import { CartProvider } from "./contexts/CartContext";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
 	return (
 		<Fragment>
@@ -59,6 +62,7 @@ function App() {
 					</CategoryNamesProvider>
 				</ThemeProvider>
 			</CartProvider>
+			<ToastContainer />
 		</Fragment>
 	);
 }

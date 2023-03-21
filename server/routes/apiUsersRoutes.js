@@ -40,7 +40,12 @@ router.post(
 			// Check if user already exists
 			const existingUser = await getUserByEmail(email);
 			if (existingUser) {
-				return res.status(409).json({ message: "User already exists" });
+				return res
+					.status(409)
+					.json({
+						message:
+							"User already exists with this email address! Please try again.",
+					});
 			}
 
 			// Hash password and create new user
@@ -80,12 +85,16 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 		const user = await getUserByEmail(email);
 		// Check if the user exists
 		if (!user) {
-			return res.status(401).json({ message: "Invalid email or password" });
+			return res
+				.status(401)
+				.json({ message: "Invalid email or password! Please try again." });
 		}
 		// Check if user password is correct
 		const passwordMatch = await bcrypt.compare(password, user.password);
 		if (!passwordMatch) {
-			return res.status(401).json({ message: "Invalid email or password" });
+			return res
+				.status(401)
+				.json({ message: "Invalid email or password! Please try again." });
 		}
 
 		return res.status(200).json({ message: "User authenticated", user });
