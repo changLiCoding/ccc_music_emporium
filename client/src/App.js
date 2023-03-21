@@ -14,12 +14,7 @@ import useHomeCategories from "./hooks/useHomeCategories";
 
 import categoryNamesGenerator from "./helpers/categoryNamesGenerator";
 import subCategoryNamesGenerator from "./helpers/subCategoryNamesGenerator";
-<<<<<<< HEAD
 import { ThemeProvider } from "./contexts/ThemeContext";
-=======
-import Footer from "./components/Footer";
-import Register from "./components/Register";
->>>>>>> a2da49a9a402601996b47a65e3773d767e6c749c
 
 function App() {
 	const { categories } = useHomeCategories();
@@ -28,7 +23,6 @@ function App() {
 	const subCategoryNames = subCategoryNamesGenerator(categories.categories);
 	return (
 		<Fragment>
-<<<<<<< HEAD
 			<ThemeProvider>
 				<NavBar categories={categoryNames} />
 				<Routes>
@@ -54,19 +48,6 @@ function App() {
 							element={<Category subCategories={subCategoryNames} />}
 						/>
 					</Route>
-=======
-			<NavBar categories={categoryNames} />
-			<Routes>
-				<Route path="/sign_in" element={<SignIn />} />
-				<Route path="/sign_up" element={<Register />} />
-				<Route path="/" element={<Home categories={categoryNames} />} />
-				<Route
-					path="/categories/:name/sub_categories/:sub_categories_name"
-					element={<SubCategory subCategories={subCategoryNames} />}
-				/>
-				<Route path="/categories">
-					<Route index element={<Home categories={categoryNames} />} />
->>>>>>> a2da49a9a402601996b47a65e3773d767e6c749c
 					<Route
 						path='*'
 						element={<NotFound />}
