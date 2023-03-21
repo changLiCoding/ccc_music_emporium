@@ -3,7 +3,6 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 
 export default function ThemeToggle() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
-	console.log(theme);
 	const toTheme = theme === "garden" ? "Luxury" : "Garden";
 	useEffect(() => {
 		document.documentElement.setAttribute("data-theme", theme);
