@@ -11,7 +11,7 @@ export default function SignIn() {
 	const [cookies, setCookie, removeCookie] = useCookies([]);
 
 	const notify = (errorMsg) =>
-		toast.error(`${errorMsg}. Please try again!`, {
+		toast.error(errorMsg, {
 			position: "top-center",
 			autoClose: 5000,
 			hideProgressBar: false,

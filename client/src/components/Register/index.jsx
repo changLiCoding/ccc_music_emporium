@@ -15,7 +15,7 @@ export default function Register() {
 	const navigate = useNavigate();
 
 	const notify = (errorMsg) =>
-		toast.error(`${errorMsg}`, {
+		toast.error(errorMsg, {
 			position: "top-center",
 			autoClose: 5000,
 			hideProgressBar: false,
