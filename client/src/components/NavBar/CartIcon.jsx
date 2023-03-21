@@ -2,7 +2,7 @@ import React from "react";
 
 function CartIcon() {
 	return (
-		<div className="dropdown dropdown-end mr-4">
+		<div className="dropdown dropdown-end mr-5">
 			<label tabIndex={0} className="btn btn-ghost btn-circle">
 				<div className="indicator">
 					<svg
