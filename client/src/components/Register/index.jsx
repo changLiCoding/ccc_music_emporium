@@ -1,16 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function Register() {
-	const navigate = useNavigate();
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [cookies, setCookie, removeCookie] = useCookies([]);
+
+	const navigate = useNavigate();
+
+	const notify = (errorMsg) =>
+		toast.error(`${errorMsg}`, {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "light",
+		});
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -26,7 +40,8 @@ export default function Register() {
 			setCookie("user_name", res.data.user.first_name, { path: "/" });
 			navigate("/");
 		} catch (error) {
-			console.error(error);
+			console.log(error);
+			notify(error.response.data.message);
 		}
 	};
 
@@ -64,6 +79,7 @@ export default function Register() {
 									name="firstName"
 									type="text"
 									placeholder="First Name"
+									required
 									value={firstName}
 									onChange={(e) => setFirstName(e.target.value)}
 								/>
@@ -81,6 +97,7 @@ export default function Register() {
 									name="lastName"
 									type="text"
 									placeholder="Last Name"
+									required
 									value={lastName}
 									onChange={(e) => setLastName(e.target.value)}
 								/>
@@ -98,6 +115,7 @@ export default function Register() {
 									name="email"
 									type="email"
 									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+									required
 									placeholder="Email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
@@ -134,6 +152,8 @@ export default function Register() {
 									type="password"
 									placeholder="******************"
 									minLength={6}
+									pattern={password}
+									title="Password confirmation does not match password!"
 									required
 									name="passwordConfirm"
 									onChange={(e) => setPasswordConfirm(e.target.value)}

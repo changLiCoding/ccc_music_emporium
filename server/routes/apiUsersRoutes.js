@@ -40,7 +40,7 @@ router.post(
 			// Check if user already exists
 			const existingUser = await getUserByEmail(email);
 			if (existingUser) {
-				return res.status(409).json({ message: "User already exists" });
+				return res.status(409).json({ message: "User already exists with this email address! Please try again." });
 			}
 
 			// Hash password and create new user
