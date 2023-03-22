@@ -10,6 +10,7 @@ import handleSuccessPay from "../../helpers/handleSuccessPay";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useNavigate } from "react-router-dom";
+import EmptyCartAlert from "./EmptyCartAlert";
 
 const stripePromise = loadStripe(
 	"pk_test_51LffVFEcCevwDBwZtOSgdKTjniGR3VywPsW5EeJNMf9GUMXZp3TVdV5OEHR2ASoB9gvZvBoFGATjhU94PyykNQM800oZNqUDyx"
@@ -53,6 +54,8 @@ export default function Checkout() {
 			<header className="text-5xl text-center my-10">
 				<h1>Review Your Order</h1>
 			</header>
+			{cart.length === 0 && <EmptyCartAlert />}
+
 			<table className="table w-10/12">
 				{/* head */}
 				<thead>
@@ -71,8 +74,7 @@ export default function Checkout() {
 					</tr>
 				</thead>
 				{/* table rows */}
-				{cart.length !== 0 && cartItemArray}
-
+				{cart.length !== 0 ? cartItemArray : <td>-</td>}
 				{/* foot */}
 				<tfoot>
 					<tr className="border border-[#d1cdcd] border-2">
