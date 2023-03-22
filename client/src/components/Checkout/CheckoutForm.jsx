@@ -46,7 +46,20 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<CardElement className='mt-8 mb-8' />
+			<CardElement
+				className='mt-8 mb-8'
+				options={{
+					style: {
+						base: {
+							fontSize: "16px",
+							color: "#fc5900",
+							"::placeholder": {
+								color: "#B3B3B3",
+							},
+						},
+					},
+				}}
+			/>
 			{error && <div>{error}</div>}
 			<div className='container flex justify-between'>
 				<button
