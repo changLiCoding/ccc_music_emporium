@@ -3,15 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CartItems(props) {
-	const { imageUrl, make, model, price } = props;
-
+	const { imageUrl, make, model, price, handleRemove, index } = props;
 
 	return (
 		<tbody>
 			{/* row 1 */}
-			<tr>
+			<tr className="border border-[#d1cdcd] border-2">
 				<th className="text-center">
-					<button>
+					<button onClick={() => handleRemove(index)}>
 						<FontAwesomeIcon icon={faTrash} size="xl" />
 					</button>
 				</th>
@@ -28,7 +27,7 @@ export default function CartItems(props) {
 						</div>
 					</div>
 				</td>
-				<td>{1}</td>
+				<td></td>
 				<th>
 					<div className="font-bold">{price}</div>
 				</th>
