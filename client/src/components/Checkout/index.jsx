@@ -79,23 +79,19 @@ export default function Checkout() {
 				className='modal-toggle'
 			/>
 			<div className='modal'>
-				<div className='modal-box w-11/12 max-w-5xl'>
-					<div className='mx-auto max-w-md p-6'>
-						<div className='bg-white rounded-lg shadow-md p-6'>
-							<h2 className='text-lg font-bold mb-6'>Checkout</h2>
-							<Elements stripe={stripePromise}>
-								<CheckoutForm
-									onSuccess={onSuccess}
-									products={cart}
-									totalInString={totalCartPrice()}
-									className='w-full'
-								/>
-							</Elements>
-						</div>
-					</div>
-
-					<div className='modal-action'></div>
+				<div className='modal-box mx-auto max-w-4xl p-12'>
+					<h2 className='text-lg font-bold mb-6 text-center'>Checkout</h2>
+					<Elements stripe={stripePromise}>
+						<CheckoutForm
+							onSuccess={onSuccess}
+							products={cart}
+							totalInString={totalCartPrice()}
+							className='w-full'
+						/>
+					</Elements>
 				</div>
+
+				<div className='modal-action'></div>
 			</div>
 		</div>
 	);
