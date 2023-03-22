@@ -18,8 +18,8 @@ export default function Card(props) {
 
 
 
-	return category === "guitars"?(
-	<div onClick={openModalWithProduct} className='card card-side w-96 bg-white shadow hover:shadow-3xl 	transition-all'>
+	return category === "guitars"?(<div className="container mx-auto p-6 grid grid-cols-3 gap-4 h-full">
+	<div onClick={openModalWithProduct} className='card flex card-side w-96 bg-white shadow hover:shadow-3xl transition-all'>
 			<figure>
 				<img
 					className="-rotate-90"
@@ -42,16 +42,17 @@ export default function Card(props) {
 					</div>
 					<button
 						type="button"
-						className="btn btn-primary"
+						className="btn btn-xs"
 						onClick={() => addCart(product)}
 					>
-						addCart!!!!!
+						buy now
 					</button>
 				</div>
 			</div>
 		</div>
+		</div>
 		)
-		:(<div onClick={openModalWithProduct} className="card w-96 w-96 bg-white shadow hover:shadow-3xl 	transition-all">
+		:(<div onClick={openModalWithProduct} className="card w-96 w-96 bg-white shadow hover:shadow-3xl 	transition-all h-full">
 		<figure className = "max-w-52 max-h-52"><img className="object-contain h-48" src={product.image_url} alt={product.model} /></figure>
 		<div className="card-body">
 			<h2 className="card-title">
@@ -59,17 +60,17 @@ export default function Card(props) {
 				<div className="badge badge-secondary">NEW</div>
 			</h2>
 			<p>{product.make}</p>
+							<button
+						type="button"
+						className="btn btn-xs"
+						onClick={() => addCart(product)}
+					>
+						buy now
+					</button>
 			<div className="card-actions justify-end">
 				<div className="badge badge-outline">{category.charAt(0).toUpperCase() + category.slice(1)}</div> 
 				<div className="badge badge-outline">{product.sub_category_name.charAt(0).toUpperCase() +
 							product.sub_category_name.slice(1)}
-							<button
-						type="button"
-						className="btn btn-primary"
-						onClick={() => addCart(product)}
-					>
-						addCart!!!!!
-					</button>
 					</div>
 			</div>
 		</div>
