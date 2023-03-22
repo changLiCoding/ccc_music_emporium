@@ -21,11 +21,11 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 			amount_in_cents,
 			products,
 		});
-		const { clientSecret: client_secret } = response.data;
+		const { clientSecret: client_secret, order, userName } = response.data;
 
 		// Use the client secret to confirm the payment on the client-side
-		console.log(client_secret.client_secret);
-		const { error, paymentIntent } = await stripe.confirmCardPayment(
+
+		const { error } = await stripe.confirmCardPayment(
 			client_secret.client_secret,
 			{
 				payment_method: {
@@ -33,13 +33,14 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 				},
 			}
 		);
-
 		if (error) {
 			setError(error.message);
 			setProcessing(false);
 		} else {
 			// Payment succeeded, call onSuccess callback
-			onSuccess();
+			setProcessing(false);
+
+			onSuccess(amount_in_cents, order.id, userName);
 		}
 	};
 
@@ -47,9 +48,16 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 		<form onSubmit={handleSubmit}>
 			<CardElement />
 			{error && <div>{error}</div>}
-			<button disabled={processing}>
+			<button
+				className='btn'
+				disabled={processing}>
 				{processing ? "Processing..." : `Pay ${totalInString}`}
 			</button>
+			<label
+				htmlFor='my-modal-5'
+				className='btn'>
+				Never Mind
+			</label>
 		</form>
 	);
 }

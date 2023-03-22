@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Route, Routes } from "react-router-dom";
 import { Fragment } from "react";
 
@@ -16,7 +18,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { CategoryNamesProvider } from "./contexts/CategoryNameContext";
 import { CartProvider } from "./contexts/CartContext";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {

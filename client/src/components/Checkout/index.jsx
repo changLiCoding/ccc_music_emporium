@@ -5,9 +5,11 @@ import CheckoutForm from "./CheckoutForm";
 import { CartContext } from "../../contexts/CartContext";
 import priceConverter from "../../helpers/priceConverter";
 
+import handleSuccessPay from "../../helpers/handleSuccessPay";
+
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const stripePromise = loadStripe(
 	"pk_test_51LffVFEcCevwDBwZtOSgdKTjniGR3VywPsW5EeJNMf9GUMXZp3TVdV5OEHR2ASoB9gvZvBoFGATjhU94PyykNQM800oZNqUDyx"
@@ -15,22 +17,15 @@ const stripePromise = loadStripe(
 export default function Checkout() {
 	const { cart, totalCartPrice, emptyCart } = useContext(CartContext);
 
-	const notify = (succeeded) => {
-		return toast.success(succeeded, {
-			position: "top-center",
-			autoClose: 5000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "light",
-			onClose: () => emptyCart(),
-		});
+	const navigate = useNavigate();
+	const onSuccess = (amountInCents, orderId, customer) => {
+		const message = `Thank you ${customer}, the order ID is ${orderId} for payment of ${priceConverter(
+			amountInCents
+		)}.`;
+
+		handleSuccessPay(message, emptyCart, navigate);
 	};
-	const onSuccess = () => {
-		notify("success");
-	};
+	// Make sure key uniqueness
 	let makeKeyUniq = 0;
 	const cartItemArray = cart.map((item) => {
 		makeKeyUniq++;
@@ -64,7 +59,13 @@ export default function Checkout() {
 				<tfoot>
 					<tr>
 						<th></th>
-						<th></th>
+						<th>
+							<label
+								htmlFor='my-modal-5'
+								className='btn'>
+								SHUTUP AND TAKE MY MONEY!
+							</label>
+						</th>
 						<th>Subtotal:</th>
 						<th>
 							<p className='text-xl'>{totalCartPrice()}</p>
@@ -72,13 +73,30 @@ export default function Checkout() {
 					</tr>
 				</tfoot>
 			</table>
-			<Elements stripe={stripePromise}>
-				<CheckoutForm
-					onSuccess={onSuccess}
-					products={cart}
-					totalInString={totalCartPrice()}
-				/>
-			</Elements>
+			<input
+				type='checkbox'
+				id='my-modal-5'
+				className='modal-toggle'
+			/>
+			<div className='modal'>
+				<div className='modal-box w-11/12 max-w-5xl'>
+					<div className='mx-auto max-w-md p-6'>
+						<div className='bg-white rounded-lg shadow-md p-6'>
+							<h2 className='text-lg font-bold mb-6'>Checkout</h2>
+							<Elements stripe={stripePromise}>
+								<CheckoutForm
+									onSuccess={onSuccess}
+									products={cart}
+									totalInString={totalCartPrice()}
+									className='w-full'
+								/>
+							</Elements>
+						</div>
+					</div>
+
+					<div className='modal-action'></div>
+				</div>
+			</div>
 		</div>
 	);
 }
