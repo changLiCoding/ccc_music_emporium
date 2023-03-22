@@ -1,6 +1,6 @@
 const db = require("../connection");
 
-const postOrderAfterPay = (userId, totalInCents, storeId = 1) => {
+const createOrderAfterPay = (userId, totalInCents, storeId = 1) => {
 	const queryTemplate = `
     INSERT INTO orders (user_id, store_id, total_in_cents)
     VALUES ($1, $2, $3)
@@ -18,5 +18,5 @@ const postOrderAfterPay = (userId, totalInCents, storeId = 1) => {
 };
 
 module.exports = {
-	postOrderAfterPay,
+	createOrderAfterPay,
 };

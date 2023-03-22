@@ -2,12 +2,19 @@ import React, { useContext } from "react";
 import CartItems from "./CartItems";
 import { CartContext } from "../../contexts/CartContext";
 import priceConverter from "../../helpers/priceConverter";
+import CheckoutForm from "./CheckoutForm";
 
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe(
+	"pk_test_51LffVFEcCevwDBwZtOSgdKTjniGR3VywPsW5EeJNMf9GUMXZp3TVdV5OEHR2ASoB9gvZvBoFGATjhU94PyykNQM800oZNqUDyx"
+);
 export default function Checkout() {
 	const { cart, totalCartPrice } = useContext(CartContext);
 
 	const cartItemArray = cart.map((item) => (
 		<CartItems
+			key={item.id}
 			imageUrl={item.image_url}
 			make={item.make}
 			model={item.model}
@@ -16,8 +23,8 @@ export default function Checkout() {
 	));
 
 	return (
-		<div className="w-full h-screen">
-			<table className="table w-full">
+		<div className='w-full h-screen'>
+			<table className='table w-full'>
 				{/* head */}
 				<thead>
 					<tr>
@@ -37,11 +44,17 @@ export default function Checkout() {
 						<th></th>
 						<th>Subtotal:</th>
 						<th>
-							<p className="text-xl">{totalCartPrice()}</p>
+							<p className='text-xl'>{totalCartPrice()}</p>
 						</th>
 					</tr>
 				</tfoot>
 			</table>
+			<Elements stripe={stripePromise}>
+				<CheckoutForm
+					products={cart}
+					totalInString={totalCartPrice()}
+				/>
+			</Elements>
 		</div>
 	);
 }

@@ -1,5 +1,6 @@
 const express = require("express");
-const { postOrderAfterPay } = require("../db/queries/orders");
+const { createLintItem } = require("../db/queries/line_items");
+const { createOrderAfterPay } = require("../db/queries/orders");
 const router = express.Router();
 
 const yourSuperSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -12,10 +13,16 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
 	try {
 		const { user_id } = req.cookies;
-		const { products } = req.body;
+		const { products, amount_in_cents } = req.body;
+
+		const orderInfo = await createOrderAfterPay(user_id, amount_in_cents);
+
+		await products.forEach((product) => {
+			const order_id = orderInfo[0].id;
+			createLintItem(order_id, product.id);
+		});
 
 		const lineItems = products.map((product) => ({
-			product_id: product.id,
 			price_data: {
 				currency: "usd",
 				product_data: {
@@ -25,14 +32,8 @@ router.post("/", async (req, res) => {
 			},
 			quantity: 1,
 		}));
-		const orderInfo = await postOrderAfterPay(user_id, amount_in_cents);
-		console.log(orderInfo);
 		console.log(lineItems);
-		const amount_in_cents = products.reduce(
-			(prev, curv) => prev + curv.price_in_cents.parseInt(),
-			0
-		);
-		console.log(amount_in_cents);
+
 		const session = await stripe.checkout.sessions.create({
 			payment_method_types: ["card"],
 			line_items: lineItems,
