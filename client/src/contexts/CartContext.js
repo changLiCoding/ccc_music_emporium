@@ -27,6 +27,8 @@ export function CartProvider(props) {
 		});
 	}
 
+	function setRent() {}
+
 	function totalCartPrice() {
 		let total = 0;
 		cart.forEach((item) => {
@@ -37,8 +39,14 @@ export function CartProvider(props) {
 
 	return (
 		<CartContext.Provider
-			value={{ cart, addCart, emptyCart, removeFromCart, totalCartPrice }}
-		>
+			value={{
+				cart,
+				addCart,
+				emptyCart,
+				removeFromCart,
+				totalCartPrice,
+				setRent,
+			}}>
 			{props.children}
 		</CartContext.Provider>
 	);

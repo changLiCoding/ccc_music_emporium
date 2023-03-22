@@ -46,124 +46,119 @@ export default function Register() {
 	};
 
 	return (
-		<div className="h-screen">
+		<div className='h-screen'>
 			<header>
-				<h1 className="text-4xl text-center my-16">
+				<h1 className='text-4xl text-center my-16'>
 					New to the store? Register a new account today!{" "}
 				</h1>
 			</header>
-			<div className="flex justify-center items-center">
-				<div className="card lg:card-side bg-primary shadow-xl p-5 border-solid border-2 border-black">
+			<div className='flex justify-center items-center'>
+				<div className='card lg:card-side bg-primary shadow-xl p-5 border-solid border-2 border-black'>
 					<figure>
 						<img
-							src="https://st2.depositphotos.com/3662505/6737/i/450/depositphotos_67376927-stock-photo-music-store.jpg"
-							alt="Piano"
+							src='https://st2.depositphotos.com/3662505/6737/i/450/depositphotos_67376927-stock-photo-music-store.jpg'
+							alt='Piano'
 						/>
 					</figure>
-					<div className="card-body ">
-						<h1 className="text-2xl text-center mb-5">Register Here!</h1>
+					<div className='card-body '>
+						<h1 className='text-2xl text-center mb-5'>Register Here!</h1>
 						<form
-							className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-							onSubmit={(e) => submitHandler(e)}
-						>
-							<div className="mb-4">
+							className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
+							onSubmit={(e) => submitHandler(e)}>
+							<div className='mb-4'>
 								<label
-									className="block text-gray-700 text-sm font-bold mb-2"
-									htmlFor="firstName"
-								>
+									className='block text-gray-700 text-sm font-bold mb-2'
+									htmlFor='firstName'>
 									First Name
 								</label>
 								<input
-									className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-									id="firstName"
-									name="firstName"
-									type="text"
-									placeholder="First Name"
+									className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+									id='firstName'
+									name='firstName'
+									type='text'
+									placeholder='First Name'
 									required
 									value={firstName}
 									onChange={(e) => setFirstName(e.target.value)}
 								/>
 							</div>
-							<div className="mb-4">
+							<div className='mb-4'>
 								<label
-									className="block text-gray-700 text-sm font-bold mb-2"
-									htmlFor="lastName"
-								>
+									className='block text-gray-700 text-sm font-bold mb-2'
+									htmlFor='lastName'>
 									Last Name
 								</label>
 								<input
-									className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-									id="lastName"
-									name="lastName"
-									type="text"
-									placeholder="Last Name"
+									className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+									id='lastName'
+									name='lastName'
+									type='text'
+									placeholder='Last Name'
 									required
 									value={lastName}
 									onChange={(e) => setLastName(e.target.value)}
 								/>
 							</div>
-							<div className="mb-4">
+							<div className='mb-4'>
 								<label
-									className="block text-gray-700 text-sm font-bold mb-2"
-									htmlFor="email"
-								>
+									className='block text-gray-700 text-sm font-bold mb-2'
+									htmlFor='email'>
 									Email
 								</label>
 								<input
-									className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-									id="email"
-									name="email"
-									type="email"
-									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+									className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+									id='email'
+									name='email'
+									type='email'
+									pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
 									required
-									placeholder="Email"
+									placeholder='Email'
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
 								/>
 							</div>
-							<div className="mb-6">
+							<div className='mb-6'>
 								<label
-									className="block text-gray-700 text-sm font-bold mb-2"
-									htmlFor="password"
-								>
+									className='block text-gray-700 text-sm font-bold mb-2'
+									htmlFor='password'>
 									Password
 								</label>
 								<input
-									className="shadow appearance-none border border-black-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-									id="password"
-									type="password"
-									placeholder="******************"
+									className='shadow appearance-none border border-black-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
+									id='password'
+									type='password'
+									placeholder='******************'
 									minLength={6}
 									required
-									name="password"
+									value={password}
+									name='password'
 									onChange={(e) => setPassword(e.target.value)}
 								/>
 							</div>
-							<div className="mb-6">
+							<div className='mb-6'>
 								<label
-									className="block text-gray-700 text-sm font-bold mb-2"
-									htmlFor="passwordConfirm"
-								>
+									className='block text-gray-700 text-sm font-bold mb-2'
+									htmlFor='passwordConfirm'>
 									Confirm Password
 								</label>
 								<input
-									className="shadow appearance-none border border-black-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-									id="passwordConfirm"
-									type="password"
-									placeholder="******************"
+									className='shadow appearance-none border border-black-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
+									id='passwordConfirm'
+									type='password'
+									placeholder='******************'
 									minLength={6}
 									pattern={password}
-									title="Password confirmation does not match password!"
+									title='Password confirmation does not match password!'
 									required
-									name="passwordConfirm"
+									value={passwordConfirm}
+									name='passwordConfirm'
 									onChange={(e) => setPasswordConfirm(e.target.value)}
 								/>
 							</div>
-							<div className="flex items-center justify-between">
+							<div className='flex items-center justify-between'>
 								<button
-									className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-									type="submit"
-								>
+									className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+									type='submit'>
 									Register!
 								</button>
 							</div>
