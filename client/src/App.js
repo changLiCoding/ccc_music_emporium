@@ -1,46 +1,73 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+import { Fragment } from "react";
 
+import "./App.css";
 import Home from "./components/Home";
 import Category from "./components/Category";
 import NotFound from "./components/NotFound";
 import SubCategory from "./components/SubCategory";
 import SignIn from "./components/SignIn";
-import { Fragment } from "react";
 import NavBar from "./components/NavBar";
-
-import useHomeCategories from "./hooks/useHomeCategories";
-
-import categoryNamesGenerator from "./helpers/categoryNamesGenerator";
-import subCategoryNamesGenerator from "./helpers/subCategoryNamesGenerator";
 import Footer from "./components/Footer";
+import Register from "./components/Register";
+
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { CategoryNamesProvider } from "./contexts/CategoryNameContext";
+import { CartProvider } from "./contexts/CartContext";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Checkout from "./components/Checkout";
 
 function App() {
-	const { categories } = useHomeCategories();
-
-	const categoryNames = categoryNamesGenerator(categories.categories);
-	const subCategoryNames = subCategoryNamesGenerator(categories.categories);
 	return (
 		<Fragment>
-			<NavBar categories={categoryNames} />
-			<Routes>
-				<Route path="/sign_in" element={<SignIn />} />
-				<Route path="/" element={<Home categories={categoryNames} />} />
-				<Route
-					path="/categories/:name/sub_categories/:sub_categories_name"
-					element={<SubCategory subCategories={subCategoryNames} />}
-				/>
-				<Route path="/categories">
-					<Route index element={<Home categories={categoryNames} />} />
-					<Route
-						path=":name"
-						element={<Category subCategories={subCategoryNames} />}
-					/>
-				</Route>
-				<Route path="*" element={<NotFound />} />
-			</Routes>
+			<CartProvider>
+				<ThemeProvider>
+					<CategoryNamesProvider>
+						<NavBar />
+						<Routes>
+							<Route
+								path='/sign_in'
+								element={<SignIn />}
+							/>
+							<Route
+								path='/sign_up'
+								element={<Register />}
+							/>
+							<Route
+								path='/'
+								element={<Home />}
+							/>
+							<Route
+								path='/categories/:name/sub_categories/:sub_categories_name'
+								element={<SubCategory />}
+							/>
+							<Route path='/categories'>
+								<Route
+									index
+									element={<Home />}
+								/>
+								<Route
+									path=':name'
+									element={<Category />}
+								/>
+							</Route>
+							<Route
+								path='/checkout'
+								element={<Checkout />}
+							/>
+							<Route
+								path='*'
+								element={<NotFound />}
+							/>
+						</Routes>
 
-			<Footer />
+						<Footer />
+					</CategoryNamesProvider>
+				</ThemeProvider>
+			</CartProvider>
+			<ToastContainer />
 		</Fragment>
 	);
 }

@@ -21,7 +21,7 @@ export default function CategoryCards(props) {
 		setIsModalOpen(false)
 	}
 	return (
-		<article className='flex items-center flex-nowrap justify-center mx-20 mb-10 grid grid-cols-3 gap-10'>
+		<article className='items-center flex-nowrap justify-center mx-20 mb-10 grid grid-cols-3 gap-10'>
 			{products &&
 				products.map((product) => {
 					return (

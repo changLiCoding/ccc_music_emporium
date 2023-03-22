@@ -1,27 +1,30 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import SubCategoryLinks from "./SubCategoryLinks";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
+import { SubCategoryNameContext } from "../../contexts/CategoryNameContext";
 
-export default function SideBars(props) {
-	const { subCategories } = props;
-	const categoryNames = Object.keys(subCategories);
-	const subCategoryNames = Object.values(subCategories);
+export default function SideBars() {
+	const { subCategoryNames } = useContext(SubCategoryNameContext);
+	const objCategoryNames = Object.keys(subCategoryNames);
+	const objSubCategoryNames = Object.values(subCategoryNames);
 	return (
 		<div className='container flex-1'>
 			<ul className='menu bg-base-100 w-56 p-2 rounded-box'>
 				{/* <!-- Sidebar content here --> */}
-				{categoryNames.map((category, index) => {
-					console.log(subCategoryNames[index]);
+				{objCategoryNames.map((category, index) => {
 					const linkUrl = `/categories/${category}`;
 					return (
 						<Fragment key={category}>
 							<li className='menu-title text-'>
 								<Link to={linkUrl}>{stringCapitalGenerator(category)}</Link>{" "}
 							</li>
-							{subCategoryNames[index] && (
-								<SubCategoryLinks subCategoryNames={subCategoryNames[index]} />
+							{objSubCategoryNames[index] && (
+								<SubCategoryLinks
+									category={category}
+									subCategoryNames={objSubCategoryNames[index]}
+								/>
 							)}
 						</Fragment>
 					);

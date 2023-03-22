@@ -1,11 +1,12 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
 
 
 export default function ProductModal(props) {
   const ref = useRef(null) 
   const cardContainer = useRef(null)
   const { product, isModalOpen, closeModal, addToCart } = props;
-
+  const { addCart } = useContext(CartContext);
 
     useEffect(() => {
 
@@ -37,7 +38,7 @@ export default function ProductModal(props) {
         <h2 className="card-title">Shoes!</h2>
         <p>{product.description}</p>
         <div className="card-actions justify-end">
-          <button onClick={() => addToCart(product)} className="btn btn-primary">Buy Now</button>
+          <button onClick={() => addCart(product)} className="btn btn-primary">Buy Now</button>
         </div>
         <div className="card-actions justify-start">
           <button onClick={closeModal} className="btn btn-primary">X</button>

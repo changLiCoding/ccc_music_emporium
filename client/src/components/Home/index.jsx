@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import Card from "./Card";
+import { CategoryNameContext } from "../../contexts/CategoryNameContext";
 
-export default function Home(props) {
-	const { categories } = props;
-
+export default function Home() {
+	const { categoryNames } = useContext(CategoryNameContext);
 	const photoLinkArray = [
 		"https://villa-aventura.com/wp-content/uploads/2022/12/Muziek.jpg",
 		"https://t4.ftcdn.net/jpg/02/57/33/93/240_F_257339302_LWVM6ZkukZUoVVo8CY0UHx5y283PG9RR.jpg",
@@ -18,7 +19,7 @@ export default function Home(props) {
 		"Not satisfied with the natural, get on your game guttural",
 	];
 
-	const mappedCategories = categories.map((category, index) => {
+	const mappedCategories = categoryNames.map((category, index) => {
 		return (
 			<Card
 				key={index}
