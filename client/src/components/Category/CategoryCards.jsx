@@ -6,8 +6,6 @@ export default function CategoryCards(props) {
 	const { products } = props;
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentProductModal, setCurrentProductModal] = useState(null);
-	//call CartContext
-	//cart.length to count
 
 	const openModal = () => {
 		setIsModalOpen(true);
