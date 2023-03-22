@@ -17,6 +17,7 @@ import { CartProvider } from "./contexts/CartContext";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Checkout from "./components/Checkout";
 
 function App() {
 	return (
@@ -52,6 +53,10 @@ function App() {
 									element={<Category />}
 								/>
 							</Route>
+							<Route
+								path='/checkout'
+								element={<Checkout />}
+							/>
 							<Route
 								path='*'
 								element={<NotFound />}
