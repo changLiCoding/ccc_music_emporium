@@ -46,18 +46,20 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<CardElement />
+			<CardElement className='mb-6' />
 			{error && <div>{error}</div>}
-			<button
-				className='btn'
-				disabled={processing}>
-				{processing ? "Processing..." : `Pay ${totalInString}`}
-			</button>
-			<label
-				htmlFor='my-modal-5'
-				className='btn'>
-				Never Mind
-			</label>
+			<div className='container flex justify-between'>
+				<button
+					className='btn flex-initial w-32 justify-around'
+					disabled={processing}>
+					{processing ? "Processing..." : `Pay ${totalInString}`}
+				</button>
+				<label
+					htmlFor='my-modal-5'
+					className='btn flex-initial w-32 justify-around'>
+					Never Mind
+				</label>
+			</div>
 		</form>
 	);
 }
