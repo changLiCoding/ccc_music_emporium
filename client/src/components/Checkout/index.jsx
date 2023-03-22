@@ -79,8 +79,8 @@ export default function Checkout() {
 				className='modal-toggle'
 			/>
 			<div className='modal'>
-				<div className='modal-box mx-auto max-w-4xl p-12'>
-					<h2 className='text-lg font-bold mb-6 text-center'>Checkout</h2>
+				<div className='modal-box mx-auto max-w-4xl p-10'>
+					<h2 className='text-lg font-bold text-center'>Checkout</h2>
 					<Elements stripe={stripePromise}>
 						<CheckoutForm
 							onSuccess={onSuccess}

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 
 export default function InfoBar(props) {
-	const { category } = props;
+	const { category, subcategory } = props;
 	library.add(faChevronRight);
 	return (
 		<div className='bg-none my-6 py-2 px-4 flex justify-between items-center'>
@@ -27,6 +27,18 @@ export default function InfoBar(props) {
 						{stringCapitalGenerator(category)}
 					</Link>
 				</h2>
+				{subcategory && (
+					<>
+						<FontAwesomeIcon icon={faChevronRight} />
+						<h2 className='font-bold text-lg mx-3'>
+							<Link
+								to={`/categories/${category}/sub_categories/${subcategory}`}
+								className='font-bold text-lg'>
+								{stringCapitalGenerator(subcategory)}
+							</Link>
+						</h2>
+					</>
+				)}
 			</div>
 			<SortBy />
 		</div>

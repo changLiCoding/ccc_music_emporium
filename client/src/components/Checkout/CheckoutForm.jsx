@@ -46,7 +46,7 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<CardElement className='mb-6' />
+			<CardElement className='mt-8 mb-8' />
 			{error && <div>{error}</div>}
 			<div className='container flex justify-between'>
 				<button
