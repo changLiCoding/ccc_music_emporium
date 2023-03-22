@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import ProductRentCalendar from "./ProductRentCalendar";
 
 export default function ProductModal(props) {
 	const ref = useRef(null);
@@ -37,12 +38,18 @@ export default function ProductModal(props) {
 				<div className='card-body'>
 					<h2 className='card-title'>Shoes!</h2>
 					<p>{product.description}</p>
-					<div className='card-actions justify-end'>
+					<div className='card-actions flex justify-between'>
 						<button
 							onClick={() => addCart(product)}
 							className='btn btn-primary'>
 							Buy Now
 						</button>
+						<label
+							htmlFor='calendar'
+							className='btn btn-primary'>
+							Or Rent
+						</label>
+						<ProductRentCalendar />
 					</div>
 					<div className='card-actions justify-start'>
 						<button

@@ -26,6 +26,7 @@ export default function NavBar() {
 	return (
 		<div className='navbar h-24 bg-primary border-solid border-2 border-black'>
 			<Logo />
+
 			<PageLinks />
 			<div className='flex-none'>
 				<CartIcon />
