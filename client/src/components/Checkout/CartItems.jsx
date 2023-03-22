@@ -8,7 +8,7 @@ export default function CartItems(props) {
 	return (
 		<tbody>
 			{/* row 1 */}
-			<tr>
+			<tr className="border border-[#d1cdcd] border-2">
 				<th className="text-center">
 					<button onClick={() => handleRemove(index)}>
 						<FontAwesomeIcon icon={faTrash} size="xl" />
@@ -27,7 +27,7 @@ export default function CartItems(props) {
 						</div>
 					</div>
 				</td>
-				<td>{1}</td>
+				<td></td>
 				<th>
 					<div className="font-bold">{price}</div>
 				</th>

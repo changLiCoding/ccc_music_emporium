@@ -47,7 +47,7 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 	return (
 		<form onSubmit={handleSubmit}>
 			<CardElement
-				className='mt-8 mb-8'
+				className="mt-8 mb-8"
 				options={{
 					style: {
 						base: {
@@ -61,15 +61,17 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 				}}
 			/>
 			{error && <div>{error}</div>}
-			<div className='container flex justify-between'>
+			<div className="container flex justify-between">
 				<button
-					className='btn flex-initial w-32 justify-around'
-					disabled={processing}>
+					className="btn flex-initial w-32 justify-around"
+					disabled={processing}
+				>
 					{processing ? "Processing..." : `Pay ${totalInString}`}
 				</button>
 				<label
-					htmlFor='my-modal-5'
-					className='btn flex-initial w-32 justify-around'>
+					htmlFor="my-modal-5"
+					className="btn flex-initial w-32 justify-around"
+				>
 					Never Mind
 				</label>
 			</div>

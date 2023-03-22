@@ -43,20 +43,30 @@ export default function Checkout() {
 				make={item.make}
 				model={item.model}
 				price={priceConverter(item.price_in_cents)}
-        handleRemove={handleRemove}
+				handleRemove={handleRemove}
 			/>
 		);
 	});
 
 	return (
-		<div className="w-full h-screen">
-			<table className="table w-full">
+		<div className="w-full h-screen flex flex-col items-center">
+			<header className="text-5xl text-center my-10">
+				<h1>Review Your Order</h1>
+			</header>
+			<table className="table w-10/12">
 				{/* head */}
 				<thead>
-					<tr>
-						<th></th>
+					<tr className="border border-[#d1cdcd] border-2">
+						<th className="w-40">
+							{" "}
+							<span>
+								<button className="btn btn-sm btn-error" onClick={emptyCart}>
+									Remove All
+								</button>
+							</span>
+						</th>
 						<th>Product</th>
-						<th>Quantity</th>
+						<th></th>
 						<th>Total Price</th>
 					</tr>
 				</thead>
@@ -65,10 +75,10 @@ export default function Checkout() {
 
 				{/* foot */}
 				<tfoot>
-					<tr>
+					<tr className="border border-[#d1cdcd] border-2">
 						<th></th>
 						<th>
-							<label htmlFor="my-modal-5" className="btn">
+							<label htmlFor="my-modal-5" className="btn btn-primary">
 								SHUTUP AND TAKE MY MONEY!
 							</label>
 						</th>
