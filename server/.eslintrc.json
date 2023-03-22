@@ -28,7 +28,7 @@
 		"func-style": ["error", "expression"],
 		"space-infix-ops": "error",
 		"space-in-parens": "error",
-		"camelcase": "error",
+		"camelcase": "off",
 		"eqeqeq": "error",
 		"brace-style": "error",
 		"space-before-function-paren": [
