@@ -8,11 +8,7 @@ export default function CategoryCards(props) {
 	const [currentProductModal, setCurrentProductModal] = useState(null)
 	//call CartContext
 	//cart.length to count
-	const [cart, setCart] = useState([])
-	console.log("cart has:",cart)
-	const addToCart = (product) => {
-		setCart(prevcart => [...prevcart, product])
-	}
+
 
 	const openModal = () => {
 		setIsModalOpen(true)
@@ -36,7 +32,7 @@ export default function CategoryCards(props) {
 					);
 				})}
 				{products && isModalOpen && <ProductModal isModalOpen={isModalOpen} closeModal={closeModal} 
-			product={currentProductModal} addToCart={addToCart}/>}
+			product={currentProductModal}/>}
 		</article>
 	);
 }
