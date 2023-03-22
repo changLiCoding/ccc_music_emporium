@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import Datepicker from "react-tailwindcss-datepicker";
 
 export default function ProductRentCalendar() {
+	const [value, setValue] = useState({
+		startDate: new Date(),
+		endDate: new Date().setMonth(11),
+	});
+
+	const handleValueChange = (newValue) => {
+		console.log("newValue:", newValue);
+		setValue(newValue);
+	};
+
 	return (
 		<>
 			<input
@@ -9,14 +20,11 @@ export default function ProductRentCalendar() {
 				className='modal-toggle'
 			/>
 			<div className='modal'>
-				<div className='modal-box w-11/12 max-w-5xl'>
-					<h3 className='font-bold text-lg'>
-						Congratulations random Internet user!
-					</h3>
-					<p className='py-4'>
-						You've been selected for a chance to get one year of subscription to
-						use Wikipedia for free!
-					</p>
+				<div className='modal-box w-11/12 max-w-5xl h-4/6'>
+					<Datepicker
+						value={value}
+						onChange={handleValueChange}
+					/>
 					<div className='modal-action'>
 						<label
 							htmlFor='calendar'
