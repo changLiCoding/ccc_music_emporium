@@ -22,29 +22,14 @@ router.post("/", async (req, res) => {
 			createLintItem(order_id, product.id);
 		});
 
-		const lineItems = products.map((product) => ({
-			price_data: {
-				currency: "usd",
-				product_data: {
-					name: `${product.make} ${product.model}`,
-				},
-				unit_amount: product.price_in_cents,
-			},
-			quantity: 1,
-		}));
-		console.log(lineItems);
-
-		const session = await stripe.checkout.sessions.create({
-			payment_method_types: ["card"],
-			line_items: lineItems,
-			mode: "payment",
-			success_url: "https://example.com/success",
-			cancel_url: "https://example.com/cancel",
-			metadata: {
-				user_id: user_id,
-			},
+		// Create a payment intent with the total amount and currency
+		const paymentIntent = await stripe.paymentIntents.create({
+			amount: orderInfo[0].total_in_cents,
+			currency: "usd",
+			receipt_id: orderInfo.user_id, //May want to change this to email for sending order infomation
 		});
-		res.status(200).json({ sessionId: session.id, order: orderInfo });
+
+		res.status(200).json({ clientSecret: paymentIntent, order: orderInfo });
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}

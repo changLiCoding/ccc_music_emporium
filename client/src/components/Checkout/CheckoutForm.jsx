@@ -17,22 +17,19 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 		setProcessing(true);
 
 		// Create a PaymentIntent on your server
-		const {
-			data: { client_secret },
-		} = await axios.post("/api/checkout", {
+		const response = await axios.post("/api/checkout", {
 			amount_in_cents,
 			products,
 		});
+		const { clientSecret: client_secret } = response.data;
 
 		// Use the client secret to confirm the payment on the client-side
+		console.log(client_secret.client_secret);
 		const { error, paymentIntent } = await stripe.confirmCardPayment(
-			client_secret,
+			client_secret.client_secret,
 			{
 				payment_method: {
 					card: elements.getElement(CardElement),
-					billing_details: {
-						name: "John Doe",
-					},
 				},
 			}
 		);
