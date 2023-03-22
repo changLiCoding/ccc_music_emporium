@@ -9,7 +9,7 @@ function PageLinks() {
 					<Link to="/">Shop</Link>
 				</li>
 				<li>
-					<a>About Us</a>
+					<Link to="/about">About Us</Link>
 				</li>
 				<li>
 					<a>Contact</a>
