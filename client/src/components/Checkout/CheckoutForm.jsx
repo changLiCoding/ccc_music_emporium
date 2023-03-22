@@ -17,7 +17,7 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 		setProcessing(true);
 
 		// Create a PaymentIntent on your server
-		const response = await axios.post("/api/checkout", {
+		const response = await axios.post("http://localhost:8080/api/checkout", {
 			amount_in_cents,
 			products,
 		});

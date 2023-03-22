@@ -15,7 +15,8 @@ const stripePromise = loadStripe(
 	"pk_test_51LffVFEcCevwDBwZtOSgdKTjniGR3VywPsW5EeJNMf9GUMXZp3TVdV5OEHR2ASoB9gvZvBoFGATjhU94PyykNQM800oZNqUDyx"
 );
 export default function Checkout() {
-	const { cart, totalCartPrice, emptyCart } = useContext(CartContext);
+	const { cart, totalCartPrice, emptyCart, removeFromCart } =
+		useContext(CartContext);
 
 	const navigate = useNavigate();
 	const onSuccess = (amountInCents, orderId, customer) => {
@@ -25,24 +26,31 @@ export default function Checkout() {
 
 		handleSuccessPay(message, emptyCart, navigate);
 	};
+
+	const handleRemove = (index) => {
+		removeFromCart(index);
+	};
+
 	// Make sure key uniqueness
 	let makeKeyUniq = 0;
-	const cartItemArray = cart.map((item) => {
+	const cartItemArray = cart.map((item, index) => {
 		makeKeyUniq++;
 		return (
 			<CartItems
 				key={item.id + makeKeyUniq}
+				index={index}
 				imageUrl={item.image_url}
 				make={item.make}
 				model={item.model}
 				price={priceConverter(item.price_in_cents)}
+        handleRemove={handleRemove}
 			/>
 		);
 	});
 
 	return (
-		<div className='w-full h-screen'>
-			<table className='table w-full'>
+		<div className="w-full h-screen">
+			<table className="table w-full">
 				{/* head */}
 				<thead>
 					<tr>
@@ -60,38 +68,32 @@ export default function Checkout() {
 					<tr>
 						<th></th>
 						<th>
-							<label
-								htmlFor='my-modal-5'
-								className='btn'>
+							<label htmlFor="my-modal-5" className="btn">
 								SHUTUP AND TAKE MY MONEY!
 							</label>
 						</th>
 						<th>Subtotal:</th>
 						<th>
-							<p className='text-xl'>{totalCartPrice()}</p>
+							<p className="text-xl">{totalCartPrice()}</p>
 						</th>
 					</tr>
 				</tfoot>
 			</table>
-			<input
-				type='checkbox'
-				id='my-modal-5'
-				className='modal-toggle'
-			/>
-			<div className='modal'>
-				<div className='modal-box mx-auto max-w-4xl p-10'>
-					<h2 className='text-lg font-bold text-center'>Checkout</h2>
+			<input type="checkbox" id="my-modal-5" className="modal-toggle" />
+			<div className="modal">
+				<div className="modal-box mx-auto max-w-4xl p-10">
+					<h2 className="text-lg font-bold text-center">Checkout</h2>
 					<Elements stripe={stripePromise}>
 						<CheckoutForm
 							onSuccess={onSuccess}
 							products={cart}
 							totalInString={totalCartPrice()}
-							className='w-full'
+							className="w-full"
 						/>
 					</Elements>
 				</div>
 
-				<div className='modal-action'></div>
+				<div className="modal-action"></div>
 			</div>
 		</div>
 	);
