@@ -49,7 +49,7 @@ export default function ProductModal(props) {
 							className='btn btn-primary'>
 							Or Rent
 						</label>
-						<ProductRentCalendar />
+						<ProductRentCalendar product={product} />
 					</div>
 					<div className='card-actions justify-start'>
 						<button

@@ -4,13 +4,18 @@ import priceConverter from "../helpers/priceConverter";
 export const CartContext = createContext();
 
 export function CartProvider(props) {
-	const [cart, setCart] = useState([]);
+	const [cart, setCart] = useState(
+		localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+	);
 
 	function addCart(product) {
 		// [ product, product , product ].map((product, i))
 
 		setCart((prevCart) => {
-			return [...prevCart, product];
+			const newCart = [...prevCart, product];
+			prevCart.push(product);
+			localStorage.setItem("cart", JSON.stringify(prevCart));
+			return newCart;
 		});
 	}
 
@@ -18,11 +23,14 @@ export function CartProvider(props) {
 		const newCartArr = cart.filter((product, index) => {
 			return index !== i;
 		});
+		localStorage.setItem("cart", JSON.stringify(newCartArr));
+
 		setCart(newCartArr);
 	}
 
 	function emptyCart() {
 		setCart((prevCart) => {
+			localStorage.removeItem("cart");
 			return [];
 		});
 	}
