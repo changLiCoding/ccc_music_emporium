@@ -52,7 +52,7 @@ export default function Checkout() {
 	return (
 		<div className='w-full h-screen flex flex-col items-center'>
 			<header className='text-5xl text-center my-10'>
-				<h1>Review Your Order</h1>
+				<h1 className='font-bold'>Review Your Order</h1>
 			</header>
 			{cart.length === 0 && <EmptyCartAlert />}
 

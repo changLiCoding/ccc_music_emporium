@@ -33,10 +33,10 @@ export default function SignIn() {
 	};
 
 	return (
-		<div className='h-screen'>
+		<div className='mb-28'>
 			<header>
-				<h1 className='text-4xl text-center my-16'>
-					Already have an account? Sign in below!
+				<h1 className='text-4xl text-center my-16 font-bold'>
+					Already have an account?<em> Log in below! </em>
 				</h1>
 			</header>
 			<div className='flex justify-center items-center'>
@@ -47,8 +47,10 @@ export default function SignIn() {
 							alt='Store'
 						/>
 					</figure>
-					<div className='card-body'>
-						<h1 className='text-2xl text-center mb-5'>Sign In Here!</h1>
+					<div className='card-body w-96'>
+						<h1 className='text-2xl text-center mb-5 font-bold'>
+							Log In Here!
+						</h1>
 						<form
 							className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
 							onSubmit={(e) => submitHandler(e)}>
