@@ -3,10 +3,11 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
 export default function CheckoutForm({ products, onSuccess, totalInString }) {
-	const amount_in_cents = products.reduce(
-		(acc, product) => acc + parseInt(product.price_in_cents),
-		0
-	);
+	const amount_in_cents = products.reduce((acc, product) => {
+		return product.daysRent
+			? acc + product.daysRent * product.rent_rate_in_cents
+			: acc + parseInt(product.price_in_cents);
+	}, 0);
 
 	const stripe = useStripe();
 	const elements = useElements();
@@ -15,12 +16,17 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		setProcessing(true);
-
+		// const user_id=localStorage.getItem('user_id');
+		const userCookie = localStorage.getItem("user");
+		const { id, first_name } = JSON.parse(userCookie);
 		// Create a PaymentIntent on your server
-		const response = await axios.post("/api/checkout", {
-			amount_in_cents,
-			products,
-		});
+		const response = await axios.post(
+			`http://localhost:8080/api/checkout/?user_id=${id}&user_name=${first_name}`,
+			{
+				amount_in_cents,
+				products,
+			}
+		);
 		const { clientSecret: client_secret, order, userName } = response.data;
 
 		// Use the client secret to confirm the payment on the client-side

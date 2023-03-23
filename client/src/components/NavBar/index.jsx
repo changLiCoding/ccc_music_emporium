@@ -1,5 +1,5 @@
 import React from "react";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import NotSignedInIcon from "./NotSignedInIcon";
 import SignedInIcon from "./SignedInIcon";
@@ -8,18 +8,21 @@ import PageLinks from "./PageLinks";
 import Logo from "./Logo";
 
 export default function NavBar() {
-	const [cookies, setCookie, removeCookie] = useCookies([
-		"user_id",
-		"user_name",
-	]);
+	// const [cookies, setCookie, removeCookie] = useCookies([
+	// 	"user_id",
+	// 	"user_name",
+	// ]);
+	// const user_id = localStorage.getItem("user_id");
+	const user_name = localStorage.getItem("user_name");
 
 	const navigate = useNavigate();
 
 	const handleLogout = (e) => {
 		e.preventDefault();
 
-		removeCookie("user_name");
-		removeCookie("user_id");
+		localStorage.removeItem("user_name");
+		localStorage.removeItem("user_id");
+		localStorage.removeItem("user");
 		navigate("/");
 	};
 
@@ -30,10 +33,10 @@ export default function NavBar() {
 			<PageLinks />
 			<div className='flex-none'>
 				<CartIcon />
-				{!cookies.user_name && <NotSignedInIcon />}
-				{cookies.user_name && (
+				{!user_name && <NotSignedInIcon />}
+				{user_name && (
 					<SignedInIcon
-						username={cookies.user_name}
+						username={user_name}
 						handleLogout={handleLogout}
 					/>
 				)}

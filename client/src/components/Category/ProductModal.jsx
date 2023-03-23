@@ -22,8 +22,10 @@ export default function ProductModal(props) {
 		};
 	}, [ref]);
   
-// <p> with scroll for the description
-// sidebar collapse
+	const addCartCloseModal = (product) => {
+		addCart(product)
+		closeModal()
+	}
 
   return (
     <div id="modal-container" className="custom-modal" >
@@ -41,21 +43,23 @@ export default function ProductModal(props) {
         <div></div>
         <div className="card-actions justify-end">
         <div className="badge badge badge-lg">${product.price_in_cents / 100}</div> 
-          <button onClick={() => addCart(product)} className="btn btn-primary">Add to Cart</button>
+          <button onClick={() => addCartCloseModal(product)} className="btn btn-primary">Add to Cart</button>
           <label
 							htmlFor='calendar'
 							className='btn btn-primary'>
 							Or Rent
 						</label>
-						<ProductRentCalendar />
-        </div>
-        <div className="card-actions justify-start">
-
-          <button onClick={closeModal} className="btn btn-sm">X</button>
-        </div>
-        </div>
-      </div>
-    </div>
-
+						<ProductRentCalendar product={product} />
+					</div>
+					<div className='card-actions justify-start'>
+						<button
+							onClick={closeModal}
+							className='btn btn-primary'>
+							X
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 }

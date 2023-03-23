@@ -1,6 +1,7 @@
 const express = require("express");
 const { createLintItem } = require("../db/queries/line_items");
 const { createOrderAfterPay } = require("../db/queries/orders");
+const { createRentLineItem } = require("../db/queries/rent_line_items");
 const router = express.Router();
 
 const yourSuperSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -12,14 +13,23 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
 	try {
-		const { user_id, user_name } = req.cookies;
+		const { user_id, user_name } = req.query;
 		const { products, amount_in_cents } = req.body;
 
 		const orderInfo = await createOrderAfterPay(user_id, amount_in_cents);
 
 		await products.forEach((product) => {
 			const order_id = orderInfo[0].id;
-			createLintItem(order_id, product.id);
+			console.log("Days rent: ", product);
+			product.daysRent
+				? createRentLineItem(
+						order_id,
+						product.id,
+						product.startAt,
+						product.endAt,
+						product.daysRent
+				  )
+				: createLintItem(order_id, product.id);
 		});
 
 		// const lineItems = products.map((product) => ({
@@ -39,13 +49,11 @@ router.post("/", async (req, res) => {
 			receipt_id: orderInfo.user_id, //May want to change this to email for sending order infomation
 		});
 
-		res
-			.status(200)
-			.json({
-				userName: user_name,
-				clientSecret: paymentIntent,
-				order: orderInfo[0],
-			});
+		res.status(200).json({
+			userName: user_name,
+			clientSecret: paymentIntent,
+			order: orderInfo[0],
+		});
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}
