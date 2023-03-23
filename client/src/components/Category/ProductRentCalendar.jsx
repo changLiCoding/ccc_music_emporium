@@ -9,9 +9,20 @@ export default function ProductRentCalendar({ product }) {
 	});
 
 	const handleValueChange = (newValue) => {
-		// console.log("newValue:", newValue);
+		if (typeof newValue.startDate === "string") {
+			// Convert the startDate string to a Date object
+			newValue.startDate = new Date(newValue.startDate);
+		}
+
+		if (typeof newValue.endDate === "string") {
+			// Convert the endDate string to a Date object
+			newValue.endDate = new Date(newValue.endDate);
+		}
+
 		setValue(newValue);
 	};
+
+	const { setRent } = useContext(CartContext);
 
 	return (
 		<>
@@ -32,11 +43,7 @@ export default function ProductRentCalendar({ product }) {
 							type='button'
 							className='btn btn-secondary'
 							onClick={() => {
-								console.log(
-									value.startDate,
-									value.endDate,
-									value.endDate - value.startDate
-								);
+								setRent(value.startDate, value.endDate, product);
 							}}>
 							Submit
 						</button>
