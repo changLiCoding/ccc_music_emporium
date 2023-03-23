@@ -8,7 +8,10 @@ function Logo() {
 	return (
 		<div className="flex-1 navbar-start">
 			<FontAwesomeIcon icon={faGuitar} size="2x" />
-			<Link to="/" className="btn btn-ghost normal-case text-2xl">
+			<Link
+				to="/"
+				className="btn btn-ghost normal-case font-bold font-mono text-3xl"
+			>
 				CCC MUSIC EMPORIUM
 			</Link>
 			<FontAwesomeIcon icon={faDrum} size="2x" />
