@@ -39,11 +39,7 @@ export default function CartItems(props) {
 					</div>
 				</td>
 				<td>
-					{type === "Rent" ? (
-						<div className="badge badge-lg badge-warning">{type}</div>
-					) : (
-						<div className="badge badge-lg badge-primary">{type}</div>
-					)}
+					<div className="badge badge-lg badge-outline">{type}</div>
 				</td>
 				<td>
 					{type === "Rent" ? (
@@ -53,7 +49,7 @@ export default function CartItems(props) {
 							</label>
 							<div
 								tabIndex={0}
-								className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content"
+								className="dropdown-content card card-compact w-64 p-2 shadow bg-accent text-primary"
 							>
 								<div className="card-body">
 									<h3 className="card-title">Rental Info</h3>
