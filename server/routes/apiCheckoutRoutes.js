@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
 	try {
-		const { user_id, user_name } = req.cookies;
+		const { user_id, user_name } = req.query;
 		const { products, amount_in_cents } = req.body;
 
 		const orderInfo = await createOrderAfterPay(user_id, amount_in_cents);
@@ -39,13 +39,11 @@ router.post("/", async (req, res) => {
 			receipt_id: orderInfo.user_id, //May want to change this to email for sending order infomation
 		});
 
-		res
-			.status(200)
-			.json({
-				userName: user_name,
-				clientSecret: paymentIntent,
-				order: orderInfo[0],
-			});
+		res.status(200).json({
+			userName: user_name,
+			clientSecret: paymentIntent,
+			order: orderInfo[0],
+		});
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}

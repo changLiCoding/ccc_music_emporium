@@ -1,11 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
-const {
-	getUserByEmail,
-	getUserByID,
-	createNewUser,
-} = require("../db/queries/users");
+const { getUserByEmail, createNewUser } = require("../db/queries/users");
 
 const router = express.Router();
 
@@ -40,12 +36,10 @@ router.post(
 			// Check if user already exists
 			const existingUser = await getUserByEmail(email);
 			if (existingUser) {
-				return res
-					.status(409)
-					.json({
-						message:
-							"User already exists with this email address! Please try again.",
-					});
+				return res.status(409).json({
+					message:
+						"User already exists with this email address! Please try again.",
+				});
 			}
 
 			// Hash password and create new user
@@ -56,6 +50,7 @@ router.post(
 				lastName,
 				password: hashedPassword,
 			});
+			delete newUser.password;
 			return res.status(201).json({ user: newUser });
 		} catch (err) {
 			console.error(err);
@@ -96,7 +91,9 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 				.status(401)
 				.json({ message: "Invalid email or password! Please try again." });
 		}
+		console.log(email);
 
+		delete user.password;
 		return res.status(200).json({ message: "User authenticated", user });
 	} catch (error) {
 		console.error(error);
