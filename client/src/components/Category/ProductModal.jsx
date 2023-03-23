@@ -28,16 +28,16 @@ export default function ProductModal(props) {
   return (
     <div id="modal-container" className="custom-modal" >
       
-    <div className="card card-compact w-9/12 h-9/12 bg-base-100 shadow-xl" ref={ref} >
+    <div className="card card-compact w-3/5 h-9/12 bg-base-100 shadow-xl" ref={ref} >
       <figure className="bg-white">
-        <img className="bg-white"
+        <img className="bg-white object-contain  h-96"
           src={product.image_url}
           alt={product.model}
         />
       </figure>
       <div className="card-body bg-white">
         <h2 className="card-title">{product.model}</h2>
-        <p>{product.description}</p>
+        <p className="overflow-y-auto">{product.description}</p>
         <div></div>
         <div className="card-actions justify-end">
         <div className="badge badge badge-lg">${product.price_in_cents / 100}</div> 

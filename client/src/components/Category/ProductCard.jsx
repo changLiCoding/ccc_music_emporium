@@ -19,7 +19,7 @@ export default function Card(props) {
 
 
 
-	return category === "guitars"?(<div className="container mx-auto p-6 grid grid-cols-3 gap-4 h-full">
+	return category === "guitars"?(<div className="container mx-auto p-6 grid grid-cols-3 gap-4 h-full space-x-4">
 	<div onClick={openModalWithProduct} className='card flex card-side w-96 bg-white shadow hover:shadow-3xl transition-all'>
 			<figure>
 				<img
@@ -53,7 +53,7 @@ export default function Card(props) {
 		</div>
 		</div>
 		)
-		:(<div onClick={openModalWithProduct} className="card w-96 w-96 bg-white shadow hover:shadow-3xl 	transition-all h-full">
+		:(<div onClick={openModalWithProduct} className="card w-96 w-96 bg-white shadow hover:shadow-3xl 	transition-all h-full space-x-4">
 		<figure className = "max-w-52 max-h-52"><img className="object-contain h-48" src={product.image_url} alt={product.model} /></figure>
 		<div className="card-body">
 			<h2 className="card-title">
