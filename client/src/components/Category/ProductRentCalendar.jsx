@@ -42,6 +42,7 @@ export default function ProductRentCalendar({ product }) {
 						onChange={handleValueChange}
 						
 					/>
+					<div><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZC4-BVm_0r-m6Dey0HXbywBtn6tLM37Bsew&usqp=CAU" alt="band here" /></div>
 					<div className='modal-action mt-80 flex justify-between'>
 						<button
 							type='button'
