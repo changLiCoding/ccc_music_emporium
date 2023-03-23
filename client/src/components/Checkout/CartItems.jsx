@@ -39,12 +39,15 @@ export default function CartItems(props) {
 					</div>
 				</td>
 				<td>
-					<div className="badge badge-lg badge-outline">{type}</div>
+					<div className="font-bold">{type}</div>
 				</td>
-				<td>
+				<td className="text-center">
 					{type === "Rent" ? (
 						<div className="dropdown">
-							<label tabIndex={0} className="btn btn-sm btn-primary m-1">
+							<label
+								tabIndex={0}
+								className="btn btn-xs btn-outline btn-primary m-1"
+							>
 								Details
 							</label>
 							<div

@@ -92,7 +92,7 @@ export default function Checkout() {
 						</th>
 						<th>Product</th>
 						<th>Type</th>
-						<th>More Info</th>
+						<th></th>
 						<th>Price</th>
 					</tr>
 				</thead>
