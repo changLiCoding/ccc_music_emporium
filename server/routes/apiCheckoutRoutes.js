@@ -1,5 +1,6 @@
 const express = require("express");
-const { postOrderAfterPay } = require("../db/queries/orders");
+const { createLintItem } = require("../db/queries/line_items");
+const { createOrderAfterPay } = require("../db/queries/orders");
 const router = express.Router();
 
 const yourSuperSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -11,19 +12,40 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
 	try {
-		const userID = req.session.user_id;
+		const { user_id, user_name } = req.cookies;
+		const { products, amount_in_cents } = req.body;
 
-		const amount = req.body.amount;
-		const currency = req.body.currency;
-		const charge = await stripe.charge.create({
-			amount: amount,
-			currency: currency,
-			source: req.body.token,
+		const orderInfo = await createOrderAfterPay(user_id, amount_in_cents);
+
+		await products.forEach((product) => {
+			const order_id = orderInfo[0].id;
+			createLintItem(order_id, product.id);
 		});
 
-		const orderInfo = await postOrderAfterPay(userID, amount);
-		console.log(orderInfo);
-		res.status(200).json({ success: true, order: orderInfo });
+		// const lineItems = products.map((product) => ({
+		// 	price_data: {
+		// 		currency: "usd",
+		// 		product_data: {
+		// 			name: `${product.make} ${product.model}`,
+		// 		},
+		// 		unit_amount: product.price_in_cents,
+		// 	},
+		// 	quantity: 1,
+		// }));
+		// Create a payment intent with the total amount and currency
+		const paymentIntent = await stripe.paymentIntents.create({
+			amount: orderInfo[0].total_in_cents,
+			currency: "usd",
+			receipt_id: orderInfo.user_id, //May want to change this to email for sending order infomation
+		});
+
+		res
+			.status(200)
+			.json({
+				userName: user_name,
+				clientSecret: paymentIntent,
+				order: orderInfo[0],
+			});
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}

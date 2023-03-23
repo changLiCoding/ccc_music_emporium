@@ -3,11 +3,11 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const PORT = process.env.PORT || 8081;
-const { getAllCategories } = require("./db/queries/categories");
 
 // Middleware configuration
 // Enable CORS for all origins
@@ -15,13 +15,14 @@ app.use(cors());
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
+app.use(cookieParser());
 app.use(morgan("dev"));
-app.use(
-	cookieSession({
-		name: "session",
-		keys: [process.env.COOKIE_SESSION_SECRET],
-	})
-);
+// app.use(
+// 	cookieSession({
+// 		name: "session",
+// 		keys: [process.env.COOKIE_SESSION_SECRET],
+// 	})
+// );
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //               ROUTER MOUNTING
 ///////////////////////////////////////////////////////////////////////////////////////////////////

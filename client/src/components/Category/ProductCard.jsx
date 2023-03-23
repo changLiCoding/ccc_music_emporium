@@ -1,20 +1,21 @@
-import React,{useState} from "react";
+import React from "react";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
-import ProductModal from "./ProductModal";
 
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { CartContext } from "../../contexts/CartContext";
 
 export default function Card(props) {
-	const { product, category, openModal, setCurrentProductModal} = props;
+	const { product, category, openModal, setCurrentProductModal } = props;
 	// const [isModalOpen, setIsModalOpen] = useState(false)
 	const { addCart } = useContext(CartContext);
-;
-
 	const openModalWithProduct = () => {
-		setCurrentProductModal(product)
-		openModal()
-	} 
+		setCurrentProductModal(product);
+		openModal();
+	};
+	const handleBuyButtonClick = e => {
+		e.stopPropagation()
+	 	addCart(product)
+	}
 
 
 
@@ -22,28 +23,28 @@ export default function Card(props) {
 	<div onClick={openModalWithProduct} className='card flex card-side w-96 bg-white shadow hover:shadow-3xl transition-all'>
 			<figure>
 				<img
-					className="-rotate-90"
+					className={category === "guitars" ? "-rotate-90" : null}
 					src={product.image_url}
 					alt={product.model}
 				/>
 			</figure>
-			<div className="card-body">
-				<h2 className="card-title">
+			<div className='card-body'>
+				<h2 className='card-title'>
 					{product.model}
-					<div className="badge badge-secondary">NEW</div>
+					<div className='badge badge-secondary'>NEW</div>
 				</h2>
 				<p>{product.make}</p>
-				<div className="card-actions justify-end">
-					<div className="badge badge-outline">
+				<div className='card-actions justify-end'>
+					<div className='badge badge-outline'>
 						{stringCapitalGenerator(category)}
 					</div>
-					<div className="badge badge-outline">
+					<div className='badge badge-outline'>
 						{stringCapitalGenerator(product.sub_category_name)}
 					</div>
-					<button
+					<button 
 						type="button"
 						className="btn btn-xs"
-						onClick={() => addCart(product)}
+						onClick={handleBuyButtonClick}
 					>
 						buy now
 					</button>
@@ -60,10 +61,10 @@ export default function Card(props) {
 				<div className="badge badge-secondary">NEW</div>
 			</h2>
 			<p>{product.make}</p>
-							<button
+							<button 
 						type="button"
 						className="btn btn-xs"
-						onClick={() => addCart(product)}
+						onClick={handleBuyButtonClick}
 					>
 						buy now
 					</button>

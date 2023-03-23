@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Route, Routes } from "react-router-dom";
 import { Fragment } from "react";
 
@@ -10,14 +12,14 @@ import SignIn from "./components/SignIn";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
+import Checkout from "./components/Checkout";
 
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { CategoryNamesProvider } from "./contexts/CategoryNameContext";
 import { CartProvider } from "./contexts/CartContext";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Checkout from "./components/Checkout";
 
 function App() {
 	return (

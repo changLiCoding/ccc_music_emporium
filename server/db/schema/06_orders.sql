@@ -4,7 +4,6 @@ CREATE TABLE orders (
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   store_id INTEGER NOT NULL REFERENCES stores(id) ON DELETE CASCADE,
   total_in_cents INTEGER NOT NULL,
-  description TEXT NOT NULL,
   rent_start DATE,
   rent_end DATE,
   created_at DATE NOT NULL DEFAULT now()
