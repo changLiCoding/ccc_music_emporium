@@ -38,6 +38,8 @@ export default function Checkout() {
 	const cartItemArray = cart.map((item, index) => {
 		makeKeyUniq++;
 		if (item.daysRent) {
+			let startAt = item.startAt.toString().slice(0, 10);
+			let endAt = item.endAt.toString().slice(0, 10);
 			return (
 				<CartItems
 					key={item.id + makeKeyUniq}
@@ -45,9 +47,10 @@ export default function Checkout() {
 					imageUrl={item.image_url}
 					make={item.make}
 					model={item.model}
-					startAt={item.startAt.split("T")[0]}
-					endAt={item.endAt.split("T")[0]}
+					startAt={startAt}
+					endAt={endAt}
 					type="Rent"
+					pricePerDay={priceConverter(item.rent_rate_in_cents)}
 					price={priceConverter(item.daysRent * item.rent_rate_in_cents)}
 					handleRemove={handleRemove}
 				/>
@@ -60,8 +63,7 @@ export default function Checkout() {
 					imageUrl={item.image_url}
 					make={item.make}
 					model={item.model}
-					startAt="-"
-					endAt="-"
+					duration="-"
 					type="Buy"
 					price={priceConverter(item.price_in_cents)}
 					handleRemove={handleRemove}
@@ -90,7 +92,7 @@ export default function Checkout() {
 						</th>
 						<th>Product</th>
 						<th>Type</th>
-						<th>Duration</th>
+						<th>More Info</th>
 						<th>Price</th>
 					</tr>
 				</thead>

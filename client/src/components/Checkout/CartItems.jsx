@@ -13,6 +13,7 @@ export default function CartItems(props) {
 		startAt,
 		endAt,
 		type,
+		pricePerDay,
 	} = props;
 
 	return (
@@ -39,13 +40,34 @@ export default function CartItems(props) {
 				</td>
 				<td>
 					{type === "Rent" ? (
-						<div className="badge badge-lg badge-accent">{type}</div>
+						<div className="badge badge-lg badge-warning">{type}</div>
 					) : (
 						<div className="badge badge-lg badge-primary">{type}</div>
 					)}
 				</td>
 				<td>
-					{startAt} / {endAt}
+					{type === "Rent" ? (
+						<div className="dropdown">
+							<label tabIndex={0} className="btn btn-sm btn-primary m-1">
+								Details
+							</label>
+							<div
+								tabIndex={0}
+								className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content"
+							>
+								<div className="card-body">
+									<h3 className="card-title">Rental Info</h3>
+									From: {startAt}
+									<br></br>
+									To: {endAt}
+									<br></br>
+									Price Per Day: {pricePerDay}
+								</div>
+							</div>
+						</div>
+					) : (
+						"-"
+					)}
 				</td>
 				<th>
 					<div className="font-bold">{price}</div>
