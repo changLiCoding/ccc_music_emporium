@@ -32,87 +32,102 @@ export default function Checkout() {
 		removeFromCart(index);
 	};
 
+	// Populate Cart Page
 	// Make sure key uniqueness
 	let makeKeyUniq = 0;
 	const cartItemArray = cart.map((item, index) => {
 		makeKeyUniq++;
-		return (
-			<CartItems
-				key={item.id + makeKeyUniq}
-				index={index}
-				imageUrl={item.image_url}
-				make={item.make}
-				model={item.model}
-				price={priceConverter(item.price_in_cents)}
-				handleRemove={handleRemove}
-			/>
-		);
+		if (item.daysRent) {
+			return (
+				<CartItems
+					key={item.id + makeKeyUniq}
+					index={index}
+					imageUrl={item.image_url}
+					make={item.make}
+					model={item.model}
+					startAt={item.startAt.split("T")[0]}
+					endAt={item.endAt.split("T")[0]}
+					type="Rent"
+					price={priceConverter(item.daysRent * item.rent_rate_in_cents)}
+					handleRemove={handleRemove}
+				/>
+			);
+		} else {
+			return (
+				<CartItems
+					key={item.id + makeKeyUniq}
+					index={index}
+					imageUrl={item.image_url}
+					make={item.make}
+					model={item.model}
+					startAt="-"
+					endAt="-"
+					type="Buy"
+					price={priceConverter(item.price_in_cents)}
+					handleRemove={handleRemove}
+				/>
+			);
+		}
 	});
 
 	return (
-		<div className='w-full h-screen flex flex-col items-center'>
-			<header className='text-5xl text-center my-10'>
-				<h1 className='font-bold'>Review Your Order</h1>
+		<div className="w-full h-screen flex flex-col items-center">
+			<header className="text-5xl text-center my-10">
+				<h1 className="font-bold">Review Your Order</h1>
 			</header>
 			{cart.length === 0 && <EmptyCartAlert />}
 
-			<table className='table w-10/12'>
+			<table className="table w-10/12">
 				{/* head */}
 				<thead>
-					<tr className='border-[#d1cdcd] border-2'>
-						<th className='w-40'>
+					<tr className="border-[#d1cdcd] border-2">
+						<th className="w-40">
 							<span>
-								<button
-									className='btn btn-sm btn-error'
-									onClick={emptyCart}>
+								<button className="btn btn-sm btn-error" onClick={emptyCart}>
 									Remove All
 								</button>
 							</span>
 						</th>
 						<th>Product</th>
-						<th></th>
-						<th>Total Price</th>
+						<th>Type</th>
+						<th>Duration</th>
+						<th>Price</th>
 					</tr>
 				</thead>
 				{/* table rows */}
 				{cart.length !== 0 ? cartItemArray : <td>-</td>}
 				{/* foot */}
 				<tfoot>
-					<tr className='border-[#d1cdcd] border-2'>
+					<tr className="border-[#d1cdcd] border-2">
 						<th></th>
 						<th>
-							<label
-								htmlFor='my-modal-5'
-								className='btn btn-primary'>
+							<label htmlFor="my-modal-5" className="btn btn-primary">
 								SHUTUP AND TAKE MY MONEY!
 							</label>
 						</th>
+						<th></th>
 						<th>Subtotal:</th>
 						<th>
-							<p className='text-xl'>{totalCartPrice()}</p>
+							<p className="text-xl">{totalCartPrice()}</p>
 						</th>
 					</tr>
 				</tfoot>
 			</table>
-			<input
-				type='checkbox'
-				id='my-modal-5'
-				className='modal-toggle'
-			/>
-			<div className='modal'>
-				<div className='modal-box mx-auto max-w-4xl p-10'>
-					<h2 className='text-lg font-bold text-center'>Checkout</h2>
+			<input type="checkbox" id="my-modal-5" className="modal-toggle" />
+			<div className="modal">
+				<div className="modal-box mx-auto max-w-4xl p-10">
+					<h2 className="text-lg font-bold text-center">Checkout</h2>
 					<Elements stripe={stripePromise}>
 						<CheckoutForm
 							onSuccess={onSuccess}
 							products={cart}
 							totalInString={totalCartPrice()}
-							className='w-full'
+							className="w-full"
 						/>
 					</Elements>
 				</div>
 
-				<div className='modal-action'></div>
+				<div className="modal-action"></div>
 			</div>
 		</div>
 	);
