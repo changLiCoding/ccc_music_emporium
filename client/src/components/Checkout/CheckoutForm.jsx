@@ -3,10 +3,11 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
 export default function CheckoutForm({ products, onSuccess, totalInString }) {
-	const amount_in_cents = products.reduce(
-		(acc, product) => acc + parseInt(product.price_in_cents),
-		0
-	);
+	const amount_in_cents = products.reduce((acc, product) => {
+		return product.daysRent
+			? acc + product.daysRent * product.rent_rate_in_cents
+			: acc + parseInt(product.price_in_cents);
+	}, 0);
 
 	const stripe = useStripe();
 	const elements = useElements();
