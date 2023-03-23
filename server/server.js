@@ -5,18 +5,27 @@ const morgan = require("morgan");
 const cors = require("cors");
 // const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
-
 const app = express();
 const PORT = process.env.PORT || 8081;
 
 // Middleware configuration
 // Enable CORS for all origins
+
 app.use(cors());
+// Enable CORS for all routes
+// app.use(function (req, res, next) {
+// 	res.header("Access-Control-Allow-Origin", "*");
+// 	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+// 	res.header("Access-Control-Allow-Headers", "Content-Type");
+// 	next();
+// });
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
-app.use(cookieParser());
 app.use(morgan("dev"));
+
+app.use(cookieParser());
+
 // app.use(
 // 	cookieSession({
 // 		name: "session",

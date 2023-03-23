@@ -1,26 +1,12 @@
 import React, { useState } from "react";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import handleLogErrNotify from "../../helpers/handleLogErrNotify";
 
 import axios from "axios";
 
 export default function SignIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [cookies, setCookie, removeCookie] = useCookies([]);
-
-	const notify = (errorMsg) =>
-		toast.error(errorMsg, {
-			position: "top-center",
-			autoClose: 5000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "light",
-		});
 
 	const navigate = useNavigate();
 
@@ -31,12 +17,18 @@ export default function SignIn() {
 				email,
 				password,
 			});
-			setCookie("user_id", res.data.user.id);
-			setCookie("user_name", res.data.user.first_name, { path: "/" });
+			console.log(res.data);
+			localStorage.setItem("user", JSON.stringify(res.data.user));
+			localStorage.setItem("user_id", res.data.user.id);
+			localStorage.setItem("user_name", res.data.user.first_name, {
+				path: "/",
+				domain: "localhost",
+				httpOnly: true,
+			});
 			navigate("/");
 		} catch (error) {
 			console.error(error);
-			notify(error.response.data.message);
+			handleLogErrNotify(error.response.data.message);
 		}
 	};
 
@@ -44,7 +36,7 @@ export default function SignIn() {
 		<div className='h-screen'>
 			<header>
 				<h1 className='text-4xl text-center my-16'>
-					Already have an account? Sign in below!{" "}
+					Already have an account? Sign in below!
 				</h1>
 			</header>
 			<div className='flex justify-center items-center'>

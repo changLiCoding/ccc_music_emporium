@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 function PageLinks() {
 	return (
-		<div className="navbar-center">
-			<ul className="menu menu-horizontal px-5 ml-20 text-xl">
+		<div className='navbar-center'>
+			<ul className='menu menu-horizontal px-5 ml-20 text-xl'>
 				<li>
-					<Link to="/">Shop</Link>
+					<Link to='/'>Shop</Link>
 				</li>
 				<li>
 					<a>About Us</a>

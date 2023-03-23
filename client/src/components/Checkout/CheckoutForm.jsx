@@ -15,12 +15,17 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		setProcessing(true);
-
+		// const user_id=localStorage.getItem('user_id');
+		const userCookie = localStorage.getItem("user");
+		const { id, first_name } = JSON.parse(userCookie);
 		// Create a PaymentIntent on your server
-		const response = await axios.post("http://localhost:8080/api/checkout", {
-			amount_in_cents,
-			products,
-		});
+		const response = await axios.post(
+			`http://localhost:8080/api/checkout/?user_id=${id}&user_name=${first_name}`,
+			{
+				amount_in_cents,
+				products,
+			}
+		);
 		const { clientSecret: client_secret, order, userName } = response.data;
 
 		// Use the client secret to confirm the payment on the client-side
@@ -47,7 +52,7 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 	return (
 		<form onSubmit={handleSubmit}>
 			<CardElement
-				className="mt-8 mb-8"
+				className='mt-8 mb-8'
 				options={{
 					style: {
 						base: {
@@ -61,17 +66,15 @@ export default function CheckoutForm({ products, onSuccess, totalInString }) {
 				}}
 			/>
 			{error && <div>{error}</div>}
-			<div className="container flex justify-between">
+			<div className='container flex justify-between'>
 				<button
-					className="btn flex-initial w-32 justify-around"
-					disabled={processing}
-				>
+					className='btn flex-initial w-32 justify-around'
+					disabled={processing}>
 					{processing ? "Processing..." : `Pay ${totalInString}`}
 				</button>
 				<label
-					htmlFor="my-modal-5"
-					className="btn flex-initial w-32 justify-around"
-				>
+					htmlFor='my-modal-5'
+					className='btn flex-initial w-32 justify-around'>
 					Never Mind
 				</label>
 			</div>

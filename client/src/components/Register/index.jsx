@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import { toast } from "react-toastify";
 import axios from "axios";
+
+import handleLogErrNotify from "../../helpers/handleLogErrNotify";
 
 export default function Register() {
 	const [firstName, setFirstName] = useState("");
@@ -10,21 +10,8 @@ export default function Register() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
-	const [cookies, setCookie, removeCookie] = useCookies([]);
 
 	const navigate = useNavigate();
-
-	const notify = (errorMsg) =>
-		toast.error(errorMsg, {
-			position: "top-center",
-			autoClose: 5000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "light",
-		});
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -36,12 +23,13 @@ export default function Register() {
 				password,
 				passwordConfirm,
 			});
-			setCookie("user_id", res.data.user.id);
-			setCookie("user_name", res.data.user.first_name, { path: "/" });
+			localStorage.setItem("user_id", res.data.user.id);
+			localStorage.setItem("user_name", res.data.user.first_name);
+			localStorage.setItem("user", JSON.stringify(res.data.user));
 			navigate("/");
 		} catch (error) {
 			console.log(error);
-			notify(error.response.data.message);
+			handleLogErrNotify(error.response.data.message);
 		}
 	};
 
