@@ -4,5 +4,7 @@ CREATE TABLE rent_line_items (
   order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
   product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
   rent_start DATE NOT NULL,
-  rent_end DATE NOT NULL
+  rent_end DATE NOT NULL,
+  days_rent INTEGER NOT NULL,
+  created_at DATE NOT NULL DEFAULT now()
 )
