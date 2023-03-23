@@ -8,7 +8,7 @@ export default function ProductModal(props) {
 	const { product, isModalOpen, closeModal } = props;
 	const { addCart } = useContext(CartContext);
 
-	useEffect(() => {
+  useEffect(() => {
 		function handleClickOutside(event) {
 			if (ref.current && !ref.current.contains(event.target)) {
 				closeModal();
@@ -21,30 +21,30 @@ export default function ProductModal(props) {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, [ref]);
+  
+	const addCartCloseModal = (product) => {
+		addCart(product)
+		closeModal()
+	}
 
-	return (
-		<div
-			id='modal-container'
-			className='custom-modal'>
-			<div
-				className='card card-compact w-96 bg-base-100 shadow-xl'
-				ref={ref}>
-				<figure>
-					<img
-						src={product.image_url}
-						alt={product.model}
-					/>
-				</figure>
-				<div className='card-body'>
-					<h2 className='card-title'>Shoes!</h2>
-					<p>{product.description}</p>
-					<div className='card-actions flex justify-between'>
-						<button
-							onClick={() => addCart(product)}
-							className='btn btn-primary'>
-							Buy Now
-						</button>
-						<label
+  return (
+    <div id="modal-container" className="custom-modal" >
+      
+    <div className="card card-compact w-3/5 h-9/12 bg-base-100 shadow-xl" ref={ref} >
+      <figure className="bg-white">
+        <img className="bg-white object-contain  h-96"
+          src={product.image_url}
+          alt={product.model}
+        />
+      </figure>
+      <div className="card-body bg-white">
+        <h2 className="card-title">{product.model}</h2>
+        <p className="overflow-y-auto">{product.description}</p>
+        <div></div>
+        <div className="card-actions justify-end">
+        <div className="badge badge badge-lg">${product.price_in_cents / 100}</div> 
+          <button onClick={() => addCartCloseModal(product)} className="btn btn-primary">Add to Cart</button>
+          <label
 							htmlFor='calendar'
 							className='btn btn-primary'>
 							Or Rent

@@ -31,13 +31,13 @@ export default function Home() {
 	});
 
 	return (
-		<div>
+		<div className='h-screen items-stretch'>
 			<header>
 				<h1 className="text-5xl text-center font-bold my-10">
 					Shop By Category
 				</h1>
 			</header>
-			<div className="items-center flex-nowrap justify-center mx-20 mb-10 grid grid-cols-2 gap-4">
+			<div className='self-stretch flex-nowrap justify-center mx-20 mb-10 grid grid-cols-2 gap-4 self-auto'>
 				{mappedCategories}
 			</div>
 		</div>

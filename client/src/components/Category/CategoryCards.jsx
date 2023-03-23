@@ -14,11 +14,11 @@ export default function CategoryCards(props) {
 		setIsModalOpen(false);
 	};
 	return (
-		<article className='items-center flex-nowrap justify-center mx-20 mb-10 grid grid-cols-3 gap-10'>
+		<article className='items-center flex items-stretch flex-nowrap justify-center mx-20 mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full'>
 			{products &&
 				products.map((product) => {
 					return (
-						<div key={product.id}>
+						<div className="h-full" key={product.id}>
 							<ProductCard
 								product={product}
 								category={product.category_name}
