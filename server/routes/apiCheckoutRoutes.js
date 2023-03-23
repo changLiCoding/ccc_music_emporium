@@ -1,6 +1,7 @@
 const express = require("express");
 const { createLintItem } = require("../db/queries/line_items");
 const { createOrderAfterPay } = require("../db/queries/orders");
+const { createRentLineItem } = require("../db/queries/rent_line_items");
 const router = express.Router();
 
 const yourSuperSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -19,7 +20,16 @@ router.post("/", async (req, res) => {
 
 		await products.forEach((product) => {
 			const order_id = orderInfo[0].id;
-			createLintItem(order_id, product.id);
+			console.log("Days rent: ", product);
+			product.daysRent
+				? createRentLineItem(
+						order_id,
+						product.id,
+						product.startAt,
+						product.endAt,
+						product.daysRent
+				  )
+				: createLintItem(order_id, product.id);
 		});
 
 		// const lineItems = products.map((product) => ({
