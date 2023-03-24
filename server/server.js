@@ -28,7 +28,7 @@ app.use(cookieParser());
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //               ROUTER MOUNTING
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+const apiStoresRoutes = require("./routes/apiStoresRoutes");
 const apiUsersRoutes = require("./routes/apiUsersRoutes");
 const apiCategoriesRoutes = require("./routes/apiCategoriesRoutes");
 const apiCheckoutRoutes = require("./routes/apiCheckoutRoutes");
@@ -42,6 +42,7 @@ const apiHomeRoutes = require("./routes/apiHomeRoutes");
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 app.use("/api/categories", apiCategoriesRoutes);
+app.use("/api/stores", apiStoresRoutes);
 app.use("/api/checkout", apiCheckoutRoutes);
 app.use("/api/users", apiUsersRoutes);
 app.use("/api", apiHomeRoutes);
