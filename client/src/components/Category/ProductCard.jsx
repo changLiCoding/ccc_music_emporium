@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 
 import { useContext } from "react";
@@ -8,6 +8,7 @@ import handleAddToCartNotify from "../../helpers/handleAddToCartNotify";
 
 export default function Card(props) {
 	const { product, category, openModal, setCurrentProductModal } = props;
+
 	// const [isModalOpen, setIsModalOpen] = useState(false)
 	const { addCart } = useContext(CartContext);
 	const openModalWithProduct = () => {
@@ -46,11 +47,11 @@ export default function Card(props) {
 							{stringCapitalGenerator(product.sub_category_name)}
 						</div>
 						<button
-							disabled={product.stock_quantity === 0}
+							disabled={product.stock_quantity <= 0}
 							type='button'
 							className='btn btn-xs'
 							onClick={handleBuyButtonClick}>
-							{product.stock_quantity === 0 ? "Out Stock" : "Buy Now"}
+							{product.stock_quantity <= 0 ? "Out Stock" : "Buy Now"}
 						</button>
 					</div>
 				</div>

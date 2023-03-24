@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
+
 import getDaysDifference from "../helpers/getDayDifference";
 import priceConverter from "../helpers/priceConverter";
+import handleProductUpdate from "../helpers/handleProductUpdate";
 
 export const CartContext = createContext();
 
@@ -10,17 +12,27 @@ export function CartProvider(props) {
 	);
 
 	function addCart(product) {
-		// [ product, product , product ].map((product, i))
+		const newProduct = {
+			...product,
+			stock_quantity: product.stock_quantity - 1,
+		};
+
+		handleProductUpdate(newProduct);
 
 		setCart((prevCart) => {
-			const newCart = [...prevCart, product];
-			prevCart.push(product);
-			localStorage.setItem("cart", JSON.stringify(prevCart));
+			const newCart = [...prevCart, newProduct];
+			localStorage.setItem("cart", JSON.stringify(newCart));
 			return newCart;
 		});
 	}
 
 	function removeFromCart(i) {
+		const product = cart[i];
+		const newProduct = {
+			...product,
+			stock_quantity: product.stock_quantity + 1,
+		};
+		handleProductUpdate(newProduct);
 		const newCartArr = cart.filter((product, index) => {
 			return index !== i;
 		});
