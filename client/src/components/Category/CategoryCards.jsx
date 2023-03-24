@@ -18,7 +18,9 @@ export default function CategoryCards(props) {
 			{products &&
 				products.map((product) => {
 					return (
-						<div className="h-full" key={product.id}>
+						<div
+							className='h-full'
+							key={product.id}>
 							<ProductCard
 								product={product}
 								category={product.category_name}
