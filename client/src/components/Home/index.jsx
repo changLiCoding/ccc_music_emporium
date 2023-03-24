@@ -31,7 +31,7 @@ export default function Home() {
 	});
 
 	return (
-		<div className='h-screen items-stretch'>
+		<div className="items-stretch">
 			<header>
 				<h1 className="text-5xl text-center font-bold my-10">
 					Shop By Category

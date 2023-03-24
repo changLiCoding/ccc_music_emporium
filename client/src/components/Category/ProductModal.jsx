@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import handleAddToCartNotify from "../../helpers/handleAddToCartNotify";
 import ProductRentCalendar from "./ProductRentCalendar";
 
 export default function ProductModal(props) {
@@ -8,7 +9,7 @@ export default function ProductModal(props) {
 	const { product, isModalOpen, closeModal } = props;
 	const { addCart } = useContext(CartContext);
 
-  useEffect(() => {
+	useEffect(() => {
 		function handleClickOutside(event) {
 			if (ref.current && !ref.current.contains(event.target)) {
 				closeModal();
@@ -21,11 +22,12 @@ export default function ProductModal(props) {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, [ref]);
-  
+
 	const addCartCloseModal = (product) => {
-		addCart(product)
-		closeModal()
-	}
+		addCart(product);
+		handleAddToCartNotify("Added to cart! Wahooo!");
+		closeModal();
+	};
 
   return (
 		
@@ -52,10 +54,8 @@ export default function ProductModal(props) {
 						</label>
 						<ProductRentCalendar product={product} />
 					</div>
-					<div className='card-actions justify-start'>
-						<button
-							onClick={closeModal}
-							className='btn btn-primary'>
+					<div className="card-actions justify-start">
+						<button onClick={closeModal} className="btn btn-primary">
 							X
 						</button>
 					</div>
