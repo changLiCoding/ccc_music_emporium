@@ -11,6 +11,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useNavigate } from "react-router-dom";
 import EmptyCartAlert from "./EmptyCartAlert";
+import NotLoggedInAlert from "./NotLoggedInAlert";
 
 const stripePromise = loadStripe(
 	"pk_test_51LffVFEcCevwDBwZtOSgdKTjniGR3VywPsW5EeJNMf9GUMXZp3TVdV5OEHR2ASoB9gvZvBoFGATjhU94PyykNQM800oZNqUDyx"
@@ -20,6 +21,7 @@ export default function Checkout() {
 		useContext(CartContext);
 
 	const navigate = useNavigate();
+	const user = localStorage.getItem("user");
 	const onSuccess = (amountInCents, orderId, customer) => {
 		const message = `Thank you ${customer}, the order ID is ${orderId} for payment of ${priceConverter(
 			amountInCents
@@ -118,17 +120,22 @@ export default function Checkout() {
 			<input type="checkbox" id="my-modal-5" className="modal-toggle" />
 			<div className="modal">
 				<div className="modal-box mx-auto max-w-4xl p-10">
-					<h2 className="text-lg font-bold text-center">Checkout</h2>
-					<Elements stripe={stripePromise}>
-						<CheckoutForm
-							onSuccess={onSuccess}
-							products={cart}
-							totalInString={totalCartPrice()}
-							className="w-full"
-						/>
-					</Elements>
+					{user ? (
+						<>
+							<h2 className="text-lg font-bold text-center">Checkout</h2>
+							<Elements stripe={stripePromise}>
+								<CheckoutForm
+									onSuccess={onSuccess}
+									products={cart}
+									totalInString={totalCartPrice()}
+									className="w-full"
+								/>
+							</Elements>
+						</>
+					) : (
+						<NotLoggedInAlert />
+					)}
 				</div>
-
 				<div className="modal-action"></div>
 			</div>
 		</div>
