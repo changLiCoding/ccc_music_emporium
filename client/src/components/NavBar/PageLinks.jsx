@@ -12,7 +12,7 @@ function PageLinks() {
 					<Link to='/about'>About Us</Link>
 				</li>
 				<li>
-					<a>Contact</a>
+					<Link to='/contact'>Contact</Link>
 				</li>
 			</ul>
 		</div>
