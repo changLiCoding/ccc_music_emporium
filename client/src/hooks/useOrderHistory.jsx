@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function useOrderHistory(userID) {
 	const [purchaseHistory, setPurchaseHistory] = useState({});
+	const [rentalHistory, setRentalHistory] = useState({});
 
 	useEffect(() => {
 		axios
@@ -13,5 +14,14 @@ export default function useOrderHistory(userID) {
 			.catch((err) => console.error("123", err));
 	}, []);
 
-	return { purchaseHistory };
+	useEffect(() => {
+		axios
+			.get(`http://localhost:8080/api/users/${userID}/my_rentals`)
+			.then((response) => {
+				setRentalHistory({ ...response.data });
+			})
+			.catch((err) => console.error("123", err));
+	}, []);
+
+	return { purchaseHistory, rentalHistory };
 }

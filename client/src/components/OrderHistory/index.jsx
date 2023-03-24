@@ -1,12 +1,12 @@
 import React from "react";
 import useOrderHistory from "../../hooks/useOrderHistory";
-import RentTable from "./RentTable";
-import BuyTable from "./BuyTable";
+import RentalTable from "./RentalTable";
+import PurchaseTable from "./PurchaseTable";
 
 export default function OrderHistory() {
 	const userID = localStorage.getItem("user_id");
 
-	const { purchaseHistory } = useOrderHistory(userID);
+	const { purchaseHistory, rentalHistory } = useOrderHistory(userID);
 
 	return (
 		<div className="w-full min-h-screen flex flex-col items-center">
@@ -16,10 +16,11 @@ export default function OrderHistory() {
 			<span className="text-3xl mb-4">
 				<h1>Purchases</h1>
 			</span>
-			<BuyTable purchaseHistory={purchaseHistory.purchaseHistory} />
+			<PurchaseTable purchaseHistory={purchaseHistory.purchaseHistory} />
 			<span className="text-3xl mb-4">
 				<h1>Rentals</h1>
 			</span>
+			<RentalTable rentalHistory={rentalHistory.rentalHistory} />
 		</div>
 	);
 }

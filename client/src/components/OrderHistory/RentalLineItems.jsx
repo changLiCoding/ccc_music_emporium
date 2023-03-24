@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function OrderLineItems(props) {
-	const { imageUrl, make, model, purchaseDate, price } = props;
+export default function RentalLineItems(props) {
+	const { imageUrl, make, model, price, startDate, endDate } = props;
 
 	return (
 		<tbody>
@@ -22,7 +22,9 @@ export default function OrderLineItems(props) {
 					</div>
 				</td>
 				<td>
-					<div className="font-bold">{purchaseDate}</div>
+					<div className="font-bold">
+						{startDate} --- {endDate}
+					</div>
 				</td>
 				<td className="text-center"></td>
 				<th>

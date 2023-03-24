@@ -35,7 +35,26 @@ const GetPurchasesByUser = (userId) => {
 		.catch((err) => console.error(err.message));
 };
 
+const GetRentalsByUser = (userId) => {
+	const queryTemplate = `
+    SELECT rent_line_items.*, products.make as make, products.model as model, products.rent_rate_in_cents as price_per_day, products.image_url as image, orders.user_id as user_id
+    FROM rent_line_items
+    JOIN orders ON orders.id = order_id
+    JOIN products ON product_id = products.id
+    WHERE orders.user_id = $1;
+  `;
+	const queryParams = [userId];
+
+	return db
+		.query(queryTemplate, queryParams)
+		.then((res) => {
+			return res.rows;
+		})
+		.catch((err) => console.error(err.message));
+};
+
 module.exports = {
 	createOrderAfterPay,
 	GetPurchasesByUser,
+	GetRentalsByUser,
 };

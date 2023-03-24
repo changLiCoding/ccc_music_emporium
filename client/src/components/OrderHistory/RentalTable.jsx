@@ -1,9 +1,9 @@
 import React from "react";
-import OrderLineItems from "./OrderLineItems";
+import RentalLineItems from "./RentalLineItems";
 import priceConverter from "../../helpers/priceConverter";
 
-export default function BuyTable(props) {
-	const { purchaseHistory } = props;
+export default function RentalTable(props) {
+	const { rentalHistory } = props;
 
 	return (
 		<div>
@@ -11,26 +11,27 @@ export default function BuyTable(props) {
 				{/* head */}
 				<thead>
 					<tr className="border-[#d1cdcd] border-2">
-						<th className="w-5">
+						<th className="w-6">
 							<span></span>
 						</th>
 						<th>Product</th>
-						<th>Date</th>
+						<th>Rental Dates</th>
 						<th></th>
 						<th>Price</th>
 					</tr>
 				</thead>
 				{/* table rows */}
-				{purchaseHistory &&
-					purchaseHistory.map((item) => {
+				{rentalHistory &&
+					rentalHistory.map((item) => {
 						return (
-							<OrderLineItems
+							<RentalLineItems
 								key={item.id}
 								imageUrl={item.image}
 								make={item.make}
 								model={item.model}
-								purchaseDate={item.purchase_date.slice(0, 10)}
-								price={priceConverter(item.price)}
+								price={priceConverter(item.price_per_day * item.days_rent)}
+								startDate={item.rent_start.slice(0, 10)}
+								endDate={item.rent_end.slice(0, 10)}
 							/>
 						);
 					})}
