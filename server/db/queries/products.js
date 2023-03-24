@@ -3,11 +3,11 @@ const db = require("../connection");
 const updateProductStockByModel = (product) => {
 	const queryTemplate = `
     UPDATE products
-    SET stock_quantity = ${product.stock_quantity}
-    WHERE model = ${product.model}
+    SET stock_quantity = $1
+    WHERE model = $2
     RETURNING *
   `;
-	const queryParams = [product];
+	const queryParams = [product.stock_quantity, product.model];
 
 	return db
 		.query(queryTemplate, queryParams)

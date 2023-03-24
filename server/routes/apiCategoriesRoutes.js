@@ -26,9 +26,16 @@ router.get("/:name", (req, res) => {
 
 router.post("/:name", async (req, res) => {
 	console.log("Change category: ", req.params.name);
-	const newProduct = req.body;
-	console.log("New product here: ", newProduct);
+	const { product, updateType } = req.body;
+	console.log("New product here: ", product);
 	try {
+		let newProduct = {};
+		if (updateType === "increment") {
+			newProduct = { ...product, stock_quantity: product.stock_quantity + 1 };
+		} else if (updateType === "decrement") {
+			newProduct = { ...product, stock_quantity: product.stock_quantity - 1 };
+		}
+		console.log("New Product aftar change: ", newProduct);
 		const returnedNewProduct = await updateProductStockByModel(newProduct);
 		console.log(returnedNewProduct);
 		return res

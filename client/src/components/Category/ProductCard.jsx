@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import useCategoryProducts from "../../hooks/useCategoryProducts";
 
 import handleAddToCartNotify from "../../helpers/handleAddToCartNotify";
 
 export default function Card(props) {
 	const { product, category, openModal, setCurrentProductModal } = props;
+
+	const { name } = useParams();
+	const { updateProductStockQuantity } = useCategoryProducts(name);
 
 	// const [isModalOpen, setIsModalOpen] = useState(false)
 	const { addCart } = useContext(CartContext);
@@ -19,6 +24,7 @@ export default function Card(props) {
 		e.stopPropagation();
 		handleAddToCartNotify("Added to cart! Woohoo!");
 		addCart(product);
+		updateProductStockQuantity(product, "decrement");
 	};
 
 	return category === "guitars" ? (
