@@ -9,4 +9,4 @@ CREATE TABLE products (
   rent_rate_in_cents INTEGER NOT NULL,
   description TEXT NOT NULL,
   image_url VARCHAR(255)
-);
+  );
