@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function OrderLineItems (props) {
+export default function OrderLineItems(props) {
+	const { imageUrl, make, model, purchaseDate, price } = props;
 
-  return(
-    <tbody>
+	return (
+		<tbody>
 			{/* row 1 */}
 			<tr className="border-[#d1cdcd] border-2">
-				<th className="text-center">
-				</th>
+				<th className="text-center"></th>
 				<td>
 					<div className="flex items-center space-x-3">
 						<div className="avatar">
@@ -22,14 +22,13 @@ export default function OrderLineItems (props) {
 					</div>
 				</td>
 				<td>
-					<div className="font-bold">{type}</div>
+					<div className="font-bold">{purchaseDate}</div>
 				</td>
-				<td className="text-center">
-				</td>
+				<td className="text-center"></td>
 				<th>
 					<div className="font-bold">{price}</div>
 				</th>
 			</tr>
 		</tbody>
-  )
+	);
 }
