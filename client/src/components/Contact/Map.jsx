@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
+import handleMapViewMove from "../../helpers/handleMapViewMove";
 
 mapboxgl.accessToken =
 	"pk.eyJ1IjoibGljaGFuZzAwNCIsImEiOiJjbGZsZTdxajQwMTBkM3Fxem1xOGE4bHZhIn0.NX4YQSsBGEHQ1V_Ytk0Usg";
@@ -14,7 +15,7 @@ export default function Map({ stores, view }) {
 			center: [view.longitude, view.latitude],
 			zoom: 9,
 		});
-
+		const markers = [];
 		stores.stores.stores &&
 			stores.stores.stores.forEach((store) => {
 				const marker = new mapboxgl.Marker()
@@ -29,9 +30,27 @@ export default function Map({ stores, view }) {
 		          `)
 					)
 					.addTo(map);
-				// marker.togglePopup();
+				markers.push(marker);
 			});
-	}, [stores.stores.stores, view.longitude, view.latitude]);
+		const handleMapViewMove = () => {
+			markers.forEach((marker) => {
+				const popup = marker.getPopup();
+				if (!popup) return;
+				if (
+					marker.getLngLat().lat.toFixed(4) ===
+						parseFloat(view.latitude).toFixed(4) &&
+					marker.getLngLat().lng.toFixed(4) ===
+						parseFloat(view.longitude).toFixed(4)
+				) {
+					popup.addTo(map);
+				} else {
+					popup.remove();
+				}
+			});
+		};
+		map.on("move", handleMapViewMove);
+		handleMapViewMove();
+	}, [stores.stores.stores, view.latitude, view.longitude]);
 
 	return (
 		<div
