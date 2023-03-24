@@ -1,21 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
-
-import useStores from "../../hooks/useStores";
 
 mapboxgl.accessToken =
 	"pk.eyJ1IjoibGljaGFuZzAwNCIsImEiOiJjbGZsZTdxajQwMTBkM3Fxem1xOGE4bHZhIn0.NX4YQSsBGEHQ1V_Ytk0Usg";
 
-export default function Map() {
-	const stores = useStores();
+export default function Map({ stores, view }) {
 	const mapRef = useRef(null);
 	const openHours = "9am - 5pm";
 	useEffect(() => {
 		const map = new mapboxgl.Map({
 			container: mapRef.current,
 			style: "mapbox://styles/lichang004/clclili1n000014qtrnk6heqc",
-			center: [-79.39941593604091, 43.711066343462775],
-			zoom: 8,
+			center: [view.longitude, view.latitude],
+			zoom: 9,
 		});
 
 		stores.stores.stores &&
@@ -32,8 +29,9 @@ export default function Map() {
 		          `)
 					)
 					.addTo(map);
+				// marker.togglePopup();
 			});
-	}, [stores.stores.stores]);
+	}, [stores.stores.stores, view.longitude, view.latitude]);
 
 	return (
 		<div

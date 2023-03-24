@@ -1,23 +1,36 @@
-import { useState, useEffect } from "react";
-import mapboxgl from "mapbox-gl";
+import { useState } from "react";
 import Map from "./Map";
+import StoreLinks from "./StoreLinks";
+import useStores from "../../hooks/useStores";
 
 const Contact = () => {
+	const stores = useStores();
+	const [view, setView] = useState({
+		longitude: -79.39941593604091,
+		latitude: 43.711066343462775,
+	});
+	const viewHandler = (longitude, latitude) => {
+		setView((preView) => {
+			return { ...preView, longitude, latitude };
+		});
+	};
+	stores.stores.stores && console.log(stores.stores.stores);
 	return (
-		<div className='flex flex-col w-full border-opacity-50 container'>
+		<div className='flex flex-col w-full border-opacity-50 container  my-8'>
 			<div className='grid h-20 card bg-base-300 rounded-box place-items-center'>
 				Stores Infomation
 			</div>
 			<div className='divider'>Locations</div>
 			<div className='grid card bg-base-300 rounded-box place-items-center'>
 				<div className='flex w-full justify-evenly'>
-					<div>
-						<h2>Store Name</h2>
-						<p>Address: 123 Main St</p>
-						<p>Phone: 555-555-5555</p>
-						<p>Hours: Monday - Friday 9am - 5pm</p>
-					</div>
-					<Map />
+					<StoreLinks
+						stores={stores}
+						viewHandler={viewHandler}
+					/>
+					<Map
+						stores={stores}
+						view={view}
+					/>
 				</div>
 			</div>
 		</div>
