@@ -44,7 +44,7 @@ export default function ProductRentCalendar({ product }) {
 						
 					/>
 					<div className='modal-action mt-40 flex justify-between'>
-					<div className="scale-100"><p className="transition delay-150 duration-300 ease-in text-4xl">{randomFacts[0]}</p></div>
+					<div className="scale-100"><p className="transition delay-150 duration-300 ease-in text-4xl">{randomFacts[1]}</p></div>
 						<div>
 							<div>
 							<span className="text-lg">{value.startDate && value.endDate && priceConverter( getDaysDifference(value.startDate, value.endDate) * product.rent_rate_in_cents)}</span>
