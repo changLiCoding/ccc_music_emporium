@@ -37,7 +37,7 @@ export default function Home() {
 					Shop By Category
 				</h1>
 			</header>
-			<div className="self-stretch flex-nowrap justify-center mx-20 mb-10 grid grid-cols-2 gap-4 self-auto">
+			<div className='self-stretch flex-nowrap justify-center mx-20 mb-10 grid grid-cols-4 gap-4 self-auto'>
 				{mappedCategories}
 			</div>
 		</div>

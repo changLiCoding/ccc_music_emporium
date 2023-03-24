@@ -10,6 +10,7 @@ export default function ProductRentCalendar({ product }) {
 		endDate: new Date().setMonth(11),
 	});
 	
+	const randomFacts = ["Standard tubas have approximately 16 feet of tubing", "While in Germany in the first few years of the 60s George Harrison was deported because German authorities realized he was too young to be performing in nightclubs."]
 
 	const handleValueChange = (newValue) => {
 		if (typeof newValue.startDate === "string") {
@@ -35,15 +36,19 @@ export default function ProductRentCalendar({ product }) {
 				className='modal-toggle'
 			/>
 			<div className='modal'>
-				<div className='modal-box w-10/12 max-w-5xl h-4/6'>
+				<div className='modal-box w-10/12 max-w-4xl h-4/6'>
 					<Datepicker
 						placeholder={"Please Click Here"}
 						value={value}
 						onChange={handleValueChange}
 						
 					/>
-					<div><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZC4-BVm_0r-m6Dey0HXbywBtn6tLM37Bsew&usqp=CAU" alt="band here" /></div>
-					<div className='modal-action mt-80 flex justify-between'>
+					<div className='modal-action mt-40 flex justify-between'>
+					<div className="scale-100"><p className="transition delay-150 duration-300 ease-in text-4xl">{randomFacts[1]}</p></div>
+						<div>
+							<div>
+							<span className="text-lg">{value.startDate && value.endDate && priceConverter( getDaysDifference(value.startDate, value.endDate) * product.rent_rate_in_cents)}</span>
+							</div>
 						<button
 							type='button'
 							className='btn btn-secondary'
@@ -52,12 +57,12 @@ export default function ProductRentCalendar({ product }) {
 							}}>
 							Submit
 						</button>
-						<span>{value.startDate && value.endDate && priceConverter( getDaysDifference(value.startDate, value.endDate) * product.rent_rate_in_cents)}</span>
 						<label
 							htmlFor='calendar'
 							className='btn'>
 							Close
 						</label>
+						</div>
 					</div>
 				</div>
 			</div>

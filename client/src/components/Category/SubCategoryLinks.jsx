@@ -10,7 +10,8 @@ export default function SubCategoryLinks(props) {
 				subCategoryNames.map((subCategory) => {
 					const linkUrl = `/categories/${category}/sub_categories/${subCategory}`;
 					return (
-						<li key={subCategory}>
+						
+						<li  className='leading-4'key={subCategory}>
 							<Link to={linkUrl}>{stringCapitalGenerator(subCategory)}</Link>
 						</li>
 					);
