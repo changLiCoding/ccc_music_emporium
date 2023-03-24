@@ -3,8 +3,10 @@ export default function handleMapViewMove(markers, view, map) {
 		const popup = marker.getPopup();
 		if (!popup) return;
 		if (
-			parseFloat(marker.getLngLat().lat) === view.latitude &&
-			parseFloat(marker.getLngLat().lng) === view.longitude
+			marker.getLngLat().lat.toFixed(4) ===
+				parseFloat(view.latitude).toFixed(4) &&
+			marker.getLngLat().lng.toFixed(4) ===
+				parseFloat(view.longitude).toFixed(4)
 		) {
 			popup.addTo(map);
 		} else {

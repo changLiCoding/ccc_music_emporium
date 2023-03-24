@@ -32,25 +32,10 @@ export default function Map({ stores, view }) {
 					.addTo(map);
 				markers.push(marker);
 			});
-		const handleMapViewMove = () => {
-			markers.forEach((marker) => {
-				const popup = marker.getPopup();
-				if (!popup) return;
-				if (
-					marker.getLngLat().lat.toFixed(4) ===
-						parseFloat(view.latitude).toFixed(4) &&
-					marker.getLngLat().lng.toFixed(4) ===
-						parseFloat(view.longitude).toFixed(4)
-				) {
-					popup.addTo(map);
-				} else {
-					popup.remove();
-				}
-			});
-		};
+
 		map.on("move", handleMapViewMove);
-		handleMapViewMove();
-	}, [stores.stores.stores, view.latitude, view.longitude]);
+		handleMapViewMove(markers, view, map);
+	}, [stores.stores.stores, view, view.latitude, view.longitude]);
 
 	return (
 		<div
