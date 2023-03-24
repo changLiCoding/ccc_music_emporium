@@ -28,9 +28,10 @@ export default function ProductModal(props) {
 	}
 
   return (
-    <div id="modal-container" className="custom-modal" >
+		
+    <div id="modal-container" className="custom-modal transition delay-150 duration-300 ease-in-out">
       
-    <div className="card card-compact w-3/5 h-9/12 bg-base-100 shadow-xl" ref={ref} >
+    <div className="card card-compact w-3/5 h-9/12 bg-base-100 shadow-xl transition delay-150 duration-300 ease-in-out" ref={ref} >
       <figure className="bg-white">
         <img className="bg-white object-contain  h-96"
           src={product.image_url}

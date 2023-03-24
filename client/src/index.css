@@ -26,5 +26,8 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* transition: width 2s, height 4s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 1s; */
 
  }
