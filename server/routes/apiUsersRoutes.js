@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 const { getUserByEmail, createNewUser } = require("../db/queries/users");
+const { GetPurchasesByUser } = require("../db/queries/orders");
 
 const router = express.Router();
 
@@ -101,6 +102,16 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 			.status(500)
 			.json({ message: "Internal server error from server !!!!!!!!!" });
 	}
+});
+
+// User Order History
+router.get("/:user_id/my_purchases", (req, res) => {
+	const userId = req.params.user_id;
+	GetPurchasesByUser(userId)
+		.then((purchaseHistory) => res.status(200).json({ purchaseHistory }))
+		.catch((err) => {
+			res.status(500).json({ error: err.message });
+		});
 });
 
 module.exports = router;
