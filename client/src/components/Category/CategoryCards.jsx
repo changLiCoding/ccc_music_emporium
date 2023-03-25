@@ -27,7 +27,7 @@ export default function CategoryCards() {
 		setIsModalOpen(false);
 	};
 	return (
-		<article className='items-center flex items-stretch flex-nowrap justify-center mx-20 mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full'>
+		<article className='items-center flex-nowrap justify-center mx-20 mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full'>
 			{localProducts &&
 				localProducts.map((product) => {
 					return (
@@ -47,7 +47,6 @@ export default function CategoryCards() {
 			{products && isModalOpen && (
 				<ProductModal
 					setProducts={setLocalProducts}
-					isModalOpen={isModalOpen}
 					closeModal={closeModal}
 					product={currentProductModal}
 				/>

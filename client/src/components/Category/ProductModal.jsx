@@ -12,7 +12,7 @@ export default function ProductModal(props) {
 
 	const { handleStateAndDatabaseChange } = useCategoryProducts(name);
 
-	const { product, isModalOpen, setProducts, closeModal } = props;
+	const { product, setProducts, closeModal } = props;
 	const { addCart } = useContext(CartContext);
 
 	useEffect(() => {
@@ -27,7 +27,7 @@ export default function ProductModal(props) {
 			// Unbind the event listener on clean up
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, [ref]);
+	}, [closeModal]);
 
 	const addCartCloseModal = (product) => {
 		addCart(product);
