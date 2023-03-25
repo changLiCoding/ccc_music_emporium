@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export default function handleProductUpdate(product, updateType) {
+export default async function handleProductUpdate(product, updateType) {
 	console.log(product, updateType);
-	axios
+	return axios
 		.post(`http://localhost:8080/api/categories/${product.category_name}`, {
 			product,
 			updateType,

@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import ProductCard from "./ProductCard";
 import ProductModal from "./ProductModal";
 
-export default function CategoryCards(props) {
-	const { products } = props;
+import useCategoryProducts from "../../hooks/useCategoryProducts";
+
+export default function CategoryCards() {
+	const { name } = useParams();
+	const { products } = useCategoryProducts(name);
+
+	const [localProducts, setLocalProducts] = useState([]);
+	useEffect(() => {
+		products.products &&
+			setLocalProducts((prveProducts) => {
+				return [...prveProducts, ...products.products];
+			});
+	}, [products.products]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentProductModal, setCurrentProductModal] = useState(null);
 
@@ -15,13 +28,14 @@ export default function CategoryCards(props) {
 	};
 	return (
 		<article className='items-center flex items-stretch flex-nowrap justify-center mx-20 mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full'>
-			{products &&
-				products.map((product) => {
+			{localProducts &&
+				localProducts.map((product) => {
 					return (
 						<div
 							className='h-full'
 							key={product.id}>
 							<ProductCard
+								setProducts={setLocalProducts}
 								product={product}
 								category={product.category_name}
 								openModal={openModal}
