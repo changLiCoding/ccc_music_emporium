@@ -23,6 +23,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import AboutUs from "./components/AboutUs";
+import OrderHistory from "./components/OrderHistory";
 
 function App() {
 	return (
@@ -52,6 +53,7 @@ function App() {
 								path='/about'
 								element={<AboutUs />}
 							/>
+							<Route path="/my_orders" element={<OrderHistory />} />
 							<Route
 								path='/categories/:name/sub_categories/:sub_categories_name'
 								element={<SubCategory />}

@@ -13,6 +13,11 @@ export default function ProductRentCalendar({ product, setProducts }) {
 		endDate: new Date().setMonth(11),
 	});
 
+	const randomFacts = [
+		"Standard tubas have approximately 16 feet of tubing",
+		"While in Germany in the first few years of the 60s George Harrison was deported because German authorities realized he was too young to be performing in nightclubs.",
+	];
+
 	const handleValueChange = (newValue) => {
 		if (typeof newValue.startDate === "string") {
 			// Convert the startDate string to a Date object
@@ -50,7 +55,25 @@ export default function ProductRentCalendar({ product, setProducts }) {
 							alt='band here'
 						/>
 					</div>
-					<div className='modal-action mt-80 flex justify-between'>
+					{/* <div className='modal-action mt-80 flex justify-between'> */}
+					<div className='modal-action mt-40 flex justify-between'>
+						<div className='scale-100'>
+							<p className='transition delay-150 duration-300 ease-in text-4xl'>
+								{randomFacts[1]}
+							</p>
+						</div>
+						<div>
+							<div>
+								<span className='text-lg'>
+									{value.startDate &&
+										value.endDate &&
+										priceConverter(
+											getDaysDifference(value.startDate, value.endDate) *
+												product.rent_rate_in_cents
+										)}
+								</span>
+							</div>
+						</div>
 						<button
 							disabled={product.stock_quantity === 0}
 							type='button'

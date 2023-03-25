@@ -9,7 +9,7 @@ export default function Card(props) {
 			<Link to={`/categories/${category}`}>
 				<div className='card-body'>
 					<h2 className='card-title'>
-						I am {category.charAt(0).toUpperCase() + category.slice(1)}
+						{category.charAt(0).toUpperCase() + category.slice(1)}
 					</h2>
 					<p>{paragraph}</p>
 				</div>

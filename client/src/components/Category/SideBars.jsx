@@ -17,8 +17,8 @@ export default function SideBars() {
 					const linkUrl = `/categories/${category}`;
 					return (
 						<Fragment key={category}>
-							<li className='menu-title text-'>
-								<Link to={linkUrl}>{stringCapitalGenerator(category)}</Link>{" "}
+							<li className=' text-xl font-semibold leading-3 '>
+								<Link to={linkUrl}>{stringCapitalGenerator(category)}</Link>{""}
 							</li>
 							{objSubCategoryNames[index] && (
 								<SubCategoryLinks

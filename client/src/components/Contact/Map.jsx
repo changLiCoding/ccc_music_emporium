@@ -53,9 +53,5 @@ export default function Map({ stores, view }) {
 		handleMapViewMove();
 	}, [stores.stores.stores, view.latitude, view.longitude]);
 
-	return (
-		<div
-			ref={mapRef}
-			style={{ width: "60rem", height: "25rem" }}></div>
-	);
+	return <div ref={mapRef} style={{ width: "60rem", height: "25rem" }}></div>;
 }

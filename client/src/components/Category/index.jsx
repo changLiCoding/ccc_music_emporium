@@ -7,16 +7,9 @@ import CategoryCards from "./CategoryCards";
 
 export default function Category() {
 	const { name } = useParams();
-	// const [categoryProducts, setCategoryProducts] = useState(
-	// 	products && { ...products }
-	// );
-	// useEffect(() => {
-	// 	setCategoryProducts((preProducts) => {
-	// 		return { ...preProducts, ...products };
-	// 	});
-	// }, [products]);
+
 	return (
-		<main className='flex flex-col mx-auto max-w-auto'>
+		<main className='flex flex-col mx-auto max-w-auto container'>
 			<InfoBar category={name}></InfoBar>
 			<div className='flex'>
 				<SideBars></SideBars>

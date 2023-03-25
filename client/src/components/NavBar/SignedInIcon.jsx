@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceGrinStars } from "@fortawesome/free-solid-svg-icons";
 
@@ -20,11 +21,18 @@ function SignedInIcon(props) {
 			<ul
 				tabIndex={0}
 				className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'>
-				<li>
+				<li className=''>
 					<p>Logged in as: {username}</p>
 				</li>
 				<li>
-					<a onClick={handleLogout}>Logout</a>
+					<Link to='/my_orders'>View Order History</Link>
+				</li>
+				<li>
+					<button
+						className=' link'
+						onClick={handleLogout}>
+						Logout
+					</button>
 				</li>
 			</ul>
 		</div>
