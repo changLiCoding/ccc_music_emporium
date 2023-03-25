@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 import handleAddToCartNotify from "../helpers/handleAddToCartNotify";
 
-export default function useCategoryProducts(categoryName) {
-	const [products, setProducts] = useState({});
-
+export default function useCategoryProducts() {
 	const updateProductStockQuantity = (
 		product,
 		updatedType,
@@ -27,17 +24,6 @@ export default function useCategoryProducts(categoryName) {
 			return updatedProducts;
 		});
 	};
-
-	useEffect(() => {
-		axios
-			.get(`http://localhost:8080/api/categories/${categoryName}`)
-			.then((response) => {
-				setProducts((prevProducts) => {
-					return { ...prevProducts, ...response.data };
-				});
-			})
-			.catch((err) => console.error("123", err));
-	}, [categoryName]);
 
 	const handleStateAndDatabaseChange = async (
 		product,
@@ -63,7 +49,7 @@ export default function useCategoryProducts(categoryName) {
 	};
 
 	return {
-		products,
+		// products,
 		updateProductStockQuantity,
 		handleStateAndDatabaseChange,
 	};

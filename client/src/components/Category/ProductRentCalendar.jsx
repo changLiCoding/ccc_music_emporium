@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-import { useParams } from "react-router-dom";
 
 import { CartContext } from "../../contexts/CartContext";
 import priceConverter from "../../helpers/priceConverter";
@@ -13,10 +12,10 @@ export default function ProductRentCalendar({ product, setProducts }) {
 		endDate: new Date().setMonth(11),
 	});
 
-	const randomFacts = [
-		"Standard tubas have approximately 16 feet of tubing",
-		"While in Germany in the first few years of the 60s George Harrison was deported because German authorities realized he was too young to be performing in nightclubs.",
-	];
+	// const randomFacts = [
+	// 	"Standard tubas have approximately 16 feet of tubing",
+	// 	"While in Germany in the first few years of the 60s George Harrison was deported because German authorities realized he was too young to be performing in nightclubs.",
+	// ];
 
 	const handleValueChange = (newValue) => {
 		if (typeof newValue.startDate === "string") {
@@ -31,8 +30,7 @@ export default function ProductRentCalendar({ product, setProducts }) {
 
 		setValue(newValue);
 	};
-	const { name } = useParams();
-	const { handleStateAndDatabaseChange } = useCategoryProducts(name);
+	const { handleStateAndDatabaseChange } = useCategoryProducts();
 	const { setRent } = useContext(CartContext);
 
 	return (
