@@ -10,7 +10,7 @@ export default function SideBars() {
 	const objCategoryNames = Object.keys(subCategoryNames);
 	const objSubCategoryNames = Object.values(subCategoryNames);
 	return (
-		<div className='flex grid justify-items-start'>
+		<div className='flex justify-items-start'>
 			<ul className='menu bg-base-100 w-56 p-2 rounded-box justify-items-start'>
 				{/* <!-- Sidebar content here --> */}
 				{objCategoryNames.map((category, index) => {

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import ProductCard from "./ProductCard";
-import ProductModal from "./ProductModal";
+import ProductCard from "../Category/ProductCard";
+import ProductModal from "../Category/ProductModal";
 
-import useCategoryProducts from "../../hooks/useCategoryProducts";
+import useSubCategoryProducts from "../../hooks/useSubCategoryProducts";
 
-export default function CategoryCards() {
-	const { name } = useParams();
-	const { products } = useCategoryProducts(name);
+export default function SubCategoryCards() {
+	const { sub_categories_name } = useParams();
+	const { products } = useSubCategoryProducts(sub_categories_name);
 	const [localProducts, setLocalProducts] = useState([]);
+
 	useEffect(() => {
 		products.products &&
 			setLocalProducts((prveProducts) => {
@@ -18,7 +19,6 @@ export default function CategoryCards() {
 			});
 	}, [products.products]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
 	const [currentProductModal, setCurrentProductModal] = useState(null);
 
 	const openModal = () => {
