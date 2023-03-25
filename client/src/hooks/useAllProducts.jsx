@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import handleAddToCartNotify from "../helpers/handleAddToCartNotify";
 
 export default function useAllProducts() {
 	const [products, setProducts] = useState({});

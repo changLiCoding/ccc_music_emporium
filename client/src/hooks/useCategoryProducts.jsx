@@ -31,7 +31,6 @@ export default function useCategoryProducts() {
 		setLocalProducts,
 		message
 	) => {
-		handleAddToCartNotify(message);
 		try {
 			const response = await axios.post(
 				`http://localhost:8080/api/categories/${product.category_name}`,
@@ -40,6 +39,7 @@ export default function useCategoryProducts() {
 					updateType,
 				}
 			);
+			handleAddToCartNotify(message);
 			console.log(response.data.returnedNewProduct[0]);
 			updateProductStockQuantity(product, updateType, setLocalProducts);
 			return response.data;
