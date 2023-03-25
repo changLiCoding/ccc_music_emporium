@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
+import { useParams } from "react-router-dom";
+
 import { CartContext } from "../../contexts/CartContext";
 import priceConverter from "../../helpers/priceConverter";
 import getDaysDifference from "../../helpers/getDayDifference";
+import useCategoryProducts from "../../hooks/useCategoryProducts";
 
-export default function ProductRentCalendar({ product }) {
+export default function ProductRentCalendar({ product, setProducts }) {
 	const [value, setValue] = useState({
 		startDate: new Date(),
 		endDate: new Date().setMonth(11),
@@ -23,7 +26,8 @@ export default function ProductRentCalendar({ product }) {
 
 		setValue(newValue);
 	};
-
+	const { name } = useParams();
+	const { handleStateAndDatabaseChange } = useCategoryProducts(name);
 	const { setRent } = useContext(CartContext);
 
 	return (
@@ -53,6 +57,12 @@ export default function ProductRentCalendar({ product }) {
 							className='btn btn-secondary'
 							onClick={() => {
 								setRent(value.startDate, value.endDate, product);
+								handleStateAndDatabaseChange(
+									product,
+									"decrement",
+									setProducts,
+									"Added to cart! Woohoo!"
+								);
 							}}>
 							Submit
 						</button>

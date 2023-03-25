@@ -46,6 +46,7 @@ export default function CategoryCards() {
 				})}
 			{products && isModalOpen && (
 				<ProductModal
+					setProducts={setLocalProducts}
 					isModalOpen={isModalOpen}
 					closeModal={closeModal}
 					product={currentProductModal}
