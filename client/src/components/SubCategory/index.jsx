@@ -9,11 +9,11 @@ export default function SubCategory() {
 	const { sub_categories_name, name } = useParams();
 
 	return (
-		<main className='flex flex-col mx-auto'>
+		<main className='flex flex-col mx-auto max-w-auto'>
 			<InfoBar
 				category={name}
 				subcategory={sub_categories_name}></InfoBar>
-			<div className='flex'>
+			<div className='flex justify-center'>
 				<SideBars></SideBars>
 				<SubCategoryCards />
 			</div>

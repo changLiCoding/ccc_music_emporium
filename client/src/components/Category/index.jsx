@@ -11,7 +11,7 @@ export default function Category() {
 	return (
 		<main className='flex flex-col mx-auto max-w-auto'>
 			<InfoBar category={name}></InfoBar>
-			<div className='flex'>
+			<div className='flex justify-center'>
 				<SideBars></SideBars>
 				<CategoryCards />
 			</div>

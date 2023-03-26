@@ -38,6 +38,7 @@ export function CartProvider(props) {
 		setCart((prevCart) => {
 			const daysRent = getDaysDifference(startAt, endAt);
 			const newCart = [...prevCart, { ...product, daysRent, startAt, endAt }];
+			console.log("newCart is :", newCart);
 			localStorage.setItem("cart", JSON.stringify(newCart));
 			return newCart;
 		});
