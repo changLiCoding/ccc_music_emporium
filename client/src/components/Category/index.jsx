@@ -9,7 +9,7 @@ export default function Category() {
 	const { name } = useParams();
 
 	return (
-		<main className='flex flex-col mx-auto max-w-auto'>
+		<main className='flex flex-col mx-auto max-w-auto mb-12'>
 			<InfoBar category={name}></InfoBar>
 			<div className='flex justify-center'>
 				<SideBars></SideBars>
