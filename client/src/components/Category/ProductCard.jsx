@@ -3,13 +3,12 @@ import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
-import useCategoryProducts from "../../hooks/useCategoryProducts";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function Card(props) {
-	const { product, setProducts, category, openModal, setCurrentProductModal } =
-		props;
+	const { product, category, openModal, setCurrentProductModal } = props;
 
-	const { handleStateAndDatabaseChange } = useCategoryProducts();
+	const { updateProductContextQuantity } = useContext(ProductContext);
 
 	// const [isModalOpen, setIsModalOpen] = useState(false)
 	const { addCart } = useContext(CartContext);
@@ -20,10 +19,9 @@ export default function Card(props) {
 	const handleBuyButtonClick = async (e) => {
 		e.stopPropagation();
 		addCart(product);
-		handleStateAndDatabaseChange(
+		updateProductContextQuantity(
 			product,
 			"decrement",
-			setProducts,
 			"Added to cart! Woohoo!"
 		);
 	};

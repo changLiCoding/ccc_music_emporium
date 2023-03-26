@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductCard from "../Category/ProductCard";
 import ProductModal from "../Category/ProductModal";
 
-import useSubCategoryProducts from "../../hooks/useSubCategoryProducts";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function SubCategoryCards() {
 	const { sub_categories_name } = useParams();
-	const { products } = useSubCategoryProducts(sub_categories_name);
+	const { products } = useContext(ProductContext);
 	const [localProducts, setLocalProducts] = useState([]);
-
 	useEffect(() => {
 		products.products &&
 			setLocalProducts((prveProducts) => {
 				prveProducts = [];
-				return [...prveProducts, ...products.products];
+				return [
+					...prveProducts,
+					...products.products.filter(
+						(product) => product.sub_category_name === sub_categories_name
+					),
+				];
 			});
-	}, [products.products]);
+	}, [products.products, sub_categories_name]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentProductModal, setCurrentProductModal] = useState(null);
 
@@ -27,6 +31,7 @@ export default function SubCategoryCards() {
 	const closeModal = () => {
 		setIsModalOpen(false);
 	};
+
 	return (
 		<article className='items-center flex-nowrap justify-center mx-20 mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full'>
 			{localProducts &&

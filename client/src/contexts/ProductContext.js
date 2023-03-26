@@ -39,7 +39,13 @@ export function ProductProvider(props) {
 			const response = await axios.post(
 				`http://localhost:8080/api/categories/${productToUpdate.category_name}`,
 				{
-					product: productToUpdate,
+					product: {
+						...productToUpdate,
+						stock_quantity:
+							updatedType === "increment"
+								? productToUpdate.stock_quantity - 1
+								: productToUpdate.stock_quantity + 1,
+					},
 					updateType: updatedType,
 				}
 			);

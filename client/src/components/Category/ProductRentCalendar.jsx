@@ -1,17 +1,17 @@
 import React, { useState, useContext } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
+import { ProductContext } from "../../contexts/ProductContext";
 import { CartContext } from "../../contexts/CartContext";
 import priceConverter from "../../helpers/priceConverter";
 import getDaysDifference from "../../helpers/getDayDifference";
-import useCategoryProducts from "../../hooks/useCategoryProducts";
 
-export default function ProductRentCalendar({ product, setProducts }) {
+export default function ProductRentCalendar({ product }) {
 	const [value, setValue] = useState({
 		startDate: new Date(),
 		endDate: new Date().setMonth(11),
 	});
-
+	const { updateProductContextQuantity } = useContext(ProductContext);
 	// const randomFacts = [
 	// 	"Standard tubas have approximately 16 feet of tubing",
 	// 	"While in Germany in the first few years of the 60s George Harrison was deported because German authorities realized he was too young to be performing in nightclubs.",
@@ -30,7 +30,6 @@ export default function ProductRentCalendar({ product, setProducts }) {
 
 		setValue(newValue);
 	};
-	const { handleStateAndDatabaseChange } = useCategoryProducts();
 	const { setRent } = useContext(CartContext);
 
 	return (
@@ -62,10 +61,9 @@ export default function ProductRentCalendar({ product, setProducts }) {
 							className='btn btn-secondary'
 							onClick={() => {
 								setRent(value.startDate, value.endDate, product);
-								handleStateAndDatabaseChange(
+								updateProductContextQuantity(
 									product,
 									"decrement",
-									setProducts,
 									"Added to cart! Woohoo!"
 								);
 							}}>

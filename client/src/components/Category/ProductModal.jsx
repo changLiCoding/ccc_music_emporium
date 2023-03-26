@@ -1,18 +1,15 @@
 import React, { useRef, useEffect, useContext } from "react";
-// import { useParams } from "react-router-dom";
-import { CartContext } from "../../contexts/CartContext";
 
-import useCategoryProducts from "../../hooks/useCategoryProducts";
+import { CartContext } from "../../contexts/CartContext";
+import { ProductContext } from "../../contexts/ProductContext";
 
 import ProductRentCalendar from "./ProductRentCalendar";
 
 export default function ProductModal(props) {
 	const ref = useRef(null);
-	// const { name } = useParams();
 
-	const { handleStateAndDatabaseChange } = useCategoryProducts();
-
-	const { product, setProducts, closeModal } = props;
+	const { updateProductContextQuantity } = useContext(ProductContext);
+	const { product, closeModal } = props;
 	const { addCart } = useContext(CartContext);
 
 	useEffect(() => {
@@ -31,10 +28,9 @@ export default function ProductModal(props) {
 
 	const addCartCloseModal = (product) => {
 		addCart(product);
-		handleStateAndDatabaseChange(
+		updateProductContextQuantity(
 			product,
 			"decrement",
-			setProducts,
 			"Added to cart! Woohoo!"
 		);
 		closeModal();
@@ -74,10 +70,7 @@ export default function ProductModal(props) {
 							className='btn btn-primary'>
 							Or Rent
 						</label>
-						<ProductRentCalendar
-							product={product}
-							setProducts={setProducts}
-						/>
+						<ProductRentCalendar product={product} />
 					</div>
 					<div className='card-actions justify-start'>
 						<button
