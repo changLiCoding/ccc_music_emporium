@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 
 import { useContext } from "react";
@@ -10,8 +9,7 @@ export default function Card(props) {
 	const { product, setProducts, category, openModal, setCurrentProductModal } =
 		props;
 
-	const { name } = useParams();
-	const { handleStateAndDatabaseChange } = useCategoryProducts(name);
+	const { handleStateAndDatabaseChange } = useCategoryProducts();
 
 	// const [isModalOpen, setIsModalOpen] = useState(false)
 	const { addCart } = useContext(CartContext);
@@ -22,7 +20,6 @@ export default function Card(props) {
 	const handleBuyButtonClick = async (e) => {
 		e.stopPropagation();
 		addCart(product);
-		// updateProductStockQuantity(product, "decrement");
 		handleStateAndDatabaseChange(
 			product,
 			"decrement",

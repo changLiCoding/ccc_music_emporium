@@ -33,6 +33,7 @@ const apiUsersRoutes = require("./routes/apiUsersRoutes");
 const apiCategoriesRoutes = require("./routes/apiCategoriesRoutes");
 const apiCheckoutRoutes = require("./routes/apiCheckoutRoutes");
 const apiHomeRoutes = require("./routes/apiHomeRoutes");
+const apiProductsRoutes = require("./routes/apiProductsRoutes");
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //               HOME PAGE ROUTING
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,6 +42,7 @@ const apiHomeRoutes = require("./routes/apiHomeRoutes");
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
+app.use("/api/products", apiProductsRoutes);
 app.use("/api/categories", apiCategoriesRoutes);
 app.use("/api/stores", apiStoresRoutes);
 app.use("/api/checkout", apiCheckoutRoutes);

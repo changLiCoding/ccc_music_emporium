@@ -1,22 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductCard from "./ProductCard";
 import ProductModal from "./ProductModal";
 
-import useCategoryProducts from "../../hooks/useCategoryProducts";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function CategoryCards() {
 	const { name } = useParams();
-	const { products } = useCategoryProducts(name);
+	const { products } = useContext(ProductContext);
 	const [localProducts, setLocalProducts] = useState([]);
 	useEffect(() => {
 		products.products &&
 			setLocalProducts((prveProducts) => {
 				prveProducts = [];
-				return [...prveProducts, ...products.products];
+
+				return [
+					...prveProducts,
+					...products.products.filter(
+						(product) => product.category_name === name
+					),
+				];
 			});
-	}, [products.products]);
+	}, [name, products.products]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const [currentProductModal, setCurrentProductModal] = useState(null);

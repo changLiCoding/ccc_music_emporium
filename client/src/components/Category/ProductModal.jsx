@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";
 
 import useCategoryProducts from "../../hooks/useCategoryProducts";
@@ -8,9 +8,9 @@ import ProductRentCalendar from "./ProductRentCalendar";
 
 export default function ProductModal(props) {
 	const ref = useRef(null);
-	const { name } = useParams();
+	// const { name } = useParams();
 
-	const { handleStateAndDatabaseChange } = useCategoryProducts(name);
+	const { handleStateAndDatabaseChange } = useCategoryProducts();
 
 	const { product, setProducts, closeModal } = props;
 	const { addCart } = useContext(CartContext);

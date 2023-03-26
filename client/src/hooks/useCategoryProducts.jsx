@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 import handleAddToCartNotify from "../helpers/handleAddToCartNotify";
 
-export default function useCategoryProducts(categoryName) {
-	const [products, setProducts] = useState({});
-
+export default function useCategoryProducts() {
 	const updateProductStockQuantity = (
 		product,
 		updatedType,
@@ -28,24 +25,12 @@ export default function useCategoryProducts(categoryName) {
 		});
 	};
 
-	useEffect(() => {
-		axios
-			.get(`http://localhost:8080/api/categories/${categoryName}`)
-			.then((response) => {
-				setProducts((prevProducts) => {
-					return { ...prevProducts, ...response.data };
-				});
-			})
-			.catch((err) => console.error("123", err));
-	}, [categoryName]);
-
 	const handleStateAndDatabaseChange = async (
 		product,
 		updateType,
 		setLocalProducts,
 		message
 	) => {
-		handleAddToCartNotify(message);
 		try {
 			const response = await axios.post(
 				`http://localhost:8080/api/categories/${product.category_name}`,
@@ -54,6 +39,7 @@ export default function useCategoryProducts(categoryName) {
 					updateType,
 				}
 			);
+			handleAddToCartNotify(message);
 			console.log(response.data.returnedNewProduct[0]);
 			updateProductStockQuantity(product, updateType, setLocalProducts);
 			return response.data;
@@ -63,7 +49,6 @@ export default function useCategoryProducts(categoryName) {
 	};
 
 	return {
-		products,
 		updateProductStockQuantity,
 		handleStateAndDatabaseChange,
 	};
