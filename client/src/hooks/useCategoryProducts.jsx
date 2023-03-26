@@ -49,7 +49,6 @@ export default function useCategoryProducts() {
 	};
 
 	return {
-		// products,
 		updateProductStockQuantity,
 		handleStateAndDatabaseChange,
 	};

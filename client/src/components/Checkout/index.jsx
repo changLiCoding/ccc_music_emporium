@@ -33,25 +33,30 @@ export default function Checkout() {
 	};
 
 	const handleRemove = (index) => {
-		removeFromCart(index);
 		updateProductContextQuantity(
 			cart[index],
 			"increment",
 			"Product removed from cart"
 		);
+		removeFromCart(index);
+	};
+
+	const handleEmptyCart = () => {
+		cart.forEach((product) => {
+			updateProductContextQuantity(product, "increment");
+		});
+		emptyCart();
 	};
 
 	// Populate Cart Page
 	// Make sure key uniqueness
-	let makeKeyUniq = 0;
 	const cartItemArray = cart.map((item, index) => {
-		makeKeyUniq++;
 		if (item.daysRent) {
 			let startAt = item.startAt.toString().slice(0, 10);
 			let endAt = item.endAt.toString().slice(0, 10);
 			return (
 				<CartItems
-					key={item.id + makeKeyUniq}
+					key={Math.random()}
 					index={index}
 					imageUrl={item.image_url}
 					make={item.make}
@@ -67,7 +72,7 @@ export default function Checkout() {
 		} else {
 			return (
 				<CartItems
-					key={item.id + makeKeyUniq}
+					key={Math.random()}
 					index={index}
 					imageUrl={item.image_url}
 					make={item.make}
@@ -96,7 +101,7 @@ export default function Checkout() {
 							<span>
 								<button
 									className='btn btn-sm btn-error'
-									onClick={emptyCart}>
+									onClick={handleEmptyCart}>
 									Remove All
 								</button>
 							</span>

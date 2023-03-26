@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import axios from "axios";
 
 import handleAddToCartNotify from "../helpers/handleAddToCartNotify";
@@ -44,7 +44,7 @@ export function ProductProvider(props) {
 				}
 			);
 			console.log(response.data.returnedNewProduct[0]);
-			handleAddToCartNotify(message);
+			message && handleAddToCartNotify(message);
 
 			return response.data;
 		} catch (error) {
