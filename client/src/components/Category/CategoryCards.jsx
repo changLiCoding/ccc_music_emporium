@@ -33,8 +33,13 @@ export default function CategoryCards() {
 	const closeModal = () => {
 		setIsModalOpen(false);
 	};
+	// items-center flex-nowrap justify-center mx-20 mb-10 w-full
 	return (
-		<article className='items-center flex-nowrap justify-center mx-20 mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full'>
+		<article
+			className='
+		grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+		2xl:grid-cols-4
+		 gap-6'>
 			{localProducts &&
 				localProducts.map((product) => {
 					return (

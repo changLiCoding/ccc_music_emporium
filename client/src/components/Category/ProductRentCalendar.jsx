@@ -27,7 +27,7 @@ export default function ProductRentCalendar({ product }) {
 			// Convert the endDate string to a Date object
 			newValue.endDate = new Date(newValue.endDate);
 		}
-
+		console.log(newValue);
 		setValue(newValue);
 	};
 	const { setRent } = useContext(CartContext);
@@ -60,6 +60,7 @@ export default function ProductRentCalendar({ product }) {
 							type='button'
 							className='btn btn-secondary'
 							onClick={() => {
+								console.log(value);
 								setRent(value.startDate, value.endDate, product);
 								updateProductContextQuantity(
 									product,

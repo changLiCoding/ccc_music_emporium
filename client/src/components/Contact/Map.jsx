@@ -12,7 +12,7 @@ export default function Map({ stores, view }) {
 			container: mapRef.current,
 			style: "mapbox://styles/lichang004/clclili1n000014qtrnk6heqc",
 			center: [view.longitude, view.latitude],
-			zoom: 9,
+			zoom: 10,
 		});
 		const markers = [];
 		stores.stores.stores &&
@@ -53,5 +53,9 @@ export default function Map({ stores, view }) {
 		handleMapViewMove();
 	}, [stores.stores.stores, view.latitude, view.longitude]);
 
-	return <div ref={mapRef} style={{ width: "60rem", height: "25rem" }}></div>;
+	return (
+		<div
+			ref={mapRef}
+			style={{ width: "55vw", height: "45vh" }}></div>
+	);
 }

@@ -3,19 +3,17 @@ import { Link } from "react-router-dom";
 
 function PageLinks() {
 	return (
-		<div className='navbar-center'>
-			<ul className='menu menu-horizontal px-5 ml-20 text-xl font-bold'>
-				<li>
-					<Link to='/'>Shop</Link>
-				</li>
-				<li>
-					<Link to='/about'>About Us</Link>
-				</li>
-				<li>
-					<Link to='/contact'>Contact</Link>
-				</li>
-			</ul>
-		</div>
+		<ul className='navbar-center menu menu-horizontal px-5 ml-20 text-xl font-bold'>
+			<li>
+				<Link to='/'>Shop</Link>
+			</li>
+			<li>
+				<Link to='/about'>About Us</Link>
+			</li>
+			<li>
+				<Link to='/contact'>Contact</Link>
+			</li>
+		</ul>
 	);
 }
 
