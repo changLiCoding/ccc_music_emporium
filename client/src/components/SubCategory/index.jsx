@@ -24,13 +24,14 @@ export default function SubCategory() {
 			});
 	}, [sub_categories_name, products.products]);
 	return (
-		<main className='flex flex-col mx-auto max-w-auto mb-12'>
+		<main className="flex flex-col mx-auto max-w-auto mb-12 min-h-[80vh]">
 			<InfoBar
 				setProducts={setLocalProducts}
 				products={localProducts}
 				category={name}
-				subcategory={sub_categories_name}></InfoBar>
-			<div className='flex justify-center'>
+				subcategory={sub_categories_name}
+			></InfoBar>
+			<div className="flex justify-center">
 				<SideBars></SideBars>
 				<SubCategoryCards
 					products={localProducts}

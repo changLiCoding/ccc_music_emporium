@@ -5,7 +5,7 @@ export default function Card(props) {
 	const { category, paragraph, image } = props;
 
 	return (
-		<div className="card w-full bg-white shadow hover:shadow-3xl transition-all">
+		<div className="card w-full bg-white shadow hover:shadow-3xl transition-all border border-primary rounded-b-none">
 			<Link to={`/categories/${category}`}>
 				<div className="card-body p-6 flex items-center">
 					<h2 className="card-title text-3xl font-bold underline">
