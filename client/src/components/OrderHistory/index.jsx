@@ -14,7 +14,7 @@ export default function OrderHistory() {
 			<header className="text-5xl text-center my-10">
 				<h1 className="font-bold">Your Order History</h1>
 			</header>
-			<span className="text-3xl mb-4 font-bold">
+			<span className="text-3xl mb-4 font-bold divider">
 				<h1>Purchases</h1>
 			</span>
 			{purchaseHistory.purchaseHistory &&
@@ -23,7 +23,7 @@ export default function OrderHistory() {
 			) : (
 				<PurchaseTable purchaseHistory={purchaseHistory.purchaseHistory} />
 			)}
-			<span className="text-3xl mb-4 font-bold">
+			<span className="text-3xl mb-4 font-bold divider">
 				<h1>Rentals</h1>
 			</span>
 			{rentalHistory.rentalHistory &&

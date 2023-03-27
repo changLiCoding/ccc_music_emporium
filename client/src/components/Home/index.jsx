@@ -61,7 +61,7 @@ export default function Home() {
 				</div>
 			</div>
 			<div>
-				<h1 className="text-4xl text-center font-bold my-16 underline">
+				<h1 className="divider text-4xl text-center font-bold my-16 underline">
 					Shop By Category
 				</h1>
 			</div>
