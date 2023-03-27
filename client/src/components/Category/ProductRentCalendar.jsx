@@ -9,7 +9,7 @@ import getDaysDifference from "../../helpers/getDayDifference";
 export default function ProductRentCalendar({ product }) {
 	const [value, setValue] = useState({
 		startDate: new Date(),
-		endDate: new Date().setMonth(11),
+		endDate: new Date(),
 	});
 	const { updateProductContextQuantity } = useContext(ProductContext);
 	// const randomFacts = [

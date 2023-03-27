@@ -67,11 +67,9 @@ export default function Card(props) {
 			</div>
 		</div>
 	) : (
-		<div className='card w-full sm:w-72 md:w-96 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 h-full'>
-			<div
-				onClick={openModalWithProduct}
-				className='h-full'>
-				<figure className='relative h-40 md:h-52'>
+		<div className="card w-full sm:w-72 md:w-96 bg-white rounded-lg shadow overflow-hidden hover:shadow-3xl transition-all duration-200 cursor-pointer h-full">
+			<div onClick={openModalWithProduct} className="h-full">
+				<figure className="relative h-40 md:h-52">
 					<img
 						className={`object-cover`}
 						src={product.image_url}
@@ -93,13 +91,14 @@ export default function Card(props) {
 						</div>
 						<button
 							disabled={product.stock_quantity <= 0}
-							type='button'
+							type="button"
 							className={`btn btn-primary btn-sm ${
 								product.stock_quantity <= 0
 									? "opacity-50 cursor-not-allowed"
 									: ""
 							}`}
-							onClick={handleBuyButtonClick}>
+							onClick={handleBuyButtonClick}
+						>
 							{product.stock_quantity <= 0 ? "Out Stock" : "Buy Now"}
 						</button>
 					</div>
