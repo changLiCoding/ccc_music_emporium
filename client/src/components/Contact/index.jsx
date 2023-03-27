@@ -16,21 +16,15 @@ const Contact = () => {
 	};
 
 	return (
-		<div className='flex flex-col w-full border-opacity-50 container  my-8'>
-			<div className='grid h-20 card bg-base-300 rounded-box place-items-center'>
+		<div className="flex flex-col w-full min-h-screen border-opacity-50 container my-8">
+			<div className="grid h-20 card bg-base-300 rounded-box place-items-center">
 				Stores Infomation
 			</div>
-			<div className='divider'>Locations</div>
-			<div className='grid card bg-base-300 rounded-box place-items-center'>
-				<div className='flex w-full justify-evenly'>
-					<StoreLinks
-						stores={stores}
-						viewHandler={viewHandler}
-					/>
-					<Map
-						stores={stores}
-						view={view}
-					/>
+			<div className="divider">Locations</div>
+			<div className="grid card bg-base-300 rounded-box place-items-center">
+				<div className="flex w-full justify-evenly">
+					<StoreLinks stores={stores} viewHandler={viewHandler} />
+					<Map stores={stores} view={view} />
 				</div>
 			</div>
 		</div>

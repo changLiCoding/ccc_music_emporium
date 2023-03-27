@@ -99,7 +99,15 @@ export default function Checkout() {
 					</tr>
 				</thead>
 				{/* table rows */}
-				{cart.length !== 0 ? cartItemArray : <td>-</td>}
+				{cart.length !== 0 ? (
+					cartItemArray
+				) : (
+					<tbody>
+						<tr>
+							<th>-</th>
+						</tr>
+					</tbody>
+				)}
 				{/* foot */}
 				<tfoot>
 					<tr className="border-[#d1cdcd] border-2">
