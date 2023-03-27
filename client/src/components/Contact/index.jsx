@@ -16,7 +16,7 @@ const Contact = () => {
 	};
 
 	return (
-		<div className="flex flex-col w-full min-h-screen border-opacity-50 container my-12">
+		<div className="flex flex-col w-full min-h-[77vh] border-opacity-50 container my-12">
 			<div className="grid h-20 card bg-base-300 rounded-box place-items-center font-bold text-3xl mb-6">
 				Store Information
 			</div>

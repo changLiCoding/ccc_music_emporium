@@ -34,7 +34,7 @@ export default function Register() {
 	};
 
 	return (
-		<div className="mb-28">
+		<div className="min-h-[77vh]">
 			<header>
 				<h1 className="text-4xl text-center my-16 font-bold">
 					New to the store? <em>Register an account today! </em>

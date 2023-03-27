@@ -87,7 +87,7 @@ export default function Checkout() {
 	});
 
 	return (
-		<div className="w-full min-h-screen flex flex-col items-center mb-14">
+		<div className="w-full min-h-[77vh] flex flex-col items-center mb-14">
 			<header className="text-5xl text-center my-16 divider">
 				<h1 className="font-bold">Review Your Order</h1>
 			</header>

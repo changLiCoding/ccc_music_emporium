@@ -10,7 +10,7 @@ export default function OrderHistory() {
 	const { purchaseHistory, rentalHistory } = useOrderHistory(userID);
 
 	return (
-		<div className="w-full min-h-screen flex flex-col items-center">
+		<div className="w-full min-h-[77vh] flex flex-col items-center">
 			<header className="text-5xl text-center my-10">
 				<h1 className="font-bold">Your Order History</h1>
 			</header>

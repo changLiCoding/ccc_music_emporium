@@ -33,7 +33,7 @@ export default function SignIn() {
 	};
 
 	return (
-		<div className="mb-28">
+		<div className="min-h-[77vh]">
 			<header>
 				<h1 className="text-4xl text-center my-16 font-bold">
 					Already have an account?<em> Log in below! </em>
