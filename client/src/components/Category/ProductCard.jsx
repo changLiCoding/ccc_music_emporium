@@ -1,5 +1,6 @@
 import React from "react";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
+import priceConverter from "../../helpers/priceConverter";
 
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
@@ -27,38 +28,42 @@ export default function Card(props) {
 	};
 
 	return category === "amps & pedals" ? (
-		<div className='container mx-auto p-6 grid grid-cols-3 gap-4 h-full space-x-4'>
-			<div
-				onClick={openModalWithProduct}
-				className='card flex card-side w-96 bg-white shadow hover:shadow-3xl transition-all'>
-				<figure>
-					<img
-						src={product.image_url}
-						alt={product.model}
-					/>
-				</figure>
-				<div className='card-body'>
-					<h2 className='card-title'>
-						{product.model}
-						<div className='badge badge-secondary'>NEW</div>
-					</h2>
-					<p>{product.make}</p>
-					<div className='card-actions justify-end'>
-						<div className='badge badge-outline'>
-							{stringCapitalGenerator(category)}
+		<div
+			onClick={openModalWithProduct}
+			className="card w-96 w-96 bg-white shadow hover:shadow-3xl 	transition-all h-full space-x-4"
+		>
+			<figure className="max-w-52 max-h-52">
+				<img
+					className="object-contain h-48"
+					src={product.image_url}
+					alt={product.model}
+				/>
+			</figure>
+			<div className="card-body">
+				<h2 className="card-title font-bold text-lg">{product.model}</h2>	
+				<p className='text-gray-500'>{product.make}</p>
+				<div className='flex flex-wrap justify-between mt-4'>
+						<div className='badge badge-secondary text-xs'>NEW</div>
+						<div className='flex'>
+							<div className='badge badge-outline  text-xs ml-2'>
+								{stringCapitalGenerator(product.sub_category_name)}
+							</div>
+							<div className='badge badge-outline bg-amber-500 text-xs'>
+								{priceConverter(product.price_in_cents)}
+							</div>
 						</div>
-						<div className='badge badge-outline'>
-							{stringCapitalGenerator(product.sub_category_name)}
-						</div>
+					</div>
 						<button
 							disabled={product.stock_quantity <= 0}
 							type='button'
-							className='btn  btn-primary'
+							className={`btn btn-primary btn-sm ${
+								product.stock_quantity <= 0
+									? "opacity-50 cursor-not-allowed"
+									: ""
+							}`}
 							onClick={handleBuyButtonClick}>
 							{product.stock_quantity <= 0 ? "Out Stock" : "Buy Now"}
 						</button>
-					</div>
-				</div>
 			</div>
 		</div>
 	) : (
@@ -79,11 +84,11 @@ export default function Card(props) {
 					<div className='flex flex-wrap justify-between mt-4'>
 						<div className='badge badge-secondary text-xs'>NEW</div>
 						<div className='flex'>
-							<div className='badge badge-outline text-xs'>
-								{stringCapitalGenerator(category)}
-							</div>
 							<div className='badge badge-outline text-xs ml-2'>
 								{stringCapitalGenerator(product.sub_category_name)}
+							</div>
+							<div className='badge badge-outline bg-amber-500 text-xs'>
+								{priceConverter(product.price_in_cents)}
 							</div>
 						</div>
 						<button
