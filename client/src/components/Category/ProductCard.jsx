@@ -30,9 +30,9 @@ export default function Card(props) {
 	return (
 		<div
 			onClick={openModalWithProduct}
-			className="card w-96 w-96 bg-white shadow hover:shadow-3xl transition-all h-full space-x-4 border border-primary"
+			className="card w-96 max-h-[28rem] bg-white shadow hover:shadow-3xl transition-all h-full space-x-4 border border-primary"
 		>
-			<figure className="max-w-52 max-h-52">
+			<figure className="max-w-52 max-h-52 mt-4">
 				<img
 					className="object-contain h-48"
 					src={product.image_url}
