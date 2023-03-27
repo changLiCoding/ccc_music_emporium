@@ -45,7 +45,7 @@ export default function Home() {
 				<div className="hero-overlay bg-opacity-70"></div>
 				<div className="hero-content text-center text-neutral-content">
 					<div className="max-w-4xl">
-						<h1 className="mb-8 text-6xl font-bold [text-shadow:_0_5px_0_rgb(0_0_0_/_60%)]">
+						<h1 className="mb-8 text-6xl font-bold logo-font [text-shadow:_0_5px_0_rgb(0_0_0_/_60%)]">
 							Welcome to CCC Music Emporium!
 						</h1>
 						<p className="mb-5 text-xl [text-shadow:_0_3px_0_rgb(0_0_0_/_80%)]">
