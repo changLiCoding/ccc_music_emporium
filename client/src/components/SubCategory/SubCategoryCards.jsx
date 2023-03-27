@@ -1,27 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 
 import ProductCard from "../Category/ProductCard";
 import ProductModal from "../Category/ProductModal";
 
-import { ProductContext } from "../../contexts/ProductContext";
-
-export default function SubCategoryCards() {
-	const { sub_categories_name } = useParams();
-	const { products } = useContext(ProductContext);
-	const [localProducts, setLocalProducts] = useState([]);
-	useEffect(() => {
-		products.products &&
-			setLocalProducts((prveProducts) => {
-				prveProducts = [];
-				return [
-					...prveProducts,
-					...products.products.filter(
-						(product) => product.sub_category_name === sub_categories_name
-					),
-				];
-			});
-	}, [products.products, sub_categories_name]);
+export default function SubCategoryCards({ products, setProducts }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentProductModal, setCurrentProductModal] = useState(null);
 
@@ -37,14 +19,14 @@ export default function SubCategoryCards() {
 			className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
 		2xl:grid-cols-4
 		 gap-6'>
-			{localProducts &&
-				localProducts.map((product) => {
+			{products &&
+				products.map((product) => {
 					return (
 						<div
 							className='h-full'
 							key={product.id}>
 							<ProductCard
-								setProducts={setLocalProducts}
+								setProducts={setProducts}
 								product={product}
 								category={product.category_name}
 								openModal={openModal}
@@ -55,7 +37,7 @@ export default function SubCategoryCards() {
 				})}
 			{products && isModalOpen && (
 				<ProductModal
-					setProducts={setLocalProducts}
+					setProducts={setProducts}
 					closeModal={closeModal}
 					product={currentProductModal}
 				/>
