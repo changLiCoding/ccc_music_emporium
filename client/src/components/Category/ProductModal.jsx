@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useContext } from "react";
 
 import { CartContext } from "../../contexts/CartContext";
 import { ProductContext } from "../../contexts/ProductContext";
+import priceConverter from "../../helpers/priceConverter";
 
 import ProductRentCalendar from "./ProductRentCalendar";
 
@@ -39,11 +40,14 @@ export default function ProductModal(props) {
 	return (
 		<div id="modal-container" className="custom-modal">
 			<div
-				className="card card-compact w-3/5 h-9/12 bg-base-100 shadow-xl"
+				className="card card-compact w-3/5 h-9/12 bg-white shadow-xl p-2 border border-primary"
 				ref={ref}
 			>
 				<div className="card-actions bg-white rounded-lg justify-end">
-					<button onClick={closeModal} className="btn btn-sm btn-error">
+					<button
+						onClick={closeModal}
+						className="btn btn-sm btn-error border-black"
+					>
 						X
 					</button>
 				</div>
@@ -55,18 +59,16 @@ export default function ProductModal(props) {
 					/>
 				</figure>
 				<div className="card-body bg-white">
-					<h2 className="card-title">{product.model}</h2>
+					<h2 className="card-title text-2xl font-bold">{product.make}</h2>
+					<h4 className="text-xl text-gray-500">{product.model}</h4>
 					<p className="overflow-y-auto">{product.description}</p>
 					<div></div>
 					<div className="card-actions justify-between">
-						<div className="badge btn-md text-xl">
-							${product.price_in_cents / 100}
-						</div>
-						<div className="space-x-1">
+						<div className="space-x-2">
 							<button
 								disabled={product.stock_quantity === 0}
 								onClick={() => addCartCloseModal(product)}
-								className="btn btn-primary border-accent"
+								className="btn btn-primary border-accent text-accent"
 							>
 								{product.stock_quantity === 0 ? "Sold Out!" : "Add to Cart"}
 							</button>
@@ -77,6 +79,9 @@ export default function ProductModal(props) {
 							>
 								Or Rent
 							</label>
+						</div>
+						<div className="badge btn-md btn-accent border-primary bg-amber-500 hover:bg-amber-500 hover:border-black text-xl font-bold">
+							{priceConverter(product.price_in_cents)}
 						</div>
 						<ProductRentCalendar product={product} />
 					</div>
