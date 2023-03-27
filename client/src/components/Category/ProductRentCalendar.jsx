@@ -9,7 +9,7 @@ import getDaysDifference from "../../helpers/getDayDifference";
 export default function ProductRentCalendar({ product }) {
 	const [value, setValue] = useState({
 		startDate: new Date(),
-		endDate: new Date().setMonth(11),
+		endDate: new Date(),
 	});
 	const { updateProductContextQuantity } = useContext(ProductContext);
 	// const randomFacts = [
@@ -34,31 +34,27 @@ export default function ProductRentCalendar({ product }) {
 
 	return (
 		<>
-			<input
-				type='checkbox'
-				id='calendar'
-				className='modal-toggle'
-			/>
-			<div className='modal'>
-				<div className='modal-box w-10/12 max-w-5xl h-4/6'>
+			<input type="checkbox" id="calendar" className="modal-toggle" />
+			<div className="modal">
+				<div className="modal-box w-10/12 max-w-5xl h-4/6">
 					<Datepicker
 						placeholder={"Please Click Here"}
 						value={value}
 						onChange={handleValueChange}
 					/>
-					<div className='flex justify-center mt-3'>
+					<div className="flex justify-center mt-3">
 						<img
-							className='w-2/3'
-							src='https://cdn.pixabay.com/photo/2017/06/21/22/40/guitar-2428921_1280.jpg'
-							alt='band here'
+							className="w-2/3"
+							src="https://cdn.pixabay.com/photo/2017/06/21/22/40/guitar-2428921_1280.jpg"
+							alt="band here"
 						/>
 					</div>
 					{/* <div className='modal-action mt-80 flex justify-between'> */}
-					<div className='modal-action mt-7 flex justify-between align-baseline'>
+					<div className="modal-action mt-7 flex justify-between align-baseline">
 						<button
 							disabled={product.stock_quantity === 0}
-							type='button'
-							className='btn btn-secondary'
+							type="button"
+							className="btn btn-success"
 							onClick={() => {
 								console.log(value);
 								setRent(value.startDate, value.endDate, product);
@@ -67,21 +63,20 @@ export default function ProductRentCalendar({ product }) {
 									"decrement",
 									"Added to cart! Woohoo!"
 								);
-							}}>
+							}}
+						>
 							Submit
 						</button>
-						<span className='badge badge-lg self-center'>
+						<span className="badge badge-lg self-center">
 							{value.startDate
-								? `Rent Spend: 	${priceConverter(
+								? `Rental Cost: 	${priceConverter(
 										getDaysDifference(value.startDate, value.endDate) *
 											product.rent_rate_in_cents
 								  )}`
 								: "Please Select Dates"}
 						</span>
 
-						<label
-							htmlFor='calendar'
-							className='btn'>
+						<label htmlFor="calendar" className="btn btn-error">
 							Close
 						</label>
 					</div>

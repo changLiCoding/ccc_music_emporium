@@ -6,22 +6,19 @@ import { Link } from "react-router-dom";
 
 function Logo() {
 	return (
-		<div className='flex-1 navbar-start'>
+		<div className="flex-1 navbar-start">
 			<FontAwesomeIcon
 				icon={faGuitar}
-				size='2x'
-				className='hidden md:inline lg:inline'
+				size="2x"
+				className="hidden md:inline lg:inline"
 			/>
 			<Link
-				to='/'
-				className='btn btn-ghost normal-case font-bold font-mono sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl'>
-				CCC MUSIC EMPORIUM
+				to="/"
+				className="btn btn-ghost normal-case font-bold font-mono sm:text-xl md:text-2xl lg:text-3xl 2xl:text-3xl logo-font logo-font-outline"
+			>
+				CCC Music Emporium
 			</Link>
-			<FontAwesomeIcon
-				icon={faDrum}
-				size='2x'
-				className='hidden xl:inline'
-			/>
+			<FontAwesomeIcon icon={faDrum} size="2x" className="hidden xl:inline" />
 		</div>
 	);
 }

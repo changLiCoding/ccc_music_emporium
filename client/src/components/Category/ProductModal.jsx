@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useContext } from "react";
 
 import { CartContext } from "../../contexts/CartContext";
 import { ProductContext } from "../../contexts/ProductContext";
+import priceConverter from "../../helpers/priceConverter";
 
 import ProductRentCalendar from "./ProductRentCalendar";
 
@@ -37,47 +38,52 @@ export default function ProductModal(props) {
 	};
 
 	return (
-		<div
-			id='modal-container'
-			className='custom-modal'>
+		<div id="modal-container" className="custom-modal">
 			<div
-				className='card card-compact w-3/5 h-9/12 bg-base-100 shadow-xl'
-				ref={ref}>
-				<figure className='bg-white'>
+				className="card card-compact w-3/5 h-9/12 bg-white shadow-xl p-2 border border-primary"
+				ref={ref}
+			>
+				<div className="card-actions bg-white rounded-lg justify-end">
+					<button
+						onClick={closeModal}
+						className="btn btn-sm btn-error border-black"
+					>
+						X
+					</button>
+				</div>
+				<figure className="bg-white">
 					<img
-						className='bg-white object-contain  h-96'
+						className="bg-white object-contain  h-96"
 						src={product.image_url}
 						alt={product.model}
 					/>
 				</figure>
-				<div className='card-body bg-white'>
-					<h2 className='card-title'>{product.model}</h2>
-					<p className='overflow-y-auto'>{product.description}</p>
+				<div className="card-body bg-white">
+					<h2 className="card-title text-2xl font-bold">{product.make}</h2>
+					<h4 className="text-xl text-gray-500">{product.model}</h4>
+					<p className="overflow-y-auto">{product.description}</p>
 					<div></div>
-					<div className='card-actions justify-end'>
-						<div className='badge badge-lg'>
-							${product.price_in_cents / 100}
+					<div className="card-actions justify-between">
+						<div className="space-x-2">
+							<button
+								disabled={product.stock_quantity === 0}
+								onClick={() => addCartCloseModal(product)}
+								className="btn btn-primary border-accent text-accent"
+							>
+								{product.stock_quantity === 0 ? "Sold Out!" : "Add to Cart"}
+							</button>
+							<label
+								disabled={product.stock_quantity === 0}
+								htmlFor="calendar"
+								className="btn btn-accent border-primary"
+							>
+								Or Rent
+							</label>
 						</div>
-						<button
-							disabled={product.stock_quantity === 0}
-							onClick={() => addCartCloseModal(product)}
-							className='btn btn-primary'>
-							{product.stock_quantity === 0 ? "Out Stock" : "Add to Cart"}
-						</button>
-						<label
-							disabled={product.stock_quantity === 0}
-							htmlFor='calendar'
-							className='btn btn-primary'>
-							Or Rent
-						</label>
+						<div className="badge btn-md btn-accent border-primary bg-amber-500 hover:bg-amber-500 hover:border-black text-xl font-bold">
+							{priceConverter(product.price_in_cents)}
+						</div>
 						<ProductRentCalendar product={product} />
-					</div>
-					<div className='card-actions justify-start'>
-						<button
-							onClick={closeModal}
-							className='btn btn-primary'>
-							X
-						</button>
 					</div>
 				</div>
 			</div>
