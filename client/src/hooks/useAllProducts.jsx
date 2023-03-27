@@ -6,7 +6,7 @@ export default function useAllProducts() {
 
 	useEffect(() => {
 		axios
-			.get("/api/products")
+			.get("http://localhost:8080/api/products")
 			.then((response) => {
 				setProducts((prevProducts) => {
 					return { ...prevProducts, ...response.data };
