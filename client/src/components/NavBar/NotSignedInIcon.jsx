@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceMeh } from "@fortawesome/free-solid-svg-icons";
+import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 
 function NotSignedInIcon() {
 	return (
 		<div className="dropdown dropdown-end mr-3">
 			<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 				<div className="w-10 rounded-full">
-					<FontAwesomeIcon icon={faFaceMeh} size="3x" />
+					<FontAwesomeIcon icon={faUserAlt} size="3x" />
 				</div>
 			</label>
 			<ul
