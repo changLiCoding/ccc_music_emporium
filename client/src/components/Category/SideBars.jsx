@@ -10,7 +10,7 @@ export default function SideBars() {
 	const objCategoryNames = Object.keys(subCategoryNames);
 	const objSubCategoryNames = Object.values(subCategoryNames);
 	return (
-		<div className='flex grid justify-items-start'>
+		<div className='flex justify-items-start w-56'>
 			<ul className='menu bg-base-100 w-56 p-2 rounded-box justify-items-start'>
 				{/* <!-- Sidebar content here --> */}
 				{objCategoryNames.map((category, index) => {
@@ -18,7 +18,8 @@ export default function SideBars() {
 					return (
 						<Fragment key={category}>
 							<li className=' text-xl font-semibold leading-3 '>
-								<Link to={linkUrl}>{stringCapitalGenerator(category)}</Link>{""}
+								<Link to={linkUrl}>{stringCapitalGenerator(category)}</Link>
+								{""}
 							</li>
 							{objSubCategoryNames[index] && (
 								<SubCategoryLinks

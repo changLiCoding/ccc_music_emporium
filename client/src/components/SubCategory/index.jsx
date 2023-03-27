@@ -1,23 +1,41 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import useSubCategoryProducts from "../../hooks/useSubCategoryProducts";
 
 import InfoBar from "../Category/InfoBar";
 import SideBars from "../Category/SideBars";
-import CategoryCards from "../Category/CategoryCards";
+import SubCategoryCards from "./SubCategoryCards";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function SubCategory() {
 	const { sub_categories_name, name } = useParams();
-	const { products } = useSubCategoryProducts(sub_categories_name);
+	const { products } = useContext(ProductContext);
+	const [localProducts, setLocalProducts] = useState([]);
+	useEffect(() => {
+		products.products &&
+			setLocalProducts((prveProducts) => {
+				prveProducts = [];
 
+				return [
+					...prveProducts,
+					...products.products.filter(
+						(product) => product.sub_category_name === sub_categories_name
+					),
+				];
+			});
+	}, [sub_categories_name, products.products]);
 	return (
-		<main className='flex flex-col container mx-auto'>
+		<main className='flex flex-col mx-auto max-w-auto mb-12'>
 			<InfoBar
+				setProducts={setLocalProducts}
+				products={localProducts}
 				category={name}
 				subcategory={sub_categories_name}></InfoBar>
-			<div className='flex'>
+			<div className='flex justify-center'>
 				<SideBars></SideBars>
-				<CategoryCards products={products.products} />
+				<SubCategoryCards
+					products={localProducts}
+					setProducts={setLocalProducts}
+				/>
 			</div>
 		</main>
 	);

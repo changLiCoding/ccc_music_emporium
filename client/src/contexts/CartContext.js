@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+
 import getDaysDifference from "../helpers/getDayDifference";
 import priceConverter from "../helpers/priceConverter";
 
@@ -10,12 +11,9 @@ export function CartProvider(props) {
 	);
 
 	function addCart(product) {
-		// [ product, product , product ].map((product, i))
-
 		setCart((prevCart) => {
 			const newCart = [...prevCart, product];
-			prevCart.push(product);
-			localStorage.setItem("cart", JSON.stringify(prevCart));
+			localStorage.setItem("cart", JSON.stringify(newCart));
 			return newCart;
 		});
 	}
@@ -40,6 +38,7 @@ export function CartProvider(props) {
 		setCart((prevCart) => {
 			const daysRent = getDaysDifference(startAt, endAt);
 			const newCart = [...prevCart, { ...product, daysRent, startAt, endAt }];
+			console.log("newCart is :", newCart);
 			localStorage.setItem("cart", JSON.stringify(newCart));
 			return newCart;
 		});

@@ -21,23 +21,26 @@ export default function Home() {
 
 	const mappedCategories = categoryNames.map((category, index) => {
 		return (
-			<Card
+			<div
 				key={index}
-				category={category}
-				paragraph={paragraphsArray[index]}
-				image={photoLinkArray[index]}
-			/>
+				className='justify-self-center w-full md:w-3/4 lg:w-9/12 xl:w-10/12 mb-8'>
+				<Card
+					category={category}
+					paragraph={paragraphsArray[index]}
+					image={photoLinkArray[index]}
+				/>
+			</div>
 		);
 	});
 
 	return (
 		<div className="items-stretch min-h-screen">
 			<header>
-				<h1 className="text-5xl text-center font-bold my-10">
+				<h1 className='text-5xl text-center font-bold my-10'>
 					Shop By Category
 				</h1>
 			</header>
-			<div className="self-stretch flex-nowrap justify-center mx-20 mb-10 grid grid-cols-4 gap-4 self-auto">
+			<div className='self-stretch flex-wrap justify-center mx-10 lg:mx-20 mb-10 grid grid-cols-2 gap-8'>
 				{mappedCategories}
 			</div>
 		</div>

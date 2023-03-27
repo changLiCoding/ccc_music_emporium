@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-import ProductCard from "./ProductCard";
-import ProductModal from "./ProductModal";
+import ProductCard from "../Category/ProductCard";
+import ProductModal from "../Category/ProductModal";
 
-export default function CategoryCards({ products, setProducts }) {
+export default function SubCategoryCards({ products, setProducts }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
 	const [currentProductModal, setCurrentProductModal] = useState(null);
 
 	const openModal = () => {
@@ -17,8 +16,7 @@ export default function CategoryCards({ products, setProducts }) {
 
 	return (
 		<article
-			className='
-		grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+			className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
 		2xl:grid-cols-4
 		 gap-6'>
 			{products &&
@@ -39,6 +37,7 @@ export default function CategoryCards({ products, setProducts }) {
 				})}
 			{products && isModalOpen && (
 				<ProductModal
+					setProducts={setProducts}
 					closeModal={closeModal}
 					product={currentProductModal}
 				/>
