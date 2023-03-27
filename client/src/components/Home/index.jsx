@@ -37,7 +37,7 @@ export default function Home() {
 	return (
 		<div className="items-stretch min-h-screen">
 			<div
-				className="hero h-96"
+				className="hero h-96 border border-t-0 border-black rounded-b-sm"
 				style={{
 					backgroundImage: `url("https://www.musicstore.com/INTERSHOP/static/WFS/MusicStore-Site/MusicStoreShop/MusicStore-MusicStoreShop/en_US/static-pages/Abteilungsinfos/Header/EGIT_Header.jpg")`,
 				}}
