@@ -71,7 +71,7 @@ export default function Card(props) {
 			<div onClick={openModalWithProduct} className="h-full">
 				<figure className="relative h-40 md:h-52">
 					<img
-						className={`object-cover`}
+						className="object-contain h-48"
 						src={product.image_url}
 						alt={product.model}
 					/>
