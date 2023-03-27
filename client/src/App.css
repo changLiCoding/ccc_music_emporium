@@ -5,3 +5,7 @@
   font-family: 'Lilita One', cursive;
 }
 
+.logo-font-outline {
+  text-shadow: 0.5px 0.5px rgb(244, 229, 228);
+}
+

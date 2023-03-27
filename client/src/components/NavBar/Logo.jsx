@@ -14,7 +14,7 @@ function Logo() {
 			/>
 			<Link
 				to="/"
-				className="btn btn-ghost normal-case font-bold font-mono sm:text-xl md:text-2xl lg:text-3xl 2xl:text-3xl logo-font"
+				className="btn btn-ghost normal-case font-bold font-mono sm:text-xl md:text-2xl lg:text-3xl 2xl:text-3xl logo-font logo-font-outline"
 			>
 				CCC Music Emporium
 			</Link>
