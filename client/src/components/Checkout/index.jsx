@@ -87,7 +87,7 @@ export default function Checkout() {
 	});
 
 	return (
-		<div className="w-full min-h-[77vh] flex flex-col items-center mb-14">
+		<div className="w-full min-h-[78vh] flex flex-col items-center mb-14">
 			<header className="text-5xl text-center my-16 divider">
 				<h1 className="font-bold">Review Your Order</h1>
 			</header>
@@ -97,6 +97,10 @@ export default function Checkout() {
 				{/* head */}
 				<thead>
 					<tr className="border-[#d1cdcd] border-2">
+						<th>Product</th>
+						<th>Type</th>
+						<th></th>
+						<th>Price</th>
 						<th className="w-40">
 							<span>
 								<button
@@ -107,10 +111,6 @@ export default function Checkout() {
 								</button>
 							</span>
 						</th>
-						<th>Product</th>
-						<th>Type</th>
-						<th></th>
-						<th>Price</th>
 					</tr>
 				</thead>
 				{/* table rows */}
@@ -127,25 +127,27 @@ export default function Checkout() {
 				<tfoot>
 					<tr className="border-[#d1cdcd] border-2">
 						<th></th>
-						<th>
-							<label htmlFor="my-modal-5" className="btn btn-primary">
-								SHUTUP AND TAKE MY MONEY!
-							</label>
-						</th>
 						<th></th>
 						<th>Subtotal:</th>
 						<th>
 							<p className="text-xl">{totalCartPrice()}</p>
+						</th>
+						<th>
+							<label htmlFor="my-modal-5" className="btn btn-primary">
+								$ PAY NOW! $
+							</label>
 						</th>
 					</tr>
 				</tfoot>
 			</table>
 			<input type="checkbox" id="my-modal-5" className="modal-toggle" />
 			<div className="modal">
-				<div className="modal-box mx-auto max-w-4xl p-10">
+				<div className="modal-box mx-auto max-w-4xl p-10 border border-primary">
 					{user ? (
 						<>
-							<h2 className="text-lg font-bold text-center">Checkout</h2>
+							<h2 className="divider text-3xl font-bold text-center underline">
+								Checkout
+							</h2>
 							<Elements stripe={stripePromise}>
 								<CheckoutForm
 									onSuccess={onSuccess}

@@ -20,11 +20,6 @@ export default function CartItems(props) {
 		<tbody>
 			{/* row 1 */}
 			<tr className="border-[#d1cdcd] border-2">
-				<th className="text-center">
-					<button onClick={() => handleRemove(index)}>
-						<FontAwesomeIcon icon={faTrash} size="xl" />
-					</button>
-				</th>
 				<td>
 					<div className="flex items-center space-x-3">
 						<div className="avatar">
@@ -70,6 +65,11 @@ export default function CartItems(props) {
 				</td>
 				<th>
 					<div className="font-bold">{price}</div>
+				</th>
+				<th className="text-center">
+					<button onClick={() => handleRemove(index)}>
+						<FontAwesomeIcon icon={faTrash} size="xl" />
+					</button>
 				</th>
 			</tr>
 		</tbody>
