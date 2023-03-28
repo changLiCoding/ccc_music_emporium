@@ -23,7 +23,7 @@ export default function Checkout() {
 	const { updateProductContextQuantity } = useContext(ProductContext);
 
 	const navigate = useNavigate();
-	const user = localStorage.getItem("user");
+	const user = localStorage.getItem("user_name");
 	const onSuccess = (amountInCents, orderId, customer) => {
 		const message = `Thank you ${customer}! Your order ID is ${orderId} for a total payment of ${priceConverter(
 			amountInCents
@@ -63,7 +63,7 @@ export default function Checkout() {
 					model={item.model}
 					startAt={startAt}
 					endAt={endAt}
-					type="Rent"
+					type='Rent'
 					pricePerDay={priceConverter(item.rent_rate_in_cents)}
 					price={priceConverter(item.daysRent * item.rent_rate_in_cents)}
 					handleRemove={handleRemove}
@@ -77,8 +77,8 @@ export default function Checkout() {
 					imageUrl={item.image_url}
 					make={item.make}
 					model={item.model}
-					duration="-"
-					type="Buy"
+					duration='-'
+					type='Buy'
 					price={priceConverter(item.price_in_cents)}
 					handleRemove={handleRemove}
 				/>
@@ -87,26 +87,25 @@ export default function Checkout() {
 	});
 
 	return (
-		<div className="w-full min-h-[78vh] flex flex-col items-center mb-14">
-			<header className="text-5xl text-center my-16 divider">
-				<h1 className="font-bold">Review Your Order</h1>
+		<div className='w-full min-h-[78vh] flex flex-col items-center mb-14'>
+			<header className='text-5xl text-center my-16 divider'>
+				<h1 className='font-bold'>Review Your Order</h1>
 			</header>
 			{cart.length === 0 && <EmptyCartAlert />}
 
-			<table className="table w-10/12">
+			<table className='table w-10/12'>
 				{/* head */}
 				<thead>
-					<tr className="border-[#d1cdcd] border-2">
+					<tr className='border-[#d1cdcd] border-2'>
 						<th>Product</th>
 						<th>Type</th>
 						<th></th>
 						<th>Price</th>
-						<th className="w-40">
+						<th className='w-40'>
 							<span>
 								<button
-									className="btn btn-sm btn-error"
-									onClick={handleEmptyCart}
-								>
+									className='btn btn-sm btn-error'
+									onClick={handleEmptyCart}>
 									Remove All
 								</button>
 							</span>
@@ -125,27 +124,33 @@ export default function Checkout() {
 				)}
 				{/* foot */}
 				<tfoot>
-					<tr className="border-[#d1cdcd] border-2">
+					<tr className='border-[#d1cdcd] border-2'>
 						<th></th>
 						<th></th>
 						<th>Subtotal:</th>
 						<th>
-							<p className="text-xl">{totalCartPrice()}</p>
+							<p className='text-xl'>{totalCartPrice()}</p>
 						</th>
 						<th>
-							<label htmlFor="my-modal-5" className="btn btn-primary">
+							<label
+								htmlFor='my-modal-5'
+								className='btn btn-primary'>
 								$ PAY NOW! $
 							</label>
 						</th>
 					</tr>
 				</tfoot>
 			</table>
-			<input type="checkbox" id="my-modal-5" className="modal-toggle" />
-			<div className="modal">
-				<div className="modal-box mx-auto max-w-4xl p-10 border border-primary">
+			<input
+				type='checkbox'
+				id='my-modal-5'
+				className='modal-toggle'
+			/>
+			<div className='modal'>
+				<div className='modal-box mx-auto max-w-4xl p-10 border border-primary'>
 					{user ? (
 						<>
-							<h2 className="divider text-3xl font-bold text-center underline">
+							<h2 className='divider text-3xl font-bold text-center underline'>
 								Checkout
 							</h2>
 							<Elements stripe={stripePromise}>
@@ -153,7 +158,7 @@ export default function Checkout() {
 									onSuccess={onSuccess}
 									products={cart}
 									totalInString={totalCartPrice()}
-									className="w-full"
+									className='w-full'
 								/>
 							</Elements>
 						</>
@@ -161,7 +166,7 @@ export default function Checkout() {
 						<NotLoggedInAlert />
 					)}
 				</div>
-				<div className="modal-action"></div>
+				<div className='modal-action'></div>
 			</div>
 		</div>
 	);

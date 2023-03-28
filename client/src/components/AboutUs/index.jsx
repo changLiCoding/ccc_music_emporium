@@ -4,7 +4,6 @@ import { ProductContext } from "../../contexts/ProductContext";
 
 export default function AboutUs() {
 	const { products } = useContext(ProductContext);
-	console.log(products);
 	return (
 		<div className='py-16'>
 			<div className='container m-auto px-6 text-gray-600 md:px-12 xl:px-6'>

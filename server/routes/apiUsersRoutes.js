@@ -1,6 +1,11 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
+
+const { jwtVerification } = require("../middlewares/jwtVerification");
+
+// DATABASE QUERY
 const { getUserByEmail, createNewUser } = require("../db/queries/users");
 const {
 	GetPurchasesByUser,
@@ -55,7 +60,12 @@ router.post(
 				password: hashedPassword,
 			});
 			delete newUser.password;
-			return res.status(201).json({ user: newUser });
+			console.log(newUser);
+			const token = jwt.sign(
+				{ id: newUser.id, user_name: newUser.first_name },
+				process.env.JWT_SECRET
+			);
+			return res.status(201).json({ message: "User authenticated", token });
 		} catch (err) {
 			console.error(err);
 			return res.status(500).json({ message: "Server error" });
@@ -80,6 +90,7 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 	}
 
 	const { email, password } = req.body;
+
 	try {
 		const user = await getUserByEmail(email);
 		// Check if the user exists
@@ -95,10 +106,14 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 				.status(401)
 				.json({ message: "Invalid email or password! Please try again." });
 		}
-		console.log(email);
+		console.log(user);
 
 		delete user.password;
-		return res.status(200).json({ message: "User authenticated", user });
+		const token = jwt.sign(
+			{ id: user.id, user_name: user.first_name },
+			process.env.JWT_SECRET
+		);
+		return res.status(200).json({ message: "User authenticated", token });
 	} catch (error) {
 		console.error(error);
 		return res
@@ -108,7 +123,7 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 });
 
 // User Order History
-router.get("/:user_id/my_purchases", (req, res) => {
+router.get("/:user_id/my_purchases", jwtVerification, (req, res) => {
 	const userId = req.params.user_id;
 	GetPurchasesByUser(userId)
 		.then((purchaseHistory) => res.status(200).json({ purchaseHistory }))
@@ -117,7 +132,7 @@ router.get("/:user_id/my_purchases", (req, res) => {
 		});
 });
 
-router.get("/:user_id/my_rentals", (req, res) => {
+router.get("/:user_id/my_rentals", jwtVerification, (req, res) => {
 	const userId = req.params.user_id;
 	GetRentalsByUser(userId)
 		.then((rentalHistory) => res.status(200).json({ rentalHistory }))

@@ -2,6 +2,7 @@ const express = require("express");
 const { createLintItem } = require("../db/queries/line_items");
 const { createOrderAfterPay } = require("../db/queries/orders");
 const { createRentLineItem } = require("../db/queries/rent_line_items");
+const { jwtVerification } = require("../middlewares/jwtVerification");
 const router = express.Router();
 
 const yourSuperSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -11,7 +12,7 @@ router.get("/", (req, res) => {
 	res.status(200).json({ msg: "SHOW ME YOUR MONEY!" });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", jwtVerification, async (req, res) => {
 	try {
 		const { user_id, user_name } = req.query;
 		const { products, amount_in_cents } = req.body;

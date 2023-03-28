@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const helmet = require("helmet");
 // const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 8081;
 // Middleware configuration
 // Enable CORS for all origins
 app.use(cors());
+app.use(helmet()); // includes security headers (owasp)
 
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
