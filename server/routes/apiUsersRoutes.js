@@ -60,7 +60,6 @@ router.post(
 				password: hashedPassword,
 			});
 			delete newUser.password;
-			console.log(newUser);
 			const token = jwt.sign(
 				{ id: newUser.id, user_name: newUser.first_name },
 				process.env.JWT_SECRET
@@ -106,7 +105,6 @@ router.post("/sign_in", validateSignIn, async (req, res) => {
 				.status(401)
 				.json({ message: "Invalid email or password! Please try again." });
 		}
-		console.log(user);
 
 		delete user.password;
 		const token = jwt.sign(

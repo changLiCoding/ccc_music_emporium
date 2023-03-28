@@ -35,7 +35,6 @@ router.post("/:name", async (req, res) => {
 			newProduct = { ...product, stock_quantity: product.stock_quantity - 1 };
 		}
 		const returnedNewProduct = await updateProductStockByModel(newProduct);
-		console.log(returnedNewProduct);
 		return res
 			.status(200)
 			.json({ message: "Product Updated", returnedNewProduct });

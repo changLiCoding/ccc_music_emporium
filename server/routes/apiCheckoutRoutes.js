@@ -21,7 +21,6 @@ router.post("/", jwtVerification, async (req, res) => {
 
 		await products.forEach((product) => {
 			const order_id = orderInfo[0].id;
-			console.log("Days rent: ", product);
 			product.daysRent
 				? createRentLineItem(
 						order_id,

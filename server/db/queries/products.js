@@ -12,7 +12,6 @@ const updateProductStockByModel = (product) => {
 	return db
 		.query(queryTemplate, queryParams)
 		.then((res) => {
-			console.log(res.rows[0]);
 			return res.rows;
 		})
 		.catch((err) => console.error(err.message));

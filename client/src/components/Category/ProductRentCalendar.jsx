@@ -29,7 +29,6 @@ export default function ProductRentCalendar({ product }) {
 			newValue.endDate = new Date(newValue.endDate);
 			newValue.endDate.setDate(newValue.endDate.getDate() + 1);
 		}
-		console.log(newValue);
 		setValue(newValue);
 	};
 	const { setRent } = useContext(CartContext);
