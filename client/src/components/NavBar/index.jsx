@@ -22,7 +22,7 @@ export default function NavBar() {
 
 		localStorage.removeItem("user_name");
 		localStorage.removeItem("user_id");
-		localStorage.removeItem("user");
+		localStorage.removeItem("jwt");
 		navigate("/");
 	};
 

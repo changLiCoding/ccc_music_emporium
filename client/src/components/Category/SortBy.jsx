@@ -5,25 +5,21 @@ export default function SortBy({ setProducts }) {
 		switch (event.target.value) {
 			case "make-a-to-z":
 				setProducts((state) => {
-					console.log(state);
 					return [...state].sort((a, b) => a.make.localeCompare(b.make));
 				});
 				break;
 			case "make-z-to-a":
 				setProducts((state) => {
-					console.log(state);
 					return [...state].sort((a, b) => b.make.localeCompare(a.make));
 				});
 				break;
 			case "price-high-to-low":
 				setProducts((state) => {
-					console.log(state);
 					return [...state].sort((a, b) => b.price_in_cents - a.price_in_cents);
 				});
 				break;
 			case "price-low-to-high":
 				setProducts((state) => {
-					console.log(state);
 					return [...state].sort((a, b) => a.price_in_cents - b.price_in_cents);
 				});
 				break;
@@ -44,7 +40,6 @@ export default function SortBy({ setProducts }) {
 				id='sort-by'
 				className='px-2 py-1 rounded-md bg-white text-gray-700 font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent'
 				onChange={(e) => {
-					console.log(e.target.value);
 					handleSortChange(e);
 				}}>
 				<option value='make-a-to-z'>Make: A to Z</option>

@@ -11,7 +11,6 @@ const createOrderAfterPay = (userId, totalInCents, storeId = 1) => {
 	return db
 		.query(queryTemplate, queryParams)
 		.then((res) => {
-			console.log(res.rows[0]);
 			return res.rows;
 		})
 		.catch((err) => console.error(err.message));
@@ -19,7 +18,7 @@ const createOrderAfterPay = (userId, totalInCents, storeId = 1) => {
 
 const GetPurchasesByUser = (userId) => {
 	const queryTemplate = `
-    SELECT line_items.*, products.make as make, products.model as model, products.price_in_cents as price, products.image_url as image, orders.user_id as user_id, orders.created_at as purchase_date 
+    SELECT line_items.*, products.make as make, products.model as model, products.price_in_cents as price, products.image_url as image, orders.user_id as user_id, orders.created_at as purchase_date
     FROM line_items
     JOIN orders ON orders.id = order_id
     JOIN products ON product_id = products.id
