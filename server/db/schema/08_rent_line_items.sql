@@ -6,5 +6,5 @@ CREATE TABLE rent_line_items (
   rent_start DATE NOT NULL,
   rent_end DATE NOT NULL,
   days_rent INTEGER NOT NULL,
-  created_at DATE NOT NULL DEFAULT now()
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )

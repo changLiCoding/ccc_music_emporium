@@ -7,11 +7,11 @@ export default function PurchaseTable(props) {
 
 	return (
 		<div>
-			<table className="table mb-16">
+			<table className='table mb-16'>
 				{/* head */}
 				<thead>
-					<tr className="border-[#d1cdcd] border-2">
-						<th className="w-5">
+					<tr className='border-[#d1cdcd] border-2'>
+						<th className='w-5'>
 							<span></span>
 						</th>
 						<th>Product</th>
@@ -23,26 +23,29 @@ export default function PurchaseTable(props) {
 				{/* table rows */}
 				{purchaseHistory &&
 					purchaseHistory.map((item) => {
+						const realPurchaseDate = new Date(item.purchase_date);
+						realPurchaseDate.setDate(realPurchaseDate.getDate() - 1);
+						const realTimestamp = realPurchaseDate.toISOString();
 						return (
 							<PurchaseLineItems
 								key={item.id}
 								imageUrl={item.image}
 								make={item.make}
 								model={item.model}
-								purchaseDate={item.purchase_date.slice(0, 10)}
+								purchaseDate={realTimestamp.slice(0, 10)}
 								price={priceConverter(item.price)}
 							/>
 						);
 					})}
 				{/* foot */}
 				<tfoot>
-					<tr className="border-[#d1cdcd] border-2">
+					<tr className='border-[#d1cdcd] border-2'>
 						<th></th>
 						<th></th>
 						<th></th>
 						<th></th>
 						<th>
-							<p className="text-xl"></p>
+							<p className='text-xl'></p>
 						</th>
 					</tr>
 				</tfoot>
