@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductModal from "./ProductModal";
 
-export default function CategoryCards({ products, setProducts }) {
+export default function CategoryCards({ products, dispatch }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const [currentProductModal, setCurrentProductModal] = useState(null);
@@ -28,7 +28,7 @@ export default function CategoryCards({ products, setProducts }) {
 							className='h-full'
 							key={product.id}>
 							<ProductCard
-								setProducts={setProducts}
+								dispatch={dispatch}
 								product={product}
 								category={product.category_name}
 								openModal={openModal}

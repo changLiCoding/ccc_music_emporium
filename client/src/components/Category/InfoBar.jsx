@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 
 export default function InfoBar(props) {
-	const { category, subcategory, products, setProducts } = props;
+	const { category, subcategory, dispatch } = props;
 	library.add(faChevronRight);
 	return (
 		<div className='bg-none my-6 py-2 px-4 flex justify-between items-center'>
@@ -40,7 +40,7 @@ export default function InfoBar(props) {
 					</>
 				)}
 			</div>
-			<SortBy setProducts={setProducts} />
+			<SortBy dispatch={dispatch} />
 		</div>
 	);
 }

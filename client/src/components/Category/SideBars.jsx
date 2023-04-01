@@ -19,7 +19,6 @@ export default function SideBars() {
 						<Fragment key={category}>
 							<li className=' text-xl font-semibold leading-3 '>
 								<Link to={linkUrl}>{stringCapitalGenerator(category)}</Link>
-								{""}
 							</li>
 							{objSubCategoryNames[index] && (
 								<SubCategoryLinks
