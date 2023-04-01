@@ -1,15 +1,20 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useReducer } from "react";
 import { useParams } from "react-router-dom";
 
 import InfoBar from "./InfoBar";
 import SideBars from "./SideBars";
 import CategoryCards from "./CategoryCards";
 import { ProductContext } from "../../contexts/ProductContext";
+import reducer from "../../reducers/category";
 
 export default function Category() {
 	const { name } = useParams();
 	const { products } = useContext(ProductContext);
-	const [localProducts, setLocalProducts] = useState([]);
+	// const [localProducts, setLocalProducts] = useState([]);
+	const [localProducts, dispatch] = useReducer(
+		reducer,
+		products.products ? [...products.products] : []
+	);
 	useEffect(() => {
 		products.products &&
 			setLocalProducts((prveProducts) => {
@@ -24,13 +29,12 @@ export default function Category() {
 			});
 	}, [name, products.products]);
 	return (
-		<main className="flex flex-col mx-auto max-w-auto mb-12 min-h-[80vh]">
+		<main className='flex flex-col mx-auto max-w-auto mb-12 min-h-[80vh]'>
 			<InfoBar
 				setProducts={setLocalProducts}
 				products={localProducts}
-				category={name}
-			></InfoBar>
-			<div className="flex justify-center">
+				category={name}></InfoBar>
+			<div className='flex justify-center'>
 				<SideBars></SideBars>
 				<CategoryCards
 					products={localProducts}
