@@ -7,7 +7,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { ProductContext } from "../../contexts/ProductContext";
 
 export default function Card(props) {
-	const { product, category, openModal, setCurrentProductModal } = props;
+	const { product, openModal, setCurrentProductModal } = props;
 
 	const { updateProductContextQuantity } = useContext(ProductContext);
 

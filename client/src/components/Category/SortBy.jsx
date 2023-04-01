@@ -1,27 +1,19 @@
 import React from "react";
 
-export default function SortBy({ setProducts }) {
+export default function SortBy({ dispatch }) {
 	const handleSortChange = (event) => {
 		switch (event.target.value) {
 			case "make-a-to-z":
-				setProducts((state) => {
-					return [...state].sort((a, b) => a.make.localeCompare(b.make));
-				});
+				dispatch({ type: "make-a-to-z" });
 				break;
 			case "make-z-to-a":
-				setProducts((state) => {
-					return [...state].sort((a, b) => b.make.localeCompare(a.make));
-				});
+				dispatch({ type: "make-z-to-a" });
 				break;
 			case "price-high-to-low":
-				setProducts((state) => {
-					return [...state].sort((a, b) => b.price_in_cents - a.price_in_cents);
-				});
+				dispatch({ type: "price-high-to-low" });
 				break;
 			case "price-low-to-high":
-				setProducts((state) => {
-					return [...state].sort((a, b) => a.price_in_cents - b.price_in_cents);
-				});
+				dispatch({ type: "price-low-to-high" });
 				break;
 			default:
 				break;

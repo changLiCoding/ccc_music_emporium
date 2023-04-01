@@ -25,16 +25,6 @@ export default function Category() {
 					),
 				],
 			});
-		// setLocalProducts((prveProducts) => {
-		// 	prveProducts = [];
-
-		// 	return [
-		// 		...prveProducts,
-		// 		...products.products.filter(
-		// 			(product) => product.category_name === name
-		// 		),
-		// 	];
-		// });
 	}, [name, products.products]);
 	return (
 		<main className='flex flex-col mx-auto max-w-auto mb-12 min-h-[80vh]'>
