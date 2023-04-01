@@ -28,7 +28,6 @@ export default function CategoryCards({ products, dispatch }) {
 							className='h-full'
 							key={product.id}>
 							<ProductCard
-								dispatch={dispatch}
 								product={product}
 								category={product.category_name}
 								openModal={openModal}

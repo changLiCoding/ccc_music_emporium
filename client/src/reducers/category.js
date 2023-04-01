@@ -9,14 +9,14 @@ export default function reducer(state, action) {
 		case QUERY_PRODUCT_BY_CATEGORY:
 			return [...action.products];
 		case MAKE_A_TO_Z:
-			return;
+			return [...state].sort((a, b) => a.make.localeCompare(b.make));
 
 		case MAKE_Z_TO_A:
-			return;
+			return [...state].sort((a, b) => b.make.localeCompare(a.make));
 		case PRICE_HIGH_TO_LOW:
-			return;
+			return [...state].sort((a, b) => b.price_in_cents - a.price_in_cents);
 		case PRICE_LOW_TO_HIGH:
-			return;
+			return [...state].sort((a, b) => a.price_in_cents - b.price_in_cents);
 		default:
 			throw new Error(`
       Tried to reduce with unsupported action type: ${action.type}
