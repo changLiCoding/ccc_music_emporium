@@ -15,30 +15,30 @@ export default function Category() {
 		reducer,
 		products.products ? [...products.products] : []
 	);
-	useEffect(() => {
-		products.products &&
-			setLocalProducts((prveProducts) => {
-				prveProducts = [];
+	// useEffect(() => {
+	// 	products.products &&
+	// 		setLocalProducts((prveProducts) => {
+	// 			prveProducts = [];
 
-				return [
-					...prveProducts,
-					...products.products.filter(
-						(product) => product.category_name === name
-					),
-				];
-			});
-	}, [name, products.products]);
+	// 			return [
+	// 				...prveProducts,
+	// 				...products.products.filter(
+	// 					(product) => product.category_name === name
+	// 				),
+	// 			];
+	// 		});
+	// }, [name, products.products]);
 	return (
 		<main className='flex flex-col mx-auto max-w-auto mb-12 min-h-[80vh]'>
 			<InfoBar
-				setProducts={setLocalProducts}
+				dispatch={dispatch}
 				products={localProducts}
 				category={name}></InfoBar>
 			<div className='flex justify-center'>
 				<SideBars></SideBars>
 				<CategoryCards
 					products={localProducts}
-					setProducts={setLocalProducts}
+					dispatch={dispatch}
 				/>
 			</div>
 		</main>
