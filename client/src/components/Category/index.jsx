@@ -15,19 +15,27 @@ export default function Category() {
 		reducer,
 		products.products ? [...products.products] : []
 	);
-	// useEffect(() => {
-	// 	products.products &&
-	// 		setLocalProducts((prveProducts) => {
-	// 			prveProducts = [];
+	useEffect(() => {
+		products.products &&
+			dispatch({
+				type: "query-product-by-category",
+				products: [
+					...products.products.filter(
+						(product) => product.category_name === name
+					),
+				],
+			});
+		// setLocalProducts((prveProducts) => {
+		// 	prveProducts = [];
 
-	// 			return [
-	// 				...prveProducts,
-	// 				...products.products.filter(
-	// 					(product) => product.category_name === name
-	// 				),
-	// 			];
-	// 		});
-	// }, [name, products.products]);
+		// 	return [
+		// 		...prveProducts,
+		// 		...products.products.filter(
+		// 			(product) => product.category_name === name
+		// 		),
+		// 	];
+		// });
+	}, [name, products.products]);
 	return (
 		<main className='flex flex-col mx-auto max-w-auto mb-12 min-h-[80vh]'>
 			<InfoBar

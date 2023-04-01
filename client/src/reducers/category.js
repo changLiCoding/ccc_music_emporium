@@ -7,7 +7,7 @@ const QUERY_PRODUCT_BY_CATEGORY = "query-product-by-category";
 export default function reducer(state, action) {
 	switch (action.type) {
 		case QUERY_PRODUCT_BY_CATEGORY:
-			return;
+			return [...action.products];
 		case MAKE_A_TO_Z:
 			return;
 
