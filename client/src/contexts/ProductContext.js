@@ -9,8 +9,6 @@ export const ProductContext = createContext({});
 export function ProductProvider(props) {
 	const { products, setProducts } = useAllProducts();
 
-	// const [productState, setProductState] = useState({});
-
 	async function updateProductContextQuantity(
 		cartProduct,
 		updatedType,

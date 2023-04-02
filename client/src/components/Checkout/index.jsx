@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import CartItems from "./CartItems";
 import CheckoutForm from "./CheckoutForm";
 
-import { CartContext } from "../../contexts/CartContext";
+// import { CartContext } from "../../contexts/CartContext";
 import { ProductContext } from "../../contexts/ProductContext";
 import priceConverter from "../../helpers/priceConverter";
-import { emptyCart } from "../../features/cart/cartSlice";
+import { emptyCart, removeFromCart } from "../../features/cart/cartSlice";
 
 import handleSuccessPay from "../../helpers/handleSuccessPay";
 
@@ -21,11 +21,11 @@ const stripePromise = loadStripe(
 );
 export default function Checkout() {
 	const dispatch = useDispatch();
-	const {
-		// cart, totalCartPrice,
-		// emptyCart,
-		removeFromCart,
-	} = useContext(CartContext);
+	// const {
+	// cart, totalCartPrice,
+	// emptyCart,
+	// removeFromCart,
+	// } = useContext(CartContext);
 
 	const { totalCartPrice, cart } = useSelector((state) => state.cart);
 	const { updateProductContextQuantity } = useContext(ProductContext);
@@ -52,7 +52,8 @@ export default function Checkout() {
 			"increment",
 			"Product removed from cart"
 		);
-		removeFromCart(index);
+		// removeFromCart(index);
+		dispatch(removeFromCart(index));
 	};
 
 	const handleEmptyCart = () => {

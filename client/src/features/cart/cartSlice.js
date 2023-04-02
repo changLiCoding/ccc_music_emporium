@@ -11,8 +11,9 @@ const initialState = localStorage.getItem("cart")
 				},
 				0
 			),
+			isLoading: true,
 	  }
-	: { cart: [], totalCartPrice: 0 };
+	: { cart: [], totalCartPrice: 0, isLoading: true };
 
 const cartSlice = createSlice({
 	name: "cart",
@@ -20,14 +21,22 @@ const cartSlice = createSlice({
 	reducers: {
 		emptyCart: (store) => {
 			store.cart = [];
+			store.totalCartPrice = 0;
 		},
-		addCart: (store, product) => {
-			store.cart.push(product);
-
-			localStorage.setItem("cart", JSON.stringify(store.cart));
+		addCart: (store, action) => {
+			console.log("Add cart from Redux");
+			console.log(action);
+			console.log("See what is in product: ", action.payload.product);
+			const newCart = [...store.cart, action.payload.product];
+			localStorage.setItem("cart", JSON.stringify(newCart));
+			store.cart = newCart;
 		},
-		removeFromCart: (store, index) => {
-			store.cart.splice(index, 1);
+		removeFromCart: (store, action) => {
+			console.log(action);
+			const newCartArr = store.cart.filter((product, index) => {
+				return index !== action.payload;
+			});
+			store.cart = newCartArr;
 			localStorage.setItem("cart", JSON.stringify(store.cart));
 		},
 	},
