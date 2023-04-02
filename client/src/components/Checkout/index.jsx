@@ -10,6 +10,7 @@ import handleSuccessPay from "../../helpers/handleSuccessPay";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EmptyCartAlert from "./EmptyCartAlert";
 import NotLoggedInAlert from "./NotLoggedInAlert";
@@ -18,12 +19,18 @@ const stripePromise = loadStripe(
 	"pk_test_51LffVFEcCevwDBwZtOSgdKTjniGR3VywPsW5EeJNMf9GUMXZp3TVdV5OEHR2ASoB9gvZvBoFGATjhU94PyykNQM800oZNqUDyx"
 );
 export default function Checkout() {
-	const { cart, totalCartPrice, emptyCart, removeFromCart } =
-		useContext(CartContext);
+	const {
+		// cart, totalCartPrice,
+		emptyCart,
+		removeFromCart,
+	} = useContext(CartContext);
+
+	const { totalCartPrice, cart } = useSelector((state) => state.cart);
 	const { updateProductContextQuantity } = useContext(ProductContext);
 
 	const navigate = useNavigate();
 	const user = localStorage.getItem("user_name");
+
 	const onSuccess = (amountInCents, orderId, customer) => {
 		const message = `Thank you ${customer}! Your order ID is ${orderId} for a total payment of ${priceConverter(
 			amountInCents
@@ -129,7 +136,7 @@ export default function Checkout() {
 						<th></th>
 						<th>Subtotal:</th>
 						<th>
-							<p className='text-xl'>{totalCartPrice()}</p>
+							<p className='text-xl'>{priceConverter(totalCartPrice)}</p>
 						</th>
 						<th>
 							<label
@@ -157,7 +164,7 @@ export default function Checkout() {
 								<CheckoutForm
 									onSuccess={onSuccess}
 									products={cart}
-									totalInString={totalCartPrice()}
+									totalInString={priceConverter(totalCartPrice)}
 									className='w-full'
 								/>
 							</Elements>

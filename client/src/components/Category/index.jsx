@@ -1,16 +1,27 @@
-import React, { useEffect, useState, useContext, useReducer } from "react";
+import React, { useEffect, useContext, useReducer } from "react";
 import { useParams } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
 
 import InfoBar from "./InfoBar";
 import SideBars from "./SideBars";
 import CategoryCards from "./CategoryCards";
 import { ProductContext } from "../../contexts/ProductContext";
+// import { fetchProducts } from "../../features/product/productSlice";
 import reducer from "../../reducers/category";
 
 export default function Category() {
 	const { name } = useParams();
 	const { products } = useContext(ProductContext);
-	// const [localProducts, setLocalProducts] = useState([]);
+
+	// const dispatchReduxt = useDispatch();
+	// const products = useSelector((state) => state.products.products);
+	// const isLoading = useSelector((state) => state.products.isLoading);
+	// const error = useSelector((state) => state.products.error);
+
+	// useEffect(() => {
+	// 	dispatch(fetchProducts());
+	// }, [dispatchReduxt]);
+
 	const [localProducts, dispatch] = useReducer(
 		reducer,
 		products.products ? [...products.products] : []
