@@ -5,12 +5,13 @@ import CheckoutForm from "./CheckoutForm";
 import { CartContext } from "../../contexts/CartContext";
 import { ProductContext } from "../../contexts/ProductContext";
 import priceConverter from "../../helpers/priceConverter";
+import { emptyCart } from "../../features/cart/cartSlice";
 
 import handleSuccessPay from "../../helpers/handleSuccessPay";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EmptyCartAlert from "./EmptyCartAlert";
 import NotLoggedInAlert from "./NotLoggedInAlert";
@@ -19,9 +20,10 @@ const stripePromise = loadStripe(
 	"pk_test_51LffVFEcCevwDBwZtOSgdKTjniGR3VywPsW5EeJNMf9GUMXZp3TVdV5OEHR2ASoB9gvZvBoFGATjhU94PyykNQM800oZNqUDyx"
 );
 export default function Checkout() {
+	const dispatch = useDispatch();
 	const {
 		// cart, totalCartPrice,
-		emptyCart,
+		// emptyCart,
 		removeFromCart,
 	} = useContext(CartContext);
 
@@ -36,7 +38,12 @@ export default function Checkout() {
 			amountInCents
 		)}.`;
 
-		handleSuccessPay(message, emptyCart, navigate);
+		handleSuccessPay(
+			message,
+			// emptyCart,
+			dispatch(emptyCart()),
+			navigate
+		);
 	};
 
 	const handleRemove = (index) => {
@@ -52,7 +59,8 @@ export default function Checkout() {
 		cart.forEach((product) => {
 			updateProductContextQuantity(product, "increment");
 		});
-		emptyCart();
+		// emptyCart();
+		dispatch(emptyCart());
 	};
 
 	// Populate Cart Page
