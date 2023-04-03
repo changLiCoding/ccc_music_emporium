@@ -22,7 +22,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://raw.githubusercontent.com/changLiCoding/ccc_music_emporium/main/public/images/logo.jpg">
+  <a href="https://github.com/javascriptsucks/changLiCoding/ccc_music_emporium/main/public/images/logo.jpg">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
