@@ -67,20 +67,20 @@
 
 ## About The Project
 
+Welcome to CCC Music Emporium, an e-commerce platform for buying and renting musical instruments. This project was created by Can, Cody, and Chang in just 2 weeks.
+
+## Features
+
+- Rent instruments for a specified duration and return them after use.
+- Browse and purchase a wide range of musical instruments such as guitars, drums, keyboards, and more.
+- User authentication for secure login and registration.
+- User profile section to track order history, saved items, and manage account information.
+- Shopping cart to manage your purchases and rentals.
+- Search functionality to easily find your desired products.
+- Filter options to narrow down your search based on various criteria such as price, brand, and instrument type.
+
 ![Home page Screen Shot](https://github.com/changLiCoding/ccc_music_emporium/blob/main/public/images/home_page.gif?raw=true)
 ![About Us Screen Shot](https://github.com/changLiCoding/ccc_music_emporium/blob/main/public/images/about_us.gif?raw=true)
-
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-
-- Your time should be focused on creating something amazing. A project that solves a problem and helps others
-- You shouldn't be doing the same tasks over and over like creating a README from scratch
-- You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -88,9 +88,9 @@ Use the `BLANK_README.md` to get started.
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-- [![Next][next.js]][next-url]
 - [![React][react.js]][react-url]
-- [![Vue][vue.js]][vue-url]
+- [![Tailwind CSS][next.js]][next-url]
+- [![Redux][redux.js]][vue-url]
 - [![Angular][angular.io]][angular-url]
 - [![Svelte][svelte.dev]][svelte-url]
 - [![Laravel][laravel.com]][laravel-url]
