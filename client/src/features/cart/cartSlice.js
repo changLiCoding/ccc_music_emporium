@@ -44,6 +44,7 @@ const cartSlice = createSlice({
 		emptyCart: (store) => {
 			store.cart = [];
 			store.totalCartPrice = 0;
+			localStorage.removeItem("cart");
 		},
 		addCart: (store, action) => {
 			console.log("Add cart from Redux");
@@ -52,6 +53,14 @@ const cartSlice = createSlice({
 			const newCart = [...store.cart, action.payload.product];
 			localStorage.setItem("cart", JSON.stringify(newCart));
 			store.cart = newCart;
+			store.totalCartPrice = JSON.parse(localStorage.getItem("cart")).reduce(
+				(prev, curr) => {
+					return curr.daysRent
+						? prev + curr.daysRent * curr.rent_rate_in_cents
+						: prev + curr.price_in_cents;
+				},
+				0
+			);
 		},
 		removeFromCart: (store, action) => {
 			console.log(action);
@@ -60,6 +69,14 @@ const cartSlice = createSlice({
 			});
 			store.cart = newCartArr;
 			localStorage.setItem("cart", JSON.stringify(store.cart));
+			store.totalCartPrice = JSON.parse(localStorage.getItem("cart")).reduce(
+				(prev, curr) => {
+					return curr.daysRent
+						? prev + curr.daysRent * curr.rent_rate_in_cents
+						: prev + curr.price_in_cents;
+				},
+				0
+			);
 		},
 		setRent: (store, action) => {
 			console.log(action);
@@ -69,6 +86,14 @@ const cartSlice = createSlice({
 			localStorage.setItem("cart", JSON.stringify(newCart));
 			console.log("New Cart content: ", newCart);
 			store.cart = newCart;
+			store.totalCartPrice = JSON.parse(localStorage.getItem("cart")).reduce(
+				(prev, curr) => {
+					return curr.daysRent
+						? prev + curr.daysRent * curr.rent_rate_in_cents
+						: prev + curr.price_in_cents;
+				},
+				0
+			);
 		},
 	},
 	// extraReducers: (builder) => {

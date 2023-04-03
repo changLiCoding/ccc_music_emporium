@@ -1,5 +1,3 @@
-# CCC Music Emporium
-
 <a name="readme-top"></a>
 
 <!--
@@ -24,23 +22,18 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://st4.depositphotos.com/25435820/27601/v/600/depositphotos_276013432-stock-illustration-simple-initials-c-cc-ccc.jpg">
+  <a href="https://github.com/changLiCoding/ccc_music_emporium/blob/main/public/images/logo.jpg">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">CCC Music Emporium</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An E-commerce project for music shopping solution!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/changLiCoding/ccc_music_emporium"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+
   </p>
 </div>
 
@@ -74,7 +67,8 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Home page Screen Shot]](https://example.com)
+[![About US Screen Shot]](https://example.com)
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
