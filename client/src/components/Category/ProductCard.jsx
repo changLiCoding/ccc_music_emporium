@@ -1,25 +1,27 @@
 import React from "react";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 import priceConverter from "../../helpers/priceConverter";
-
 import { useContext } from "react";
-import { CartContext } from "../../contexts/CartContext";
+import { useDispatch } from "react-redux";
+
+// import { CartContext } from "../../contexts/CartContext";
+import { addCart } from "../../features/cart/cartSlice";
 import { ProductContext } from "../../contexts/ProductContext";
 
 export default function Card(props) {
 	const { product, openModal, setCurrentProductModal } = props;
-
+	const dispatch = useDispatch();
 	const { updateProductContextQuantity } = useContext(ProductContext);
 
 	// const [isModalOpen, setIsModalOpen] = useState(false)
-	const { addCart } = useContext(CartContext);
+	// const { addCart } = useContext(CartContext);
 	const openModalWithProduct = () => {
 		setCurrentProductModal(product);
 		openModal();
 	};
 	const handleBuyButtonClick = async (e) => {
 		e.stopPropagation();
-		addCart(product);
+		dispatch(addCart({ product }));
 		updateProductContextQuantity(
 			product,
 			"decrement",

@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import CartItems from "./CartItems";
 import CheckoutForm from "./CheckoutForm";
 
-import { CartContext } from "../../contexts/CartContext";
+// import { CartContext } from "../../contexts/CartContext";
 import { ProductContext } from "../../contexts/ProductContext";
 import priceConverter from "../../helpers/priceConverter";
+import { emptyCart, removeFromCart } from "../../features/cart/cartSlice";
 
 import handleSuccessPay from "../../helpers/handleSuccessPay";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EmptyCartAlert from "./EmptyCartAlert";
 import NotLoggedInAlert from "./NotLoggedInAlert";
@@ -18,18 +20,29 @@ const stripePromise = loadStripe(
 	"pk_test_51LffVFEcCevwDBwZtOSgdKTjniGR3VywPsW5EeJNMf9GUMXZp3TVdV5OEHR2ASoB9gvZvBoFGATjhU94PyykNQM800oZNqUDyx"
 );
 export default function Checkout() {
-	const { cart, totalCartPrice, emptyCart, removeFromCart } =
-		useContext(CartContext);
-	const { updateProductContextQuantity } = useContext(ProductContext);
+	const dispatch = useDispatch();
+	// const {
+	// cart, totalCartPrice,
+	// emptyCart,
+	// removeFromCart,
+	// } = useContext(CartContext);
 
+	const { totalCartPrice, cart } = useSelector((state) => state.cart);
+	const { updateProductContextQuantity } = useContext(ProductContext);
 	const navigate = useNavigate();
 	const user = localStorage.getItem("user_name");
+
 	const onSuccess = (amountInCents, orderId, customer) => {
 		const message = `Thank you ${customer}! Your order ID is ${orderId} for a total payment of ${priceConverter(
 			amountInCents
 		)}.`;
 
-		handleSuccessPay(message, emptyCart, navigate);
+		handleSuccessPay(
+			message,
+			// emptyCart,
+			dispatch(emptyCart()),
+			navigate
+		);
 	};
 
 	const handleRemove = (index) => {
@@ -38,14 +51,16 @@ export default function Checkout() {
 			"increment",
 			"Product removed from cart"
 		);
-		removeFromCart(index);
+		// removeFromCart(index);
+		dispatch(removeFromCart(index));
 	};
 
 	const handleEmptyCart = () => {
 		cart.forEach((product) => {
 			updateProductContextQuantity(product, "increment");
 		});
-		emptyCart();
+		// emptyCart();
+		dispatch(emptyCart());
 	};
 
 	// Populate Cart Page
@@ -129,7 +144,7 @@ export default function Checkout() {
 						<th></th>
 						<th>Subtotal:</th>
 						<th>
-							<p className='text-xl'>{totalCartPrice()}</p>
+							<p className='text-xl'>{priceConverter(totalCartPrice)}</p>
 						</th>
 						<th>
 							<label
@@ -157,7 +172,7 @@ export default function Checkout() {
 								<CheckoutForm
 									onSuccess={onSuccess}
 									products={cart}
-									totalInString={totalCartPrice()}
+									totalInString={priceConverter(totalCartPrice)}
 									className='w-full'
 								/>
 							</Elements>
