@@ -90,9 +90,9 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 - [![React][react.js]][react-url]
 - [![Tailwind CSS][tailwindcss.com]][next-url]
-- [![Redux][redux.js.org]][vue-url]
-- [![Angular][angular.io]][angular-url]
-- [![Svelte][svelte.dev]][svelte-url]
+- [![Redux][redux.js]][vue-url]
+- [![Node][nodejs.org]][angular-url]
+- [![Express][expressjs.org]][svelte-url]
 - [![Laravel][laravel.com]][laravel-url]
 - [![Bootstrap][bootstrap.com]][bootstrap-url]
 - [![JQuery][jquery.com]][jquery-url]
