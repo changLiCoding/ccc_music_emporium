@@ -26,16 +26,14 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">CCC Music Emporium
-</h3>
+  <h3 align="center">CCC Music Emporium</h3>
 
   <p align="center">
     An E-commerce project for music shopping solution!
     <br />
     <a href="https://github.com/changLiCoding/ccc_music_emporium"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/changLiCoding/ccc_music_emporium">View Demo</a>
+
   </p>
 </div>
 
@@ -69,7 +67,8 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Home page Screen Shot]](https://example.com)
+[![About US Screen Shot]](https://example.com)
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
