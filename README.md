@@ -22,7 +22,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/changLiCoding/ccc_music_emporium/blob/main/public/images/logo.jpg">
+  <a href="https://raw.githubusercontent.com/changLiCoding/ccc_music_emporium/main/public/images/logo.jpg">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -67,8 +67,8 @@
 
 ## About The Project
 
-[![Home page Screen Shot]](https://example.com)
-[![About US Screen Shot]](https://example.com)
+[![Home page Screen Shot]](https://github.com/changLiCoding/ccc_music_emporium/blob/main/public/images/home_page.gif?raw=true)
+[![About US Screen Shot]](https://github.com/changLiCoding/ccc_music_emporium/blob/main/public/images/about_us.gif?raw=true)
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
