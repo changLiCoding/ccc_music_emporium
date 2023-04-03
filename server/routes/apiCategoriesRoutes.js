@@ -25,16 +25,10 @@ router.get("/:name", (req, res) => {
 });
 
 router.post("/:name", async (req, res) => {
-	const { product, updateType } = req.body;
+	const { product } = req.body;
 
 	try {
-		let newProduct = {};
-		if (updateType === "increment") {
-			newProduct = { ...product, stock_quantity: product.stock_quantity + 1 };
-		} else if (updateType === "decrement") {
-			newProduct = { ...product, stock_quantity: product.stock_quantity - 1 };
-		}
-		const returnedNewProduct = await updateProductStockByModel(newProduct);
+		const returnedNewProduct = await updateProductStockByModel(product);
 		return res
 			.status(200)
 			.json({ message: "Product Updated", returnedNewProduct });
