@@ -89,8 +89,8 @@ Welcome to CCC Music Emporium, an e-commerce platform for buying and renting mus
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 - [![React][react.js]][react-url]
-- [![Tailwind CSS][next.js]][next-url]
-- [![Redux][redux.js]][vue-url]
+- [![Tailwind CSS][tailwindcss.com]][next-url]
+- [![Redux][redux.js.org]][vue-url]
 - [![Angular][angular.io]][angular-url]
 - [![Svelte][svelte.dev]][svelte-url]
 - [![Laravel][laravel.com]][laravel-url]
