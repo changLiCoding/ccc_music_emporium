@@ -29,7 +29,6 @@ export default function Checkout() {
 
 	const { totalCartPrice, cart } = useSelector((state) => state.cart);
 	const { updateProductContextQuantity } = useContext(ProductContext);
-
 	const navigate = useNavigate();
 	const user = localStorage.getItem("user_name");
 

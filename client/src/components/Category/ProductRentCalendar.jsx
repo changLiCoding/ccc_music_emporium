@@ -2,12 +2,16 @@ import React, { useState, useContext } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
 import { ProductContext } from "../../contexts/ProductContext";
-import { CartContext } from "../../contexts/CartContext";
+// import { CartContext } from "../../contexts/CartContext";
+import { useDispatch } from "react-redux";
+
+import { setRent } from "../../features/cart/cartSlice";
 import priceConverter from "../../helpers/priceConverter";
 import getDaysDifference from "../../helpers/getDayDifference";
 import handleLogErrNotify from "../../helpers/handleLogErrNotify";
 
 export default function ProductRentCalendar({ product }) {
+	const dispatch = useDispatch();
 	const initalDate = new Date();
 	initalDate.setDate(initalDate.getDate() + 1);
 
@@ -31,7 +35,7 @@ export default function ProductRentCalendar({ product }) {
 		}
 		setValue(newValue);
 	};
-	const { setRent } = useContext(CartContext);
+	// const { setRent } = useContext(CartContext);
 
 	return (
 		<>
@@ -75,7 +79,13 @@ export default function ProductRentCalendar({ product }) {
 									);
 								} else {
 									// Make changes to CartContext, ProductContext, and also backend database.
-									setRent(value.startDate, value.endDate, product);
+									dispatch(
+										setRent({
+											startAt: value.startDate.toISOString(),
+											endAt: value.endDate.toISOString(),
+											product,
+										})
+									);
 									updateProductContextQuantity(
 										product,
 										"decrement",
