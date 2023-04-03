@@ -22,8 +22,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="public/images/logo.jpg">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="">
+    <img src="public/images/logo.jpg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">CCC Music Emporium</h3>
