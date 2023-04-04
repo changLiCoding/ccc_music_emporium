@@ -86,9 +86,9 @@ This is an example of how to install and run the application local.
     cd server & npm install
    ```
 5. Reset database to get all seeds
-  ```sh
-    npm run db:reset
-  ```
+    ```sh
+      npm run db:reset
+    ```
    
 6. Create new .env file inside of server folder
     ```sh
