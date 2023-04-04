@@ -83,7 +83,7 @@ This is an example of how to install and run the application local.
    ```
 4.   NPM packages for server
    ```sh
-   cd server & npm install
+    cd server & npm install
    ```
    
 5. Create new .env file inside of server folder
@@ -93,26 +93,26 @@ This is an example of how to install and run the application local.
 
 6. Fill out all variables in .env.example file. And copy everything filled out to .env file
     ```sh
-    DB_HOST=localhost
-    DB_USER=
-    DB_PASS=
-    DB_NAME=
-    # Uncomment and set to true for Heroku
-    DB_SSL=true if heroku
-    DB_PORT=5432
+      DB_HOST=localhost
+      DB_USER=
+      DB_PASS=
+      DB_NAME=
+      # Uncomment and set to true for Heroku
+      DB_SSL=true if heroku
+      DB_PORT=5432
 
-    PORT=8080
+      PORT=8080
 
-    STRIPE_PUBLISHABLE_KEY=
-    STRIPE_SECRET_KEY=
+      STRIPE_PUBLISHABLE_KEY=
+      STRIPE_SECRET_KEY=
 
-    JWT_SECRET=
+      JWT_SECRET=
     ```
 
 7. Run the application in the root folder with:
 
    ```sh
-  npm run dev
+    npm run dev
    ```
   to run both frontend React and backend server
   
