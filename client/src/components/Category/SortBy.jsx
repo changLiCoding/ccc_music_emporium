@@ -1,19 +1,25 @@
 import React from "react";
+import {
+	make_a_to_z,
+	make_z_to_a,
+	price_high_to_low,
+	price_low_to_high,
+} from "../../features/product/productSlice";
 
 export default function SortBy({ dispatch }) {
 	const handleSortChange = (event) => {
 		switch (event.target.value) {
 			case "make-a-to-z":
-				dispatch({ type: "make-a-to-z" });
+				dispatch(make_a_to_z());
 				break;
 			case "make-z-to-a":
-				dispatch({ type: "make-z-to-a" });
+				dispatch(make_z_to_a());
 				break;
 			case "price-high-to-low":
-				dispatch({ type: "price-high-to-low" });
+				dispatch(price_high_to_low());
 				break;
 			case "price-low-to-high":
-				dispatch({ type: "price-low-to-high" });
+				dispatch(price_low_to_high());
 				break;
 			default:
 				break;

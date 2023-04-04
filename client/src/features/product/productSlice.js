@@ -27,12 +27,29 @@ const productSlice = createSlice({
 	name: "products",
 	initialState: initialState,
 	reducers: {
-		selectByCategory: (store, action) => {
-			console.log(action.payload);
-			store.products = store.products.filter(
-				(product) => product.category_name === action.payload
+		make_a_to_z: (store) => {
+			const newProducts = store.products.sort((a, b) =>
+				a.make.localeCompare(b.make)
 			);
-			console.log(store.products);
+			store.products = newProducts;
+		},
+		make_z_to_a: (store) => {
+			const newProducts = store.products.sort((a, b) =>
+				b.make.localeCompare(a.make)
+			);
+			store.products = newProducts;
+		},
+		price_high_to_low: (store) => {
+			const newProducts = store.products.sort(
+				(a, b) => b.price_in_cents - a.price_in_cents
+			);
+			store.products = newProducts;
+		},
+		price_low_to_high: (store) => {
+			const newProducts = store.products.sort(
+				(a, b) => a.price_in_cents - b.price_in_cents
+			);
+			store.products = newProducts;
 		},
 	},
 	extraReducers: {
@@ -51,4 +68,10 @@ const productSlice = createSlice({
 });
 
 export default productSlice.reducer;
-export const { selectByCategory } = productSlice.actions;
+export const {
+	selectByCategory,
+	make_a_to_z,
+	make_z_to_a,
+	price_high_to_low,
+	price_low_to_high,
+} = productSlice.actions;
