@@ -1,23 +1,5 @@
 <a name="readme-top"></a>
 
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -36,32 +18,6 @@
 
   </p>
 </div>
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 
 <!-- ABOUT THE PROJECT -->
 
@@ -106,18 +62,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+This is an example of how to install and run the application local. 
+
 
 1. Clone the repository
     ```sh
@@ -128,21 +77,21 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-   NPM packages for React
+3.   NPM packages for React
    ```sh
    cd client & npm install
    ```
-   NPM packages for server
+4.   NPM packages for server
    ```sh
    cd server & npm install
    ```
    
-3. Create new .env file inside of server folder
+5. Create new .env file inside of server folder
 ```sh
   cd server & touch .env
 ```
 
-4. Fill out all variables in .env.example file. And copy everything filled out to .env file
+6. Fill out all variables in .env.example file. And copy everything filled out to .env file
     ```sh
     DB_HOST=localhost
     DB_USER=
@@ -160,7 +109,7 @@ _Below is an example of how you can instruct your audience on installing and set
     JWT_SECRET=
     ```
 
-5. Run the application in the root folder with:
+7. Run the application in the root folder with:
 
    ```sh
   npm run dev
@@ -175,32 +124,19 @@ _Below is an example of how you can instruct your audience on installing and set
 
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-  - [ ] Chinese
-  - [ ] Spanish
+- [x] Add sign up and sign in
+- [x] Add home page with category
+- [x] Build backend routes and database query, schema and seeds
+- [x] Add simple routes that React can communicate with get and post request to simple route in server
+- [x] Add products page in React that products card would display on categories page
+- [x] Add cart functionility that click add to cart, cart object will be saved in localstorage
+- [x] Add checkout functionility that products that added into cart can be checked out
+- [x] Add functionility that purchased products can be reviewed in user order history
+- [x] Add JWT that the user order history is protected by JWT
+- [x] Change cart and checkout functionility from useContext to Redux
+- [ ] Change products functionility from useContext to Redux
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CONTRIBUTING -->
-
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
