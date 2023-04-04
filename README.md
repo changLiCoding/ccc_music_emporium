@@ -77,21 +77,25 @@ This is an example of how to install and run the application local.
    ```sh
    npm install
    ```
-3.   NPM packages for React
+3. NPM packages for React
    ```sh
    cd client & npm install
    ```
-4.   NPM packages for server
+4. NPM packages for server
    ```sh
     cd server & npm install
    ```
+5. Reset database to get all seeds
+  ```sh
+    npm run db:reset
+  ```
    
-5. Create new .env file inside of server folder
-```sh
-  cd server & touch .env
-```
+6. Create new .env file inside of server folder
+    ```sh
+      cd server & touch .env
+    ```
 
-6. Fill out all variables in .env.example file. And copy everything filled out to .env file
+7. Fill out all variables in .env.example file. And copy everything filled out to .env file
     ```sh
       DB_HOST=localhost
       DB_USER=
@@ -109,12 +113,12 @@ This is an example of how to install and run the application local.
       JWT_SECRET=
     ```
 
-7. Run the application in the root folder with:
+8. Run the application in the root folder to run both React and Express:
 
    ```sh
     npm run dev
    ```
-  to run both frontend React and backend server
+  
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
