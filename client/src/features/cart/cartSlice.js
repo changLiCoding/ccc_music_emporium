@@ -16,27 +16,6 @@ const initialState = localStorage.getItem("cart")
 	  }
 	: { cart: [], totalCartPrice: 0, isLoading: true };
 
-// export const setRent = createAsyncThunk(
-// 	"cart/setRent",
-// 	async (payload, thunkAPI) => {
-// 		console.log(payload);
-// 		const { startAt, endAt, product } = payload;
-// 		const daysRent = getDaysDifference(startAt, endAt);
-// 		const state = thunkAPI.getState();
-// 		const newCart = [
-// 			...state.cart.cart,
-// 			{ ...product, daysRent, startAt, endAt },
-// 		];
-// 		localStorage.setItem("cart", JSON.stringify(newCart));
-// 		console.log("New Cart content: ", newCart);
-// 		return newCart;
-// 	},
-// 	{
-// 		// To handle non-serializable values, set the `serializableCheck` field to `false`
-// 		serializableCheck: false,
-// 	}
-// );
-
 const cartSlice = createSlice({
 	name: "cart",
 	initialState: initialState,

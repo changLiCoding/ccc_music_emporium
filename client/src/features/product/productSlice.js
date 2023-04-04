@@ -4,41 +4,51 @@ import axios from "axios";
 const getAllProducts = async () => {
 	try {
 		const res = await axios.get("http://localhost:8080/api/products");
+		console.log(res.data.products);
 		return res.data.products;
 	} catch (error) {
 		console.error(error);
 	}
 };
 
+export const fetchProducts = createAsyncThunk(
+	"products/fetchProducts",
+	async (payload) => {
+		const { name, nameType } = payload;
+		const products = await getAllProducts();
+		return nameType === "category"
+			? products.filter((product) => product.category_name === name)
+			: products.filter((product) => product.sub_category_name === name);
+	}
+);
 const initialState = { products: [], isLoading: false, error: null };
 
 const productSlice = createSlice({
-	name: "product",
+	name: "products",
 	initialState: initialState,
-	reducers: {},
+	reducers: {
+		selectByCategory: (store, action) => {
+			console.log(action.payload);
+			store.products = store.products.filter(
+				(product) => product.category_name === action.payload
+			);
+			console.log(store.products);
+		},
+	},
+	extraReducers: {
+		[fetchProducts.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[fetchProducts.fulfilled]: (state, action) => {
+			console.log(action);
+			state.isLoading = false;
+			state.products = action.payload;
+		},
+		[fetchProducts.rejected]: (state) => {
+			state.isLoading = false;
+		},
+	},
 });
 
-export const fetchProducts = createAsyncThunk(
-	"product/fetchProducts",
-	async () => {
-		const products = await getAllProducts();
-		return products;
-	}
-);
-
-// productSlice.reducer((builder) => {
-// 	builder
-// 		.addCase(fetchProducts.pending, (state) => {
-// 			state.isLoading = true;
-// 		})
-// 		.addCase(fetchProducts.fulfilled, (state, action) => {
-// 			state.isLoading = false;
-// 			state.products = action.payload;
-// 		})
-// 		.addCase(fetchProducts.rejected, (state, action) => {
-// 			state.isLoading = false;
-// 			state.error = action.error.message;
-// 		});
-// });
-
 export default productSlice.reducer;
+export const { selectByCategory } = productSlice.actions;
