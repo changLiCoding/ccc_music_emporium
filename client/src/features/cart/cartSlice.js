@@ -75,6 +75,11 @@ const cartSlice = createSlice({
 			);
 		},
 	},
+	// extraReducers: (builder) => {
+	// 	builder.addCase(setRent.fulfilled, (state, action) => {
+	// 		state.cart = action.payload;
+	// 	});
+	// },
 });
 
 console.log(cartSlice);

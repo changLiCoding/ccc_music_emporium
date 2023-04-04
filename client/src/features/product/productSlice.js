@@ -4,6 +4,7 @@ import axios from "axios";
 const getAllProducts = async () => {
 	try {
 		const res = await axios.get("http://localhost:8080/api/products");
+		console.log(res.data.products);
 		return res.data.products;
 	} catch (error) {
 		console.error(error);
@@ -12,10 +13,12 @@ const getAllProducts = async () => {
 
 export const fetchProducts = createAsyncThunk(
 	"products/fetchProducts",
-	async () => {
+	async (payload) => {
+		const { name, nameType } = payload;
 		const products = await getAllProducts();
-		console.log(products);
-		return products;
+		return nameType === "category"
+			? products.filter((product) => product.category_name === name)
+			: products.filter((product) => product.sub_category_name === name);
 	}
 );
 const initialState = { products: [], isLoading: false, error: null };
@@ -37,7 +40,7 @@ const productSlice = createSlice({
 			state.isLoading = true;
 		},
 		[fetchProducts.fulfilled]: (state, action) => {
-			// console.log(action);
+			console.log(action);
 			state.isLoading = false;
 			state.products = action.payload;
 		},

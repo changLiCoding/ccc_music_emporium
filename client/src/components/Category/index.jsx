@@ -23,11 +23,9 @@ export default function Category() {
 	// const error = useSelector((state) => state.products.error);
 
 	useEffect(() => {
-		dispatchReduxt(fetchProducts());
+		dispatchReduxt(fetchProducts({ name, nameType: "category" }));
 	}, [dispatchReduxt, name]);
-	useEffect(() => {
-		dispatchReduxt(selectByCategory(name));
-	}, [isLoading, dispatchReduxt, name]);
+
 	// const [localProducts, dispatch] = useReducer(
 	// 	reducer,
 	// 	products ? [...products] : []
