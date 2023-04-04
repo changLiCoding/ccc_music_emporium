@@ -15,7 +15,6 @@ export default function Category() {
 
 	const dispatch = useDispatch();
 	const { products, isLoading, error } = useSelector((store) => store.products);
-	// console.log(products);
 	// const isLoading = useSelector((state) => state.products.isLoading);
 	// const error = useSelector((state) => state.products.error);
 

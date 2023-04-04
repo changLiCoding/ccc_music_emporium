@@ -1,26 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const getAllProducts = async () => {
-	try {
-		const res = await axios.get("http://localhost:8080/api/products");
-		console.log(res.data.products);
-		return res.data.products;
-	} catch (error) {
-		console.error(error);
-	}
-};
+import handleAddToCartNotify from "../../helpers/handleAddToCartNotify";
 
 export const fetchProducts = createAsyncThunk(
 	"products/fetchProducts",
 	async (payload) => {
 		const { name, nameType } = payload;
-		const products = await getAllProducts();
+		const response = await axios.get("http://localhost:8080/api/products");
+		const products = response.data.products;
 		return nameType === "category"
 			? products.filter((product) => product.category_name === name)
 			: products.filter((product) => product.sub_category_name === name);
 	}
 );
+
+export const updateProductReduxQuantity = createAsyncThunk(
+	"products/updateProductReduxQuantity",
+	async (payload, thunkAPI) => {
+		const { cartProduct, updatedType, message } = payload;
+		console.log("Thunk API content :", thunkAPI);
+		console.log("payload content: ", payload);
+	}
+);
+
 const initialState = { products: [], isLoading: false, error: null };
 
 const productSlice = createSlice({
@@ -57,11 +60,25 @@ const productSlice = createSlice({
 			state.isLoading = true;
 		},
 		[fetchProducts.fulfilled]: (state, action) => {
-			console.log(action);
+			console.log("FETCHPRODUCTS FULFILLED ACTION AND PAYLOAD", action);
 			state.isLoading = false;
 			state.products = action.payload;
 		},
 		[fetchProducts.rejected]: (state) => {
+			state.isLoading = false;
+		},
+		[updateProductReduxQuantity.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[updateProductReduxQuantity.fulfilled]: (state, action) => {
+			console.log(
+				"updateProductReduxQuantity FULFILLED ACTION AND PAYLOAD",
+				action
+			);
+			state.isLoading = false;
+			state.products = action.payload;
+		},
+		[updateProductReduxQuantity.rejected]: (state) => {
 			state.isLoading = false;
 		},
 	},

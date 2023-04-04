@@ -6,12 +6,13 @@ import { useDispatch } from "react-redux";
 
 // import { CartContext } from "../../contexts/CartContext";
 import { addCart } from "../../features/cart/cartSlice";
+import { updateProductReduxQuantity } from "../../features/product/productSlice";
 import { ProductContext } from "../../contexts/ProductContext";
 
 export default function Card(props) {
 	const { product, openModal, setCurrentProductModal } = props;
 	const dispatch = useDispatch();
-	const { updateProductContextQuantity } = useContext(ProductContext);
+	// const { updateProductContextQuantity } = useContext(ProductContext);
 
 	// const [isModalOpen, setIsModalOpen] = useState(false)
 	// const { addCart } = useContext(CartContext);
@@ -22,10 +23,17 @@ export default function Card(props) {
 	const handleBuyButtonClick = async (e) => {
 		e.stopPropagation();
 		dispatch(addCart({ product }));
-		updateProductContextQuantity(
-			product,
-			"decrement",
-			"Added to cart! Woohoo!"
+		// updateProductContextQuantity(
+		// 	product,
+		// 	"decrement",
+		// 	"Added to cart! Woohoo!"
+		// );
+		dispatch(
+			updateProductReduxQuantity({
+				cartProduct: product,
+				updatedType: "decrement",
+				message: "Added to cart! Woohoo!",
+			})
 		);
 	};
 

@@ -3,9 +3,10 @@ import CartItems from "./CartItems";
 import CheckoutForm from "./CheckoutForm";
 
 // import { CartContext } from "../../contexts/CartContext";
-import { ProductContext } from "../../contexts/ProductContext";
+// import { ProductContext } from "../../contexts/ProductContext";
 import priceConverter from "../../helpers/priceConverter";
 import { emptyCart, removeFromCart } from "../../features/cart/cartSlice";
+import { updateProductReduxQuantity } from "../../features/product/productSlice";
 
 import handleSuccessPay from "../../helpers/handleSuccessPay";
 
@@ -28,7 +29,7 @@ export default function Checkout() {
 	// } = useContext(CartContext);
 
 	const { totalCartPrice, cart } = useSelector((state) => state.cart);
-	const { updateProductContextQuantity } = useContext(ProductContext);
+	// const { updateProductContextQuantity } = useContext(ProductContext);
 	const navigate = useNavigate();
 	const user = localStorage.getItem("user_name");
 
@@ -46,10 +47,18 @@ export default function Checkout() {
 	};
 
 	const handleRemove = (index) => {
-		updateProductContextQuantity(
-			cart[index],
-			"increment",
-			"Product removed from cart"
+		// updateProductContextQuantity(
+		// 	cart[index],
+		// 	"increment",
+		// 	"Product removed from cart"
+		// );
+
+		dispatch(
+			updateProductReduxQuantity({
+				cartProduct: cart[index],
+				updatedType: "increment",
+				message: "Product removed from cart",
+			})
 		);
 		// removeFromCart(index);
 		dispatch(removeFromCart(index));
@@ -57,7 +66,13 @@ export default function Checkout() {
 
 	const handleEmptyCart = () => {
 		cart.forEach((product) => {
-			updateProductContextQuantity(product, "increment");
+			dispatch(
+				updateProductReduxQuantity({
+					cartProduct: product,
+					updatedType: "increment",
+				})
+			);
+			// updateProductContextQuantity(product, "increment");
 		});
 		// emptyCart();
 		dispatch(emptyCart());

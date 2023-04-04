@@ -27,7 +27,7 @@ const cartSlice = createSlice({
 		},
 		addCart: (store, action) => {
 			console.log("Add cart from Redux");
-			console.log(action);
+			console.log("add cart ACTION: ", action);
 			console.log("See what is in product: ", action.payload.product);
 			const newCart = [...store.cart, action.payload.product];
 			localStorage.setItem("cart", JSON.stringify(newCart));
@@ -42,7 +42,6 @@ const cartSlice = createSlice({
 			);
 		},
 		removeFromCart: (store, action) => {
-			console.log(action);
 			const newCartArr = store.cart.filter((product, index) => {
 				return index !== action.payload;
 			});
@@ -58,7 +57,6 @@ const cartSlice = createSlice({
 			);
 		},
 		setRent: (store, action) => {
-			console.log(action);
 			const { startAt, endAt, product } = action.payload;
 			const daysRent = getDaysDifference(startAt, endAt);
 			const newCart = [...store.cart, { ...product, daysRent, startAt, endAt }];
