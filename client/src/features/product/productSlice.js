@@ -10,35 +10,42 @@ const getAllProducts = async () => {
 	}
 };
 
-const initialState = { products: [], isLoading: false, error: null };
-
-const productSlice = createSlice({
-	name: "product",
-	initialState: initialState,
-	reducers: {},
-});
-
 export const fetchProducts = createAsyncThunk(
-	"product/fetchProducts",
+	"products/fetchProducts",
 	async () => {
 		const products = await getAllProducts();
+		console.log(products);
 		return products;
 	}
 );
+const initialState = { products: [], isLoading: false, error: null };
 
-// productSlice.reducer((builder) => {
-// 	builder
-// 		.addCase(fetchProducts.pending, (state) => {
-// 			state.isLoading = true;
-// 		})
-// 		.addCase(fetchProducts.fulfilled, (state, action) => {
-// 			state.isLoading = false;
-// 			state.products = action.payload;
-// 		})
-// 		.addCase(fetchProducts.rejected, (state, action) => {
-// 			state.isLoading = false;
-// 			state.error = action.error.message;
-// 		});
-// });
+const productSlice = createSlice({
+	name: "products",
+	initialState: initialState,
+	reducers: {
+		selectByCategory: (store, action) => {
+			console.log(action.payload);
+			store.products = store.products.filter(
+				(product) => product.category_name === action.payload
+			);
+			console.log(store.products);
+		},
+	},
+	extraReducers: {
+		[fetchProducts.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[fetchProducts.fulfilled]: (state, action) => {
+			// console.log(action);
+			state.isLoading = false;
+			state.products = action.payload;
+		},
+		[fetchProducts.rejected]: (state) => {
+			state.isLoading = false;
+		},
+	},
+});
 
 export default productSlice.reducer;
+export const { selectByCategory } = productSlice.actions;
