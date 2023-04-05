@@ -6,25 +6,21 @@ import InfoBar from "./InfoBar";
 import SideBars from "./SideBars";
 import CategoryCards from "./CategoryCards";
 // import { ProductContext } from "../../contexts/ProductContext";
-import {
-	fetchProducts,
-	selectByCategory,
-} from "../../features/product/productSlice";
-import reducer from "../../reducers/category";
+import { fetchProducts } from "../../features/product/productSlice";
+// import reducer from "../../reducers/category";
 
 export default function Category() {
 	const { name } = useParams();
 	// const { products } = useContext(ProductContext);
 
-	const dispatchReduxt = useDispatch();
+	const dispatch = useDispatch();
 	const { products, isLoading, error } = useSelector((store) => store.products);
-	console.log(products);
 	// const isLoading = useSelector((state) => state.products.isLoading);
 	// const error = useSelector((state) => state.products.error);
 
 	useEffect(() => {
-		dispatchReduxt(fetchProducts({ name, nameType: "category" }));
-	}, [dispatchReduxt, name]);
+		dispatch(fetchProducts({ name, nameType: "category" }));
+	}, [dispatch, name]);
 
 	// const [localProducts, dispatch] = useReducer(
 	// 	reducer,
@@ -46,7 +42,7 @@ export default function Category() {
 	) : (
 		<main className='flex flex-col mx-auto max-w-auto mb-12 min-h-[80vh]'>
 			<InfoBar
-				// dispatch={dispatch}
+				dispatch={dispatch}
 				products={products}
 				category={name}></InfoBar>
 			<div className='flex justify-center'>
