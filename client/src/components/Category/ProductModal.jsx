@@ -32,9 +32,9 @@ export default function ProductModal(props) {
 		};
 	}, [closeModal]);
 
-	const addCartCloseModal = (product) => {
+	const addCartCloseModal = async (product) => {
 		dispatch(addCart({ product }));
-		dispatch(
+		await dispatch(
 			updateProductReduxQuantity({
 				cartProduct: product,
 				updatedType: "decrement",

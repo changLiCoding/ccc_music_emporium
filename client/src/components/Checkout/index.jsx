@@ -46,14 +46,14 @@ export default function Checkout() {
 		);
 	};
 
-	const handleRemove = (index) => {
+	const handleRemove = async (index) => {
 		// updateProductContextQuantity(
 		// 	cart[index],
 		// 	"increment",
 		// 	"Product removed from cart"
 		// );
 		console.log("Let see what got removed from cart!!!", cart[index]);
-		dispatch(
+		await dispatch(
 			updateProductReduxQuantity({
 				cartProduct: cart[index],
 				updatedType: "increment",
@@ -64,18 +64,31 @@ export default function Checkout() {
 		dispatch(removeFromCart(index));
 	};
 
-	const handleEmptyCart = () => {
-		cart.forEach((product) => {
-			dispatch(
-				updateProductReduxQuantity({
-					cartProduct: product,
-					updatedType: "increment",
-				})
+	const handleEmptyCart = async () => {
+		try {
+			const promises = cart.map((product) =>
+				dispatch(
+					updateProductReduxQuantity({
+						cartProduct: product,
+						updatedType: "increment",
+					})
+				)
 			);
-			// updateProductContextQuantity(product, "increment");
-		});
-		// emptyCart();
-		dispatch(emptyCart());
+			await Promise.all(promises);
+			dispatch(emptyCart());
+		} catch (error) {
+			console.error("Error emptying cart:", error);
+		}
+		// cart.forEach(async (product) => {
+		// 	await dispatch(
+		// 		updateProductReduxQuantity({
+		// 			cartProduct: product,
+		// 			updatedType: "increment",
+		// 		})
+		// 	);
+		// 	// updateProductContextQuantity(product, "increment");
+		// });
+		// // emptyCart();
 	};
 
 	// Populate Cart Page

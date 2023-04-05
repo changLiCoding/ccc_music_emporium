@@ -67,7 +67,7 @@ export default function ProductRentCalendar({ product, dispatch }) {
 							disabled={product.stock_quantity === 0}
 							// type='button'
 							className='btn btn-success'
-							onClick={() => {
+							onClick={async () => {
 								// Product can only be rent more than a day. Error message will be shown when same day selected.
 								if (
 									value.startDate.getFullYear() ===
@@ -88,7 +88,7 @@ export default function ProductRentCalendar({ product, dispatch }) {
 										})
 									);
 									console.log("What is the product in rent????: ", product);
-									dispatch(
+									await dispatch(
 										updateProductReduxQuantity({
 											cartProduct: product,
 											updatedType: "decrement",

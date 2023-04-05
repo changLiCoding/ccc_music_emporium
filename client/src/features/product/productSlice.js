@@ -29,7 +29,10 @@ export const updateProductReduxQuantity = createAsyncThunk(
 			let productToUpdate = products.find(
 				(product) => product.model === cartProduct.model
 			);
-
+			console.log(
+				"In the updateProductReduxQuantity lets check what gona got updated: ",
+				productToUpdate
+			);
 			const response = await axios.post(
 				`http://localhost:8080/api/categories/${cartProduct.category_name}`,
 				{

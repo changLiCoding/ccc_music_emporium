@@ -29,7 +29,7 @@ export default function Card(props) {
 		// 	"decrement",
 		// 	"Added to cart! Woohoo!"
 		// );
-		dispatch(
+		await dispatch(
 			updateProductReduxQuantity({
 				cartProduct: product,
 				updatedType: "decrement",
