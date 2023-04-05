@@ -21,6 +21,7 @@ export default function Card(props) {
 		openModal();
 	};
 	const handleBuyButtonClick = async (e) => {
+		e.preventDefault();
 		e.stopPropagation();
 		dispatch(addCart({ product }));
 		// updateProductContextQuantity(
@@ -35,6 +36,7 @@ export default function Card(props) {
 				message: "Added to cart! Woohoo!",
 			})
 		);
+		return false;
 	};
 
 	return (
@@ -48,27 +50,29 @@ export default function Card(props) {
 					alt={product.model}
 				/>
 			</figure>
-			<div className='card-body'>
-				<h2 className='card-title font-bold text-lg'>{product.make}</h2>
-				<p className='text-gray-500'>{product.model}</p>
-				<div className='flex flex-wrap justify-between mt-4'>
-					<div className='badge btn-sm btn-outline hover:bg-white hover:text-black text-md'>
-						{stringCapitalGenerator(product.sub_category_name)}
+			<form onSubmit={(e) => e.preventDefault()}>
+				<div className='card-body'>
+					<h2 className='card-title font-bold text-lg'>{product.make}</h2>
+					<p className='text-gray-500'>{product.model}</p>
+					<div className='flex flex-wrap justify-between mt-4'>
+						<div className='badge btn-sm btn-outline hover:bg-white hover:text-black text-md'>
+							{stringCapitalGenerator(product.sub_category_name)}
+						</div>
+						<div className='badge btn-sm border-black btn-accent bg-amber-500 hover:bg-amber-500 hover:border-black text-lg font-bold'>
+							{priceConverter(product.price_in_cents)}
+						</div>
 					</div>
-					<div className='badge btn-sm border-black btn-accent bg-amber-500 hover:bg-amber-500 hover:border-black text-lg font-bold'>
-						{priceConverter(product.price_in_cents)}
-					</div>
+					<button
+						disabled={product.stock_quantity <= 0}
+						type='submit'
+						className={`btn btn-primary btn-sm ${
+							product.stock_quantity <= 0 ? "cursor-not-allowed" : ""
+						}`}
+						onClick={handleBuyButtonClick}>
+						{product.stock_quantity <= 0 ? "Sold Out!" : "Buy Now"}
+					</button>
 				</div>
-				<button
-					disabled={product.stock_quantity <= 0}
-					type='button'
-					className={`btn btn-primary btn-sm ${
-						product.stock_quantity <= 0 ? "cursor-not-allowed" : ""
-					}`}
-					onClick={handleBuyButtonClick}>
-					{product.stock_quantity <= 0 ? "Sold Out!" : "Buy Now"}
-				</button>
-			</div>
+			</form>
 		</div>
 	);
 }
