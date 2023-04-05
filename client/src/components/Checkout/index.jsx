@@ -29,7 +29,7 @@ export default function Checkout() {
 	// } = useContext(CartContext);
 
 	const { totalCartPrice, cart } = useSelector((state) => state.cart);
-	// const { updateProductContextQuantity } = useContext(ProductContext);
+	// const { ContextQuantity } = useContext(ProductContext);
 	const navigate = useNavigate();
 	const user = localStorage.getItem("user_name");
 
@@ -52,7 +52,7 @@ export default function Checkout() {
 		// 	"increment",
 		// 	"Product removed from cart"
 		// );
-
+		console.log("Let see what got removed from cart!!!", cart[index]);
 		dispatch(
 			updateProductReduxQuantity({
 				cartProduct: cart[index],

@@ -8,7 +8,7 @@ const updateProductStockByModel = (product) => {
     RETURNING *
   `;
 	const queryParams = [product.stock_quantity, product.model];
-
+	console.log("Product to update in server:", product);
 	return db
 		.query(queryTemplate, queryParams)
 		.then((res) => {

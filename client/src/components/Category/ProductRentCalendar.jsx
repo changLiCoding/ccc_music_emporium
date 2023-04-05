@@ -1,17 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
-import { ProductContext } from "../../contexts/ProductContext";
+// import { ProductContext } from "../../contexts/ProductContext";
 // import { CartContext } from "../../contexts/CartContext";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 import { setRent } from "../../features/cart/cartSlice";
 import priceConverter from "../../helpers/priceConverter";
 import getDaysDifference from "../../helpers/getDayDifference";
 import handleLogErrNotify from "../../helpers/handleLogErrNotify";
+import { updateProductReduxQuantity } from "../../features/product/productSlice";
 
-export default function ProductRentCalendar({ product }) {
-	const dispatch = useDispatch();
+export default function ProductRentCalendar({ product, dispatch }) {
+	// const dispatch = useDispatch();
 	const initalDate = new Date();
 	initalDate.setDate(initalDate.getDate() + 1);
 
@@ -19,7 +20,7 @@ export default function ProductRentCalendar({ product }) {
 		startDate: new Date(),
 		endDate: initalDate,
 	});
-	const { updateProductContextQuantity } = useContext(ProductContext);
+	// const { updateProductContextQuantity } = useContext(ProductContext);
 
 	const handleValueChange = (newValue) => {
 		if (typeof newValue.startDate === "string") {
@@ -86,11 +87,19 @@ export default function ProductRentCalendar({ product }) {
 											product,
 										})
 									);
-									updateProductContextQuantity(
-										product,
-										"decrement",
-										"Added to cart! Woohoo!"
+									console.log("What is the product in rent????: ", product);
+									dispatch(
+										updateProductReduxQuantity({
+											cartProduct: product,
+											updatedType: "decrement",
+											message: "Added to cart! Woohoo!",
+										})
 									);
+									// updateProductContextQuantity(
+									// 	product,
+									// 	"decrement",
+									// 	"Added to cart! Woohoo!"
+									// );
 								}
 							}}>
 							Submit
