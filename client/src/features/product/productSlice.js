@@ -22,26 +22,38 @@ export const fetchProducts = createAsyncThunk(
 
 export const updateProductReduxQuantity = createAsyncThunk(
 	"products/updateProductReduxQuantity",
-	async (payload, { dispatch }) => {
+	async (payload, { dispatch, getState }) => {
 		const { cartProduct, updatedType, message } = payload;
 		try {
-			let productToUpdate = {};
+			const products = getState().products.products;
+			let productToUpdate = products.find(
+				(product) => product.model === cartProduct.model
+			);
+			console.log(
+				"In the updateProductReduxQuantity lets check what gona got updated: ",
+				cartProduct
+			);
+
 			const response = await axios.post(
-				`http://localhost:8080/api/categories/${productToUpdate.category_name}`,
+				`http://localhost:8080/api/categories/${cartProduct.category_name}`,
 				{
-					product: {
-						...cartProduct,
-						stock_quantity:
-							updatedType === "decrement"
-								? cartProduct.stock_quantity - 1
-								: cartProduct.stock_quantity + 1,
-					},
+					updatedType,
+					product: cartProduct,
 				}
 			);
 			const newStock = response.data.returnedNewProduct[0].stock_quantity;
 			productToUpdate = { ...cartProduct, stock_quantity: newStock };
 			// Dispatch success action with updated product quantity
-			dispatch(updateProductQuantitySuccess({ productToUpdate, message }));
+			if (productToUpdate.stock_quantity) {
+				dispatch(updateProductQuantitySuccess({ productToUpdate, message }));
+			} else {
+				dispatch(
+					fetchProducts({
+						name: cartProduct.category_name,
+						nameType: "category",
+					})
+				);
+			}
 			// const oldProducts = thunkAPI.getState().products.products;
 			// const updatedIndex = oldProducts.findIndex(
 			// 	(product) => product.model === cartProduct.model
@@ -103,8 +115,15 @@ const productSlice = createSlice({
 				(product) => product.id === productToUpdate.id
 			);
 			if (productIndex >= 0) {
-				const newProducts = [...store.products];
-				newProducts.splice(productIndex, 1, { ...productToUpdate });
+				const newProducts = store.products.map((product) => {
+					if (product.model === productToUpdate.model) {
+						return { ...productToUpdate };
+					} else {
+						return { ...product };
+					}
+				});
+				// 	[...store.products];
+				// newProducts.splice(productIndex, 1, { ...productToUpdate });
 				store.products = [...newProducts];
 				message && handleAddToCartNotify(message);
 				console.log("Product quantity updated successfully");

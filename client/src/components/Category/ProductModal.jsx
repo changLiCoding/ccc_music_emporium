@@ -1,20 +1,21 @@
-import React, { useRef, useEffect, useContext } from "react";
-import { useDispatch } from "react-redux";
+import React, { useRef, useEffect } from "react";
+// import { useDispatch } from "react-redux";
 
 // import { CartContext } from "../../contexts/CartContext";
-import { ProductContext } from "../../contexts/ProductContext";
+// import { ProductContext } from "../../contexts/ProductContext";
 import { addCart } from "../../features/cart/cartSlice";
 import priceConverter from "../../helpers/priceConverter";
 
 import ProductRentCalendar from "./ProductRentCalendar";
+import { updateProductReduxQuantity } from "../../features/product/productSlice";
 
 export default function ProductModal(props) {
 	const ref = useRef(null);
 
-	const dispatch = useDispatch();
+	const { product, closeModal, dispatch } = props;
+	// const dispatch = useDispatch();
 
-	const { updateProductContextQuantity } = useContext(ProductContext);
-	const { product, closeModal } = props;
+	// const { updateProductContextQuantity } = useContext(ProductContext);
 	// const { addCart } = useContext(CartContext);
 
 	useEffect(() => {
@@ -31,13 +32,20 @@ export default function ProductModal(props) {
 		};
 	}, [closeModal]);
 
-	const addCartCloseModal = (product) => {
+	const addCartCloseModal = async (product) => {
 		dispatch(addCart({ product }));
-		updateProductContextQuantity(
-			product,
-			"decrement",
-			"Added to cart! Woohoo!"
+		await dispatch(
+			updateProductReduxQuantity({
+				cartProduct: product,
+				updatedType: "decrement",
+				message: "Added to cart! Woohoo!",
+			})
 		);
+		// updateProductContextQuantity(
+		// 	product,
+		// 	"decrement",
+		// 	"Added to cart! Woohoo!"
+		// );
 		closeModal();
 	};
 
@@ -85,7 +93,10 @@ export default function ProductModal(props) {
 						<div className='badge btn-md btn-accent border-primary bg-amber-500 hover:bg-amber-500 hover:border-black text-xl font-bold'>
 							{priceConverter(product.price_in_cents)}
 						</div>
-						<ProductRentCalendar product={product} />
+						<ProductRentCalendar
+							product={product}
+							dispatch={dispatch}
+						/>
 					</div>
 				</div>
 			</div>

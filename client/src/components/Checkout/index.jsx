@@ -29,7 +29,7 @@ export default function Checkout() {
 	// } = useContext(CartContext);
 
 	const { totalCartPrice, cart } = useSelector((state) => state.cart);
-	// const { updateProductContextQuantity } = useContext(ProductContext);
+	// const { ContextQuantity } = useContext(ProductContext);
 	const navigate = useNavigate();
 	const user = localStorage.getItem("user_name");
 
@@ -46,14 +46,14 @@ export default function Checkout() {
 		);
 	};
 
-	const handleRemove = (index) => {
+	const handleRemove = async (index) => {
 		// updateProductContextQuantity(
 		// 	cart[index],
 		// 	"increment",
 		// 	"Product removed from cart"
 		// );
-
-		dispatch(
+		console.log("Let see what got removed from cart!!!", cart[index]);
+		await dispatch(
 			updateProductReduxQuantity({
 				cartProduct: cart[index],
 				updatedType: "increment",
@@ -64,17 +64,33 @@ export default function Checkout() {
 		dispatch(removeFromCart(index));
 	};
 
-	const handleEmptyCart = () => {
-		cart.forEach((product) => {
-			dispatch(
-				updateProductReduxQuantity({
-					cartProduct: product,
-					updatedType: "increment",
-				})
-			);
-			// updateProductContextQuantity(product, "increment");
-		});
-		// emptyCart();
+	const handleEmptyCart = async () => {
+		for (const product of cart) {
+			try {
+				await dispatch(
+					updateProductReduxQuantity({
+						cartProduct: product,
+						updatedType: "increment",
+					})
+				);
+			} catch (error) {
+				console.error("Error emptying cart:", error);
+			}
+		}
+		// try {
+		// 	const promises = cart.map((product) =>
+		// 		dispatch(
+		// 			updateProductReduxQuantity({
+		// 				cartProduct: product,
+		// 				updatedType: "increment",
+		// 			})
+		// 		)
+		// 	);
+		// 	await Promise.all(promises);
+		// 	dispatch(emptyCart());
+		// } catch (error) {
+		// 	console.error("Error emptying cart:", error);
+		// }
 		dispatch(emptyCart());
 	};
 

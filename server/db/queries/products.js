@@ -1,20 +1,33 @@
 const db = require("../connection");
 
-const updateProductStockByModel = (product) => {
-	const queryTemplate = `
+const updateProductStockByModel = (product, updatedType) => {
+	const queryTemplateIncrement = `
     UPDATE products
-    SET stock_quantity = $1
-    WHERE model = $2
+    SET stock_quantity = stock_quantity + 1
+    WHERE model = $1
     RETURNING *
   `;
-	const queryParams = [product.stock_quantity, product.model];
-
-	return db
-		.query(queryTemplate, queryParams)
-		.then((res) => {
-			return res.rows;
-		})
-		.catch((err) => console.error(err.message));
+	const queryTemplateDecrement = `
+    UPDATE products
+    SET stock_quantity = stock_quantity - 1
+    WHERE model = $1
+    RETURNING *
+  `;
+	const queryParams = [product.model];
+	console.log("Product to update in server:", product);
+	return updatedType === "increment"
+		? db
+				.query(queryTemplateIncrement, queryParams)
+				.then((res) => {
+					return res.rows;
+				})
+				.catch((err) => console.error(err.message))
+		: db
+				.query(queryTemplateDecrement, queryParams)
+				.then((res) => {
+					return res.rows;
+				})
+				.catch((err) => console.error(err.message));
 };
 
 const getAllProducts = () => {

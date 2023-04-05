@@ -1,17 +1,17 @@
 import React from "react";
 import stringCapitalGenerator from "../../helpers/stringCapitalGenerator";
 import priceConverter from "../../helpers/priceConverter";
-import { useContext } from "react";
-import { useDispatch } from "react-redux";
+// import { useContext } from "react";
+// import { useDispatch } from "react-redux";
 
 // import { CartContext } from "../../contexts/CartContext";
 import { addCart } from "../../features/cart/cartSlice";
 import { updateProductReduxQuantity } from "../../features/product/productSlice";
-import { ProductContext } from "../../contexts/ProductContext";
+// import { ProductContext } from "../../contexts/ProductContext";
 
 export default function Card(props) {
-	const { product, openModal, setCurrentProductModal } = props;
-	const dispatch = useDispatch();
+	const { product, openModal, setCurrentProductModal, dispatch } = props;
+	// const dispatch = useDispatch();
 	// const { updateProductContextQuantity } = useContext(ProductContext);
 
 	// const [isModalOpen, setIsModalOpen] = useState(false)
@@ -29,7 +29,7 @@ export default function Card(props) {
 		// 	"decrement",
 		// 	"Added to cart! Woohoo!"
 		// );
-		dispatch(
+		await dispatch(
 			updateProductReduxQuantity({
 				cartProduct: product,
 				updatedType: "decrement",
@@ -50,29 +50,29 @@ export default function Card(props) {
 					alt={product.model}
 				/>
 			</figure>
-			<form onSubmit={(e) => e.preventDefault()}>
-				<div className='card-body'>
-					<h2 className='card-title font-bold text-lg'>{product.make}</h2>
-					<p className='text-gray-500'>{product.model}</p>
-					<div className='flex flex-wrap justify-between mt-4'>
-						<div className='badge btn-sm btn-outline hover:bg-white hover:text-black text-md'>
-							{stringCapitalGenerator(product.sub_category_name)}
-						</div>
-						<div className='badge btn-sm border-black btn-accent bg-amber-500 hover:bg-amber-500 hover:border-black text-lg font-bold'>
-							{priceConverter(product.price_in_cents)}
-						</div>
+			{/* <form onSubmit={(e) => e.preventDefault()}> */}
+			<div className='card-body'>
+				<h2 className='card-title font-bold text-lg'>{product.make}</h2>
+				<p className='text-gray-500'>{product.model}</p>
+				<div className='flex flex-wrap justify-between mt-4'>
+					<div className='badge btn-sm btn-outline hover:bg-white hover:text-black text-md'>
+						{stringCapitalGenerator(product.sub_category_name)}
 					</div>
-					<button
-						disabled={product.stock_quantity <= 0}
-						type='submit'
-						className={`btn btn-primary btn-sm ${
-							product.stock_quantity <= 0 ? "cursor-not-allowed" : ""
-						}`}
-						onClick={handleBuyButtonClick}>
-						{product.stock_quantity <= 0 ? "Sold Out!" : "Buy Now"}
-					</button>
+					<div className='badge btn-sm border-black btn-accent bg-amber-500 hover:bg-amber-500 hover:border-black text-lg font-bold'>
+						{priceConverter(product.price_in_cents)}
+					</div>
 				</div>
-			</form>
+				<button
+					disabled={product.stock_quantity <= 0}
+					type='button'
+					className={`btn btn-primary btn-sm ${
+						product.stock_quantity <= 0 ? "cursor-not-allowed" : ""
+					}`}
+					onClick={handleBuyButtonClick}>
+					{product.stock_quantity <= 0 ? "Sold Out!" : "Buy Now"}
+				</button>
+			</div>
+			{/* </form> */}
 		</div>
 	);
 }

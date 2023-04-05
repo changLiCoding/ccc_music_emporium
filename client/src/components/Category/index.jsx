@@ -49,7 +49,7 @@ export default function Category() {
 				<SideBars></SideBars>
 				<CategoryCards
 					products={products}
-					// dispatch={dispatch}
+					dispatch={dispatch}
 				/>
 			</div>
 		</main>

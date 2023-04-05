@@ -28,7 +28,7 @@ export default function CategoryCards({ products, dispatch }) {
 							className='h-full'
 							key={product.id}>
 							<ProductCard
-								// dispatch={dispatch}
+								dispatch={dispatch}
 								product={product}
 								category={product.category_name}
 								openModal={openModal}
@@ -39,6 +39,7 @@ export default function CategoryCards({ products, dispatch }) {
 				})}
 			{products && isModalOpen && (
 				<ProductModal
+					dispatch={dispatch}
 					closeModal={closeModal}
 					product={currentProductModal}
 				/>
