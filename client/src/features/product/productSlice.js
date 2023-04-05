@@ -31,24 +31,29 @@ export const updateProductReduxQuantity = createAsyncThunk(
 			);
 			console.log(
 				"In the updateProductReduxQuantity lets check what gona got updated: ",
-				productToUpdate
+				cartProduct
 			);
+
 			const response = await axios.post(
 				`http://localhost:8080/api/categories/${cartProduct.category_name}`,
 				{
-					product: {
-						...productToUpdate,
-						stock_quantity:
-							updatedType === "decrement"
-								? productToUpdate.stock_quantity - 1
-								: productToUpdate.stock_quantity + 1,
-					},
+					updatedType,
+					product: cartProduct,
 				}
 			);
 			const newStock = response.data.returnedNewProduct[0].stock_quantity;
 			productToUpdate = { ...cartProduct, stock_quantity: newStock };
 			// Dispatch success action with updated product quantity
-			dispatch(updateProductQuantitySuccess({ productToUpdate, message }));
+			if (productToUpdate.stock_quantity) {
+				dispatch(updateProductQuantitySuccess({ productToUpdate, message }));
+			} else {
+				dispatch(
+					fetchProducts({
+						name: cartProduct.category_name,
+						nameType: "category",
+					})
+				);
+			}
 			// const oldProducts = thunkAPI.getState().products.products;
 			// const updatedIndex = oldProducts.findIndex(
 			// 	(product) => product.model === cartProduct.model

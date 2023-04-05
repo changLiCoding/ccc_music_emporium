@@ -65,30 +65,33 @@ export default function Checkout() {
 	};
 
 	const handleEmptyCart = async () => {
-		try {
-			const promises = cart.map((product) =>
-				dispatch(
+		for (const product of cart) {
+			try {
+				await dispatch(
 					updateProductReduxQuantity({
 						cartProduct: product,
 						updatedType: "increment",
 					})
-				)
-			);
-			await Promise.all(promises);
-			dispatch(emptyCart());
-		} catch (error) {
-			console.error("Error emptying cart:", error);
+				);
+			} catch (error) {
+				console.error("Error emptying cart:", error);
+			}
 		}
-		// cart.forEach(async (product) => {
-		// 	await dispatch(
-		// 		updateProductReduxQuantity({
-		// 			cartProduct: product,
-		// 			updatedType: "increment",
-		// 		})
+		// try {
+		// 	const promises = cart.map((product) =>
+		// 		dispatch(
+		// 			updateProductReduxQuantity({
+		// 				cartProduct: product,
+		// 				updatedType: "increment",
+		// 			})
+		// 		)
 		// 	);
-		// 	// updateProductContextQuantity(product, "increment");
-		// });
-		// // emptyCart();
+		// 	await Promise.all(promises);
+		// 	dispatch(emptyCart());
+		// } catch (error) {
+		// 	console.error("Error emptying cart:", error);
+		// }
+		dispatch(emptyCart());
 	};
 
 	// Populate Cart Page
