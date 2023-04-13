@@ -13,7 +13,7 @@
   <p align="center">
     An E-commerce project for music shopping solution!
     <br />
-    <a href="https://github.com/changLiCoding/ccc_music_emporium"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/cankologlu/ccc_music_emporium"><strong>Explore the docs »</strong></a>
     <br />
 
   </p>
